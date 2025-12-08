@@ -50,6 +50,39 @@
 			"required": ["blog", "collaborate", "contact", "projects"],
 			"type": "object"
 		},
+		"stats": {
+			"description": "The statistics for the landing page.",
+			"properties": {
+				"heading": {
+					"description": "The heading of the stats section.",
+					"type": "string"
+				},
+				"members": {
+					"description": "The title of the members stat.",
+					"type": "string"
+				},
+				"presentations": {
+					"description": "The title of the presentations stat.",
+					"type": "string"
+				},
+				"projects": {
+					"description": "The title of the projects stat.",
+					"type": "string"
+				},
+				"vulnerabilities": {
+					"description": "The title of the vulnerabilities stat.",
+					"type": "string"
+				}
+			},
+			"required": [
+				"heading",
+				"members",
+				"presentations",
+				"projects",
+				"vulnerabilities"
+			],
+			"type": "object"
+		},
 		"tagline": {
 			"description": "The tagline for the landing page.",
 			"type": "string"
