@@ -15,3 +15,7 @@
  */
 
 @import "tailwindcss";
+
+@theme {
+	--color-brand-primary: #7b68ee;
+}
