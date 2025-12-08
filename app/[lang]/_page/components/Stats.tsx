@@ -37,27 +37,19 @@
  */
 
 import type { Dictionary } from "@l10n/Dict";
-import { useMemo } from "react";
 
 interface StatsProps {
 	dict: Dictionary;
 }
 
 const Stats = ({ dict }: StatsProps) => {
-	const stats = useMemo(
-		() => [
-			{ id: 1, name: dict.stats?.members, value: "4" },
-			{ id: 2, name: dict.stats?.projects, value: "2" },
-			{ id: 3, name: dict.stats?.presentations, value: "0" },
-			{ id: 4, name: dict.stats?.vulnerabilities, value: "0" },
-		],
-		[
-			dict.stats?.members,
-			dict.stats?.projects,
-			dict.stats?.presentations,
-			dict.stats?.vulnerabilities,
-		],
-	);
+	const stats = [
+		{ id: 1, name: dict.stats?.members, value: "4" },
+		{ id: 2, name: dict.stats?.projects, value: "2" },
+		{ id: 3, name: dict.stats?.presentations, value: "0" },
+		{ id: 4, name: dict.stats?.vulnerabilities, value: "0" },
+	];
+
 	return (
 		<article className="bg-white py-24 sm:py-32 dark:bg-gray-900">
 			<div className="mx-auto max-w-7xl px-6 lg:px-8">
