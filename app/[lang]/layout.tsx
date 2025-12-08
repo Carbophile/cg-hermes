@@ -19,7 +19,7 @@ import type { ReactNode } from "react";
 
 import "@/global.css";
 
-export const generateStaticParams = () => langs.map((lang) => ({ lang: lang }));
+export const generateStaticParams = () => langs.map((lang) => ({ lang }));
 
 interface RootLayoutProps {
 	params: Promise<{ lang: string }>;
