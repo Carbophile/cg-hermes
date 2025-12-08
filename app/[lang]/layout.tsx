@@ -15,9 +15,12 @@
  */
 
 import { type Lang, langs } from "@l10n/dict";
+import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
 
 import "@/global.css";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const generateStaticParams = () => langs.map((lang) => ({ lang }));
 
@@ -30,7 +33,10 @@ const RootLayout = async ({ params, children }: RootLayoutProps) => {
 	const { lang } = (await params) as { lang: Lang };
 
 	return (
-		<html lang={lang}>
+		<html
+			className={`scheme-light dark:scheme-dark bg-white dark:bg-gray-950 ${inter.className}`}
+			lang={lang}
+		>
 			<body>{children}</body>
 		</html>
 	);
