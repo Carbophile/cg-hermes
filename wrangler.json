@@ -1,0 +1,12 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"assets": {
+		"directory": "out",
+		"not_found_handling": "404-page"
+	},
+	"build": {
+		"command": "pnpm run build"
+	},
+	"compatibility_date": "2025-12-01",
+	"name": "cg-hermes"
+}
