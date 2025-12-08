@@ -39,6 +39,7 @@
 import type { Dictionary } from "@l10n/Dict";
 import type { Lang } from "@l10n/dict";
 import Image from "next/image";
+import Link from "next/link";
 
 interface LandingProps {
 	dict: Dictionary;
@@ -60,12 +61,12 @@ const Landing = ({ dict, lang }: LandingProps) => {
 								{dict.mission}
 							</p>
 							<div className="mt-8">
-								<a
+								<Link
 									className="inline-flex rounded-md bg-brand-primary px-3.5 py-2.5 font-semibold text-sm text-white shadow-xs hover:bg-brand-primary-light focus-visible:outline-2 focus-visible:outline-brand-primary focus-visible:outline-offset-2"
 									href={`/${lang}/blog`}
 								>
 									{dict.pages.blog}
-								</a>
+								</Link>
 							</div>
 							<figure className="mt-16 border-gray-200 border-l pl-8 text-gray-700 dark:border-gray-700 dark:text-gray-300">
 								<blockquote className="text-base/7">
