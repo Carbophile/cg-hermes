@@ -1,0 +1,43 @@
+{
+	"$schema": "https://www.schemastore.org/tsconfig.json",
+	"compilerOptions": {
+		"allowJs": false,
+		"baseUrl": ".",
+		"esModuleInterop": true,
+		"exactOptionalPropertyTypes": true,
+		"forceConsistentCasingInFileNames": true,
+		"incremental": true,
+		"isolatedModules": true,
+		"jsx": "react-jsx",
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"noEmit": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUncheckedIndexedAccess": true,
+		"paths": {
+			"@/*": ["app/*"]
+		},
+		"plugins": [
+			{
+				"name": "next"
+			}
+		],
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"strictBuiltinIteratorReturn": true,
+		"target": "ESNext",
+		"verbatimModuleSyntax": true
+	},
+	"exclude": ["node_modules"],
+	"include": [
+		"**/*.ts",
+		"**/*.tsx",
+		".next/dev/types/**/*.ts",
+		".next/types/**/*.ts",
+		"next-env.d.ts"
+	]
+}
