@@ -18,7 +18,8 @@
 		"noPropertyAccessFromIndexSignature": true,
 		"noUncheckedIndexedAccess": true,
 		"paths": {
-			"@/*": ["app/*"]
+			"@/*": ["app/*"],
+			"@l10n/*": ["l10n/*"]
 		},
 		"plugins": [
 			{

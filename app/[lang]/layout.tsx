@@ -14,8 +14,26 @@
  * limitations under the License.
  */
 
-const RootPage = () => (
-	<p className="font-bold text-3xl underline">Hello, Next.js!</p>
-);
+import { type Lang, langs } from "@l10n/dict";
+import type { ReactNode } from "react";
 
-export default RootPage;
+import "@/global.css";
+
+export const generateStaticParams = () => langs.map((lang) => ({ lang }));
+
+interface RootLayoutProps {
+	params: Promise<{ lang: string }>;
+	children: ReactNode;
+}
+
+const RootLayout = async ({ params, children }: RootLayoutProps) => {
+	const { lang } = (await params) as { lang: Lang };
+
+	return (
+		<html lang={lang}>
+			<body>{children}</body>
+		</html>
+	);
+};
+
+export default RootLayout;
