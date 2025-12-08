@@ -60,11 +60,11 @@ const Header = ({ dict }: HeaderProps) => {
 
 	const navigation = useMemo(
 		() => [
-			{ href: `/${lang}/about`, name: dict.pages?.about },
+			{ href: `/${lang}/blog`, name: dict.pages?.blog },
 			{ href: `/${lang}/projects`, name: dict.pages?.projects },
 			{ href: `/${lang}/contact`, name: dict.pages?.contact },
 		],
-		[lang, dict.pages?.about, dict.pages?.projects, dict.pages?.contact],
+		[lang, dict.pages?.blog, dict.pages?.projects, dict.pages?.contact],
 	);
 
 	return (
@@ -101,9 +101,9 @@ const Header = ({ dict }: HeaderProps) => {
 					<Image
 						alt=""
 						className="h-12 w-auto"
-						height="100"
+						height="1"
 						src="/assets/brandmark.svg"
-						width="100"
+						width="1"
 					/>
 				</Link>
 				<div className="flex flex-1 justify-end">
@@ -138,9 +138,9 @@ const Header = ({ dict }: HeaderProps) => {
 							<Image
 								alt=""
 								className="h-12 w-auto"
-								height="100"
+								height="1"
 								src="/assets/brandmark.svg"
-								width="100"
+								width="1"
 							/>
 						</Link>
 						<div className="flex flex-1 justify-end">

@@ -24,3 +24,11 @@ by [Tailwind Plus](https://tailwindcss.com/plus).
 * **Restrictions:** The Apache License 2.0 grant **does not apply** to these specific files. You may not extract,
   modify, or redistribute these components as standalone assets or for use in other projects without a separate license
   from Tailwind Labs Inc.
+
+### Pixabay
+
+This project incorporates stock footage provided by [Pixabay](https://pixabay.com/).
+
+* **License:** These assets are used under the [Pixabay Content License](https://pixabay.com/service/license-summary/).
+* **Restrictions:** You must comply with the specific terms of the Pixabay Content License, which includes restrictions on prohibited uses (e.g., selling assets standalone, offensive use).
+* **Attribution:** Assets sourced from Pixabay are prefixed with `PIX-` and are licensed solely under the Pixabay Content License.

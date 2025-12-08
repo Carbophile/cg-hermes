@@ -3,8 +3,24 @@
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"description": "A dictionary of localized strings.",
 	"properties": {
+		"cofounder": {
+			"description": "The title of co-founder.",
+			"type": "string"
+		},
+		"cybersecurity": {
+			"description": "The word \"cybersecurity\".",
+			"type": "string"
+		},
+		"foundingQuote": {
+			"description": "The quote from Borna Punda for the landing page.",
+			"type": "string"
+		},
 		"hello": {
 			"description": "A greeting to the framework.",
+			"type": "string"
+		},
+		"mission": {
+			"description": "The mission statement for the landing page.",
 			"type": "string"
 		},
 		"orgName": {
@@ -14,8 +30,8 @@
 		"pages": {
 			"description": "The pages of the website.",
 			"properties": {
-				"about": {
-					"description": "The title of the about page.",
+				"blog": {
+					"description": "The title of the blog page.",
 					"type": "string"
 				},
 				"collaborate": {
@@ -31,11 +47,24 @@
 					"type": "string"
 				}
 			},
-			"required": ["about", "contact", "projects", "collaborate"],
+			"required": ["blog", "collaborate", "contact", "projects"],
 			"type": "object"
+		},
+		"tagline": {
+			"description": "The tagline for the landing page.",
+			"type": "string"
 		}
 	},
-	"required": ["hello", "orgName", "pages"],
+	"required": [
+		"cofounder",
+		"cybersecurity",
+		"foundingQuote",
+		"hello",
+		"mission",
+		"orgName",
+		"pages",
+		"tagline"
+	],
 	"title": "Dictionary",
 	"type": "object"
 }

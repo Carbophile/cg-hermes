@@ -18,4 +18,5 @@
 
 @theme {
 	--color-brand-primary: #7b68ee;
+	--color-brand-primary-light: #9f8fff; /* 20% lighter */
 }
