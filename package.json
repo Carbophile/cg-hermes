@@ -25,7 +25,7 @@
 		"dev": "next dev",
 		"prepare": "husky && pnpm run types",
 		"preview": "wrangler dev",
-		"types": "json2ts -i l10n/dict.schema.json -o l10n/Dict.d.ts"
+		"types": "json2ts -i l10n/dict.schema.json -o l10n/Dict.d.ts --format false"
 	},
 	"type": "module"
 }
