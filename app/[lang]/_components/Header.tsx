@@ -43,6 +43,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import type { Dictionary } from "@l10n/Dict";
 import type { Lang } from "@l10n/dict";
 import Image from "next/image";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 
@@ -72,13 +73,13 @@ const Header = ({ dict }: HeaderProps) => {
 				<div className="flex flex-1">
 					<div className="hidden lg:flex lg:gap-x-12">
 						{navigation.map((item) => (
-							<a
+							<Link
 								className="font-semibold text-gray-900 text-sm/6 dark:text-white"
 								href={item.href}
 								key={item.name}
 							>
 								{item.name}
-							</a>
+							</Link>
 						))}
 					</div>
 					<div className="flex lg:hidden">
@@ -92,7 +93,7 @@ const Header = ({ dict }: HeaderProps) => {
 						</button>
 					</div>
 				</div>
-				<a className="-m-1.5 p-1.5" href={`/${lang}`}>
+				<Link className="-m-1.5 p-1.5" href={`/${lang}`}>
 					<span className="sr-only">{dict.orgName}</span>
 					<Image
 						alt=""
@@ -101,14 +102,14 @@ const Header = ({ dict }: HeaderProps) => {
 						src="/assets/brandmark.svg"
 						width="100"
 					/>
-				</a>
+				</Link>
 				<div className="flex flex-1 justify-end">
-					<a
+					<Link
 						className="font-semibold text-gray-900 text-sm/6 dark:text-white"
 						href={`/${lang}/collaborate`}
 					>
 						{dict.pages.collaborate} <span aria-hidden="true">&rarr;</span>
-					</a>
+					</Link>
 				</div>
 			</nav>
 			<Dialog
@@ -129,7 +130,7 @@ const Header = ({ dict }: HeaderProps) => {
 								<XMarkIcon aria-hidden="true" className="size-6" />
 							</button>
 						</div>
-						<a className="-m-1.5 p-1.5" href={`/${lang}`}>
+						<Link className="-m-1.5 p-1.5" href={`/${lang}`}>
 							<span className="sr-only">{dict.orgName}</span>
 							<Image
 								alt=""
@@ -138,25 +139,25 @@ const Header = ({ dict }: HeaderProps) => {
 								src="/assets/brandmark.svg"
 								width="100"
 							/>
-						</a>
+						</Link>
 						<div className="flex flex-1 justify-end">
-							<a
+							<Link
 								className="font-semibold text-gray-900 text-sm/6 dark:text-white"
 								href={`/${lang}/collaborate`}
 							>
 								{dict.pages.collaborate} <span aria-hidden="true">&rarr;</span>
-							</a>
+							</Link>
 						</div>
 					</div>
 					<div className="mt-6 space-y-2">
 						{navigation.map((item) => (
-							<a
+							<Link
 								className="-mx-3 block rounded-lg px-3 py-2 font-semibold text-base/7 text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-white/5"
 								href={item.href}
 								key={item.name}
 							>
 								{item.name}
-							</a>
+							</Link>
 						))}
 					</div>
 				</DialogPanel>
