@@ -1,11 +1,16 @@
 {
 	"$schema": "../dict.schema.json",
+	"cofounder": "Suosnivač",
+	"cybersecurity": "Kibernetička sigurnost",
+	"foundingQuote": "Jako sam razočaran stanjem neprofitnog sektora kibernetičke sigurnosti u Hrvatskoj. Nemamo udruga, nemamo zagovornike za privatnost, i nemamo niti jedno tijelo za numeriranje CVE-ova. Visokokvalitetni resursi su rijetki. Zato smo osnovali Carbophile Group, kako bi to promijenili.",
 	"hello": "Pozdrav, Next.js!",
+	"mission": "U Carbophile Grupi, naša je misija da tako i ostane. Mi smo hrvatska zajednica stručnjaka za kibernetičku sigurnost, programera, i zagovornika privatnosti posvećenih izgradnji sigurnijeg digitalnog svijeta.",
 	"orgName": "Carbophile Grupa",
 	"pages": {
-		"about": "O nama",
+		"blog": "Blog",
 		"collaborate": "Surađujte",
 		"contact": "Kontakt",
 		"projects": "Projekti"
-	}
+	},
+	"tagline": "je temeljno ljudsko pravo"
 }
