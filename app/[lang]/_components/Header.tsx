@@ -45,7 +45,7 @@ import type { Lang } from "@l10n/dict";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 type HeaderDict = Pick<Dictionary, "orgName" | "pages">;
 
@@ -58,11 +58,14 @@ const Header = ({ dict }: HeaderProps) => {
 
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-	const navigation = [
-		{ href: `/${lang}/about`, name: dict.pages?.about },
-		{ href: `/${lang}/projects`, name: dict.pages?.projects },
-		{ href: `/${lang}/contact`, name: dict.pages?.contact },
-	];
+	const navigation = useMemo(
+		() => [
+			{ href: `/${lang}/about`, name: dict.pages?.about },
+			{ href: `/${lang}/projects`, name: dict.pages?.projects },
+			{ href: `/${lang}/contact`, name: dict.pages?.contact },
+		],
+		[lang, dict.pages?.about, dict.pages?.projects, dict.pages?.contact],
+	);
 
 	return (
 		<header className="bg-white dark:bg-gray-900">
