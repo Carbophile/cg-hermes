@@ -45,7 +45,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 const NotFound = () => (
 	<html
-		className={`scheme-light dark:scheme-dark h-full bg-white dark:bg-gray-950 ${inter.className}`}
+		className={`scheme-light dark:scheme-dark h-full bg-white dark:bg-gray-900 ${inter.className}`}
 		lang="en"
 	>
 		<body className="h-full">
