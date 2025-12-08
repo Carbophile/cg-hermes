@@ -16,6 +16,7 @@
 
 import { getDict, type Lang } from "@l10n/dict";
 import Landing from "./_page/components/Landing";
+import Stats from "./_page/components/Stats";
 
 interface RootPageProps {
 	params: Promise<{ lang: string }>;
@@ -25,7 +26,12 @@ const RootPage = async ({ params }: RootPageProps) => {
 	const { lang } = (await params) as { lang: Lang };
 	const dict = await getDict(lang);
 
-	return <Landing dict={dict} lang={lang} />;
+	return (
+		<>
+			<Landing dict={dict} lang={lang} />
+			<Stats dict={dict} />
+		</>
+	);
 };
 
 export default RootPage;

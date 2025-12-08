@@ -12,5 +12,12 @@
 		"contact": "Contact",
 		"projects": "Projects"
 	},
+	"stats": {
+		"heading": "Bit by bit",
+		"members": "Members",
+		"presentations": "Presentations",
+		"projects": "Projects",
+		"vulnerabilities": "Reported Vulnerabilities"
+	},
 	"tagline": "is a fundamental human right"
 }
