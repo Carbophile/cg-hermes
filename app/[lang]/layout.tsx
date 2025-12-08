@@ -14,18 +14,26 @@
  * limitations under the License.
  */
 
+import { type Lang, langs } from "@l10n/dict";
 import type { ReactNode } from "react";
 
-import "./global.css";
+import "@/global.css";
+
+export const generateStaticParams = () => langs.map((lang) => ({ lang: lang }));
 
 interface RootLayoutProps {
+	params: Promise<{ lang: string }>;
 	children: ReactNode;
 }
 
-const RootLayout = ({ children }: RootLayoutProps) => (
-	<html lang="en">
-		<body>{children}</body>
-	</html>
-);
+const RootLayout = async ({ params, children }: RootLayoutProps) => {
+	const { lang } = (await params) as { lang: Lang };
+
+	return (
+		<html lang={lang}>
+			<body>{children}</body>
+		</html>
+	);
+};
 
 export default RootLayout;

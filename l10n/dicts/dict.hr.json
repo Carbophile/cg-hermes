@@ -1,0 +1,4 @@
+{
+	"$schema": "../dict.schema.json",
+	"hello": "Pozdrav, Next.js!"
+}
