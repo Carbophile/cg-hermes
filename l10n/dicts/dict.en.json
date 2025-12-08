@@ -2,6 +2,27 @@
 	"$schema": "../dict.schema.json",
 	"cofounder": "Co-Founder",
 	"cybersecurity": "Cybersecurity",
+	"faq": {
+		"faqs": {
+			"consulting": {
+				"answer": "We do not offer any consulting service at this point in time.",
+				"question": "Do you offer consulting services?"
+			},
+			"differCommercial": {
+				"answer": "As a non-profit organization, our primary motivation is not to generate profit but provide value for the community. This allows us to offer all our work for free or at a reduced price.",
+				"question": "How do you differ from commercial cybersecurity companies?"
+			},
+			"nonprofit": {
+				"answer": "Yes! Carbophile Group is an association pursuant to Article 4 of the Croatian law on associations.",
+				"question": "Is Carbophile Group a non-profit organization?"
+			},
+			"projects": {
+				"answer": "We primarily work on producing and freely sharing unbiased, high-quality analysis and research papers on emerging threats, best practices, and digital rights.",
+				"question": "What kind of projects do you work on?"
+			}
+		},
+		"heading": "Frequently asked questions"
+	},
 	"foundingQuote": "I am greatly disappointed with the state of the non-profit cybersecurity sector in Croatia. We have no associations, no privacy advocacies, and no CVE numbering authorities. High-quality resources are few and far between. That's why we founded Carbophile Group, to change that.",
 	"hello": "Hello, Next.js!",
 	"mission": "At Carbophile Group, our mission is to keep it that way. We are a Croatian collective of cybersecurity experts, developers, and privacy advocates dedicated to building a safer digital world.",
