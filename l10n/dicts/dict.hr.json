@@ -1,4 +1,11 @@
 {
 	"$schema": "../dict.schema.json",
-	"hello": "Pozdrav, Next.js!"
+	"hello": "Pozdrav, Next.js!",
+	"orgName": "Carbophile Grupa",
+	"pages": {
+		"about": "O nama",
+		"collaborate": "Surađujte",
+		"contact": "Kontakt",
+		"projects": "Projekti"
+	}
 }
