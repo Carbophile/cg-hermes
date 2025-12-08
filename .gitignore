@@ -1,0 +1,12 @@
+# Cloudflare Workers
+/.wrangler/
+
+# Dependencies
+/node_modules/
+
+# Next.js
+/.next/
+/out/
+
+# Type definitions
+*.d.ts
