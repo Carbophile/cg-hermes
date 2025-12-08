@@ -74,7 +74,7 @@ const Landing = ({ dict, lang }: LandingProps) => {
 								</blockquote>
 								<figcaption className="mt-6 flex gap-x-4 text-sm/6">
 									<Image
-										alt=""
+										alt="Headshot of Borna Punda"
 										className="size-6 flex-none rounded-full"
 										height="1"
 										src="/assets/headshots/borna-punda.webp"
