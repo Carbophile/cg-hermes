@@ -1,4 +1,21 @@
 {
+	"$defs": {
+		"faqItem": {
+			"description": "A FAQ item.",
+			"properties": {
+				"answer": {
+					"description": "The answer to the question.",
+					"type": "string"
+				},
+				"question": {
+					"description": "The question.",
+					"type": "string"
+				}
+			},
+			"required": ["answer", "question"],
+			"type": "object"
+		}
+	},
 	"$id": "urn:cg-hermes:l10n:dict.schema.json",
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"description": "A dictionary of localized strings.",
@@ -10,6 +27,41 @@
 		"cybersecurity": {
 			"description": "The word \"cybersecurity\".",
 			"type": "string"
+		},
+		"faq": {
+			"description": "The frequently asked questions for the landing page.",
+			"properties": {
+				"faqs": {
+					"description": "The list of FAQs.",
+					"properties": {
+						"consulting": {
+							"$ref": "#/$defs/faqItem"
+						},
+						"differCommercial": {
+							"$ref": "#/$defs/faqItem"
+						},
+						"nonprofit": {
+							"$ref": "#/$defs/faqItem"
+						},
+						"projects": {
+							"$ref": "#/$defs/faqItem"
+						}
+					},
+					"required": [
+						"consulting",
+						"projects",
+						"differCommercial",
+						"nonprofit"
+					],
+					"type": "object"
+				},
+				"heading": {
+					"description": "The heading of the FAQ section.",
+					"type": "string"
+				}
+			},
+			"required": ["faqs", "heading"],
+			"type": "object"
 		},
 		"foundingQuote": {
 			"description": "The quote from Borna Punda for the landing page.",
@@ -91,11 +143,13 @@
 	"required": [
 		"cofounder",
 		"cybersecurity",
+		"faq",
 		"foundingQuote",
 		"hello",
 		"mission",
 		"orgName",
 		"pages",
+		"stats",
 		"tagline"
 	],
 	"title": "Dictionary",

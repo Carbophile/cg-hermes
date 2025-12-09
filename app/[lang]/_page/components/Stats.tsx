@@ -44,10 +44,10 @@ interface StatsProps {
 
 const Stats = ({ dict }: StatsProps) => {
 	const stats = [
-		{ id: 1, name: dict.stats?.members, value: "4" },
-		{ id: 2, name: dict.stats?.projects, value: "2" },
-		{ id: 3, name: dict.stats?.presentations, value: "0" },
-		{ id: 4, name: dict.stats?.vulnerabilities, value: "0" },
+		{ name: dict.stats?.members, value: "4" },
+		{ name: dict.stats?.projects, value: "2" },
+		{ name: dict.stats?.presentations, value: "0" },
+		{ name: dict.stats?.vulnerabilities, value: "0" },
 	];
 
 	return (
@@ -63,7 +63,7 @@ const Stats = ({ dict }: StatsProps) => {
 						{stats.map((stat) => (
 							<div
 								className="flex flex-col bg-gray-400/5 p-8 dark:bg-white/5"
-								key={stat.id}
+								key={stat.name}
 							>
 								<dt className="font-semibold text-gray-600 text-sm/6 dark:text-gray-300">
 									{stat.name}
