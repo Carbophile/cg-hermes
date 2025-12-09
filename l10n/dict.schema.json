@@ -28,6 +28,37 @@
 			"description": "The title of co-founder.",
 			"type": "string"
 		},
+		"contact": {
+			"description": "The contact information.",
+			"properties": {
+				"address": {
+					"description": "The word \"Address\".",
+					"type": "string"
+				},
+				"email": {
+					"description": "The word \"Email\".",
+					"type": "string"
+				},
+				"heading": {
+					"description": "The heading of the contact section.",
+					"type": "string"
+				},
+				"linkedin": {
+					"description": "The word \"LinkedIn\".",
+					"type": "string"
+				},
+				"phone": {
+					"description": "The word \"Phone\".",
+					"type": "string"
+				},
+				"prose": {
+					"description": "The prose of the contact section.",
+					"type": "string"
+				}
+			},
+			"required": ["address", "email", "heading", "linkedin", "phone", "prose"],
+			"type": "object"
+		},
 		"cybersecurity": {
 			"description": "The word \"cybersecurity\".",
 			"type": "string"
@@ -173,6 +204,7 @@
 	"required": [
 		"blogSubtext",
 		"cofounder",
+		"contact",
 		"cybersecurity",
 		"faq",
 		"foundingQuote",

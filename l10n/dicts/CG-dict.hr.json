@@ -2,6 +2,14 @@
 	"$schema": "../dict.schema.json",
 	"blogSubtext": "Najnovije vijesti, podaci, i analize izravno od Carbophile Grupe.",
 	"cofounder": "Suosnivač",
+	"contact": {
+		"address": "Adresa",
+		"email": "E-pošta",
+		"heading": "Kontaktirajte nas",
+		"linkedin": "LinkedIn",
+		"phone": "Mobitel",
+		"prose": "Imate pitanje, ideju za projekt, ili nam se samo želite javiti? Voljeli bismo vas čuti."
+	},
 	"cybersecurity": "Kibernetička sigurnost",
 	"faq": {
 		"faqs": {

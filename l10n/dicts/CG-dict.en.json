@@ -2,6 +2,14 @@
 	"$schema": "../dict.schema.json",
 	"blogSubtext": "The latest news, intel, and analysis straight from Carbophile Group.",
 	"cofounder": "Co-Founder",
+	"contact": {
+		"address": "Address",
+		"email": "Email",
+		"heading": "Contact us",
+		"linkedin": "LinkedIn",
+		"phone": "Phone",
+		"prose": "Have a question, a project idea, or just want to say hello? We'd love to hear from you."
+	},
 	"cybersecurity": "Cybersecurity",
 	"faq": {
 		"faqs": {
