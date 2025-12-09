@@ -14,18 +14,17 @@
  * limitations under the License.
  */
 
-import type { ReactNode } from "react";
+import type { Dictionary } from "@l10n/Dict";
 
-import "./global.css";
+const dictImports = {
+	en: () => import("@l10n/dicts/dict.en.json"),
+	hr: () => import("@l10n/dicts/dict.hr.json"),
+} satisfies Record<string, () => Promise<{ default: Dictionary }>>;
 
-interface RootLayoutProps {
-	children: ReactNode;
-}
+export type Lang = keyof typeof dictImports;
+export const langs = Object.keys(dictImports) as Lang[];
 
-const RootLayout = ({ children }: RootLayoutProps) => (
-	<html lang="en">
-		<body>{children}</body>
-	</html>
-);
-
-export default RootLayout;
+export const getDict = async (lang: Lang) => {
+	const { default: dict } = await dictImports[lang]();
+	return dict;
+};
