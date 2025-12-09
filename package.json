@@ -7,6 +7,7 @@
 		"@types/react": "^19.2.7",
 		"@types/react-dom": "^19.2.3",
 		"husky": "^9.1.7",
+		"json-schema-to-typescript": "^15.0.4",
 		"next": "^16.0.7",
 		"tailwindcss": "^4.1.17",
 		"typescript": "^5.9.3",
@@ -20,8 +21,9 @@
 		"check": "biome check --write",
 		"check:unsafe": "biome check --write --unsafe",
 		"dev": "next dev",
-		"prepare": "husky",
-		"preview": "wrangler dev"
+		"prepare": "husky && pnpm run types",
+		"preview": "wrangler dev",
+		"types": "json2ts -i l10n/dict.schema.json -o l10n/Dict.d.ts"
 	},
 	"type": "module"
 }

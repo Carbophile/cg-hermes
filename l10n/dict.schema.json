@@ -1,0 +1,14 @@
+{
+	"$id": "urn:cg-hermes:l10n:dict.schema.json",
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"description": "A dictionary of localized strings.",
+	"properties": {
+		"hello": {
+			"description": "A greeting to the framework.",
+			"type": "string"
+		}
+	},
+	"required": ["hello"],
+	"title": "Dictionary",
+	"type": "object"
+}
