@@ -38,7 +38,7 @@ const RootLayout = async ({ params, children }: RootLayoutProps) => {
 
 	return (
 		<html
-			className={`scheme-light dark:scheme-dark bg-white dark:bg-gray-950 ${inter.className}`}
+			className={`scheme-light dark:scheme-dark bg-white dark:bg-gray-900 ${inter.className}`}
 			lang={lang}
 		>
 			<body>
