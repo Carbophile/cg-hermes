@@ -47,7 +47,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useMemo, useState } from "react";
 
-type HeaderDict = Pick<Dictionary, "orgName" | "pages">;
+type HeaderDict = Pick<Dictionary, "menu" | "orgName" | "pages">;
 
 interface HeaderProps {
 	dict: HeaderDict;
@@ -91,7 +91,7 @@ const Header = ({ dict }: HeaderProps) => {
 							onClick={() => setMobileMenuOpen(true)}
 							type="button"
 						>
-							<span className="sr-only">Open main menu</span>
+							<span className="sr-only">{dict.menu.open}</span>
 							<Bars3Icon aria-hidden="true" className="size-6" />
 						</button>
 					</div>
@@ -102,7 +102,7 @@ const Header = ({ dict }: HeaderProps) => {
 						alt=""
 						className="h-12 w-auto"
 						height="1"
-						src="/assets/brandmark.svg"
+						src="/assets/CG-brandmark.svg"
 						width="1"
 					/>
 				</Link>
@@ -129,7 +129,7 @@ const Header = ({ dict }: HeaderProps) => {
 								onClick={() => setMobileMenuOpen(false)}
 								type="button"
 							>
-								<span className="sr-only">Close menu</span>
+								<span className="sr-only">{dict.menu.close}</span>
 								<XMarkIcon aria-hidden="true" className="size-6" />
 							</button>
 						</div>
@@ -139,7 +139,7 @@ const Header = ({ dict }: HeaderProps) => {
 								alt=""
 								className="h-12 w-auto"
 								height="1"
-								src="/assets/brandmark.svg"
+								src="/assets/CG-brandmark.svg"
 								width="1"
 							/>
 						</Link>
