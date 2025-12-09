@@ -12,5 +12,12 @@
 		"contact": "Kontakt",
 		"projects": "Projekti"
 	},
+	"stats": {
+		"heading": "Malo pomalo",
+		"members": "Članova",
+		"presentations": "Prezentacija",
+		"projects": "Projekata",
+		"vulnerabilities": "Prijavljenih ranjivosti"
+	},
 	"tagline": "je temeljno ljudsko pravo"
 }
