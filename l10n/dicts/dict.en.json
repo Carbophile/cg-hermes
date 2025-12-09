@@ -1,11 +1,16 @@
 {
 	"$schema": "../dict.schema.json",
+	"cofounder": "Co-Founder",
+	"cybersecurity": "Cybersecurity",
+	"foundingQuote": "I am greatly disappointed with the state of the non-profit cybersecurity sector in Croatia. We have no associations, no privacy advocacies, and no CVE numbering authorities. High-quality resources are few and far between. That's why we founded Carbophile Group, to change that.",
 	"hello": "Hello, Next.js!",
+	"mission": "At Carbophile Group, our mission is to keep it that way. We are a Croatian collective of cybersecurity experts, developers, and privacy advocates dedicated to building a safer digital world.",
 	"orgName": "Carbophile Group",
 	"pages": {
-		"about": "About",
+		"blog": "Blog",
 		"collaborate": "Collaborate",
 		"contact": "Contact",
 		"projects": "Projects"
-	}
+	},
+	"tagline": "is a fundamental human right"
 }
