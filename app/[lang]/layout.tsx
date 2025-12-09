@@ -17,7 +17,7 @@
 import { getDict, type Lang, langs } from "@l10n/dict";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
-import Header from "./_components/Header";
+import Header from "@/[lang]/_layout/components/Header";
 
 import "@/global.css";
 
