@@ -1,4 +1,11 @@
 {
 	"$schema": "../dict.schema.json",
-	"hello": "Hello, Next.js!"
+	"hello": "Hello, Next.js!",
+	"orgName": "Carbophile Group",
+	"pages": {
+		"about": "About",
+		"collaborate": "Collaborate",
+		"contact": "Contact",
+		"projects": "Projects"
+	}
 }
