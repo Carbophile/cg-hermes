@@ -145,9 +145,9 @@ export const BlogList = ({ dict, posts }: BlogListProps) => {
 						<div className="relative aspect-video sm:aspect-2/1 lg:aspect-square lg:w-64 lg:shrink-0">
 							<Image
 								alt=""
-								aria-hidden="true"
 								className="absolute inset-0 size-full rounded-2xl bg-gray-50 object-cover dark:bg-gray-800"
 								height="1"
+								role="presentation"
 								src={`/assets/blog-thumbnails/${post.meta.thumbnail}.webp`}
 								width="1"
 							/>
