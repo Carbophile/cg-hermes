@@ -40,27 +40,23 @@ export interface BlogPost {
 }
 
 const readPost = async (filePath: string): Promise<BlogPost | null> => {
-	try {
-		const slug = path.basename(filePath, path.extname(filePath));
-		const fileContents = await fs.readFile(filePath, "utf-8");
-		const { content, data } = matter(fileContents);
+	const slug = path.basename(filePath, path.extname(filePath));
+	const fileContents = await fs.readFile(filePath, "utf-8");
+	const { content, data } = matter(fileContents);
 
-		const frontmatter = data as PostFrontmatter;
+	const frontmatter = data as PostFrontmatter;
 
-		return {
-			content,
-			meta: {
-				author: frontmatter.author,
-				date: frontmatter.date,
-				description: frontmatter.description,
-				thumbnail: frontmatter.thumbnail,
-				title: frontmatter.title,
-			},
-			slug,
-		};
-	} catch (_) {
-		return null;
-	}
+	return {
+		content,
+		meta: {
+			author: frontmatter.author,
+			date: frontmatter.date,
+			description: frontmatter.description,
+			thumbnail: frontmatter.thumbnail,
+			title: frontmatter.title,
+		},
+		slug,
+	};
 };
 
 export const getPostBySlug = async (
