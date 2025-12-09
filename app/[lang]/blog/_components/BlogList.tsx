@@ -52,7 +52,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 interface BlogListProps {
-	dict: Pick<Dictionary, "headshot" | "next" | "previous">;
+	dict: Pick<Dictionary, "headshot" | "next" | "previous" | "search">;
 	posts: BlogPost[];
 }
 
@@ -131,7 +131,7 @@ export const BlogList = ({ dict, posts }: BlogListProps) => {
 				<input
 					className="w-full rounded-md border-gray-300 bg-white px-4 py-2 text-gray-900 shadow-sm focus:border-brand-primary focus:ring-brand-primary dark:bg-gray-800 dark:text-white"
 					onChange={(e) => setSearchQuery(e.target.value)}
-					placeholder="Search posts..."
+					placeholder={dict.search}
 					type="text"
 					value={searchQuery}
 				/>

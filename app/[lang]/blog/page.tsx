@@ -52,6 +52,7 @@ const BlogListPage = async ({ params }: BlogListPageProps) => {
 		headshot: dict.headshot,
 		next: dict.next,
 		previous: dict.previous,
+		search: dict.search,
 	};
 
 	const posts = await getAllPosts(lang);
