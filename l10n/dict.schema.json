@@ -6,9 +6,36 @@
 		"hello": {
 			"description": "A greeting to the framework.",
 			"type": "string"
+		},
+		"orgName": {
+			"description": "The name of the illustrious CG.",
+			"type": "string"
+		},
+		"pages": {
+			"description": "The pages of the website.",
+			"properties": {
+				"about": {
+					"description": "The title of the about page.",
+					"type": "string"
+				},
+				"collaborate": {
+					"description": "The title of the collaborate page.",
+					"type": "string"
+				},
+				"contact": {
+					"description": "The title of the contact page.",
+					"type": "string"
+				},
+				"projects": {
+					"description": "The title of the projects page.",
+					"type": "string"
+				}
+			},
+			"required": ["about", "contact", "projects", "collaborate"],
+			"type": "object"
 		}
 	},
-	"required": ["hello"],
+	"required": ["hello", "orgName", "pages"],
 	"title": "Dictionary",
 	"type": "object"
 }

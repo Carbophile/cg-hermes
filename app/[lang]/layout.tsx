@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-import { type Lang, langs } from "@l10n/dict";
+import { getDict, type Lang, langs } from "@l10n/dict";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
+import Header from "./_components/Header";
 
 import "@/global.css";
 
@@ -31,13 +32,19 @@ interface RootLayoutProps {
 
 const RootLayout = async ({ params, children }: RootLayoutProps) => {
 	const { lang } = (await params) as { lang: Lang };
+	const dict = await getDict(lang);
+
+	const headerDict = { orgName: dict.orgName, pages: dict.pages };
 
 	return (
 		<html
 			className={`scheme-light dark:scheme-dark bg-white dark:bg-gray-950 ${inter.className}`}
 			lang={lang}
 		>
-			<body>{children}</body>
+			<body>
+				<Header dict={headerDict} />
+				<main>{children}</main>
+			</body>
 		</html>
 	);
 };
