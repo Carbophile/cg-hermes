@@ -20,6 +20,10 @@
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"description": "A dictionary of localized strings.",
 	"properties": {
+		"blogSubtext": {
+			"description": "The subtext for the blog page.",
+			"type": "string"
+		},
 		"cofounder": {
 			"description": "The title of co-founder.",
 			"type": "string"
@@ -67,12 +71,30 @@
 			"description": "The quote from Borna Punda for the landing page.",
 			"type": "string"
 		},
-		"hello": {
-			"description": "A greeting to the framework.",
+		"headshot": {
+			"description": "The alt text for a headshot.",
 			"type": "string"
+		},
+		"menu": {
+			"properties": {
+				"close": {
+					"description": "The alt text for closing a menu.",
+					"type": "string"
+				},
+				"open": {
+					"description": "The alt text for opening a menu.",
+					"type": "string"
+				}
+			},
+			"required": ["close", "open"],
+			"type": "object"
 		},
 		"mission": {
 			"description": "The mission statement for the landing page.",
+			"type": "string"
+		},
+		"next": {
+			"description": "The word \"Next\".",
 			"type": "string"
 		},
 		"orgName": {
@@ -101,6 +123,14 @@
 			},
 			"required": ["blog", "collaborate", "contact", "projects"],
 			"type": "object"
+		},
+		"previous": {
+			"description": "The word \"Previous\".",
+			"type": "string"
+		},
+		"search": {
+			"description": "Prompt to search posts.",
+			"type": "string"
 		},
 		"stats": {
 			"description": "The statistics for the landing page.",
@@ -141,14 +171,19 @@
 		}
 	},
 	"required": [
+		"blogSubtext",
 		"cofounder",
 		"cybersecurity",
 		"faq",
 		"foundingQuote",
-		"hello",
+		"headshot",
+		"menu",
 		"mission",
+		"next",
 		"orgName",
 		"pages",
+		"previous",
+		"search",
 		"stats",
 		"tagline"
 	],

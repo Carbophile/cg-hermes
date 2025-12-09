@@ -17,8 +17,8 @@
 import type { Dictionary } from "@l10n/Dict";
 
 const dictImports = {
-	en: () => import("@l10n/dicts/dict.en.json"),
-	hr: () => import("@l10n/dicts/dict.hr.json"),
+	en: () => import("@l10n/dicts/CG-dict.en.json"),
+	hr: () => import("@l10n/dicts/CG-dict.hr.json"),
 } satisfies Record<string, () => Promise<{ default: Dictionary }>>;
 
 export type Lang = keyof typeof dictImports;
