@@ -17,7 +17,7 @@
 import { getDict, type Lang, langs } from "@l10n/dict";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
-import Header from "@/[lang]/_layout/components/Header";
+import Header from "@/[lang]/_layout/Header";
 
 import "@/global.css";
 
@@ -34,7 +34,11 @@ const RootLayout = async ({ params, children }: RootLayoutProps) => {
 	const { lang } = (await params) as { lang: Lang };
 	const dict = await getDict(lang);
 
-	const headerDict = { orgName: dict.orgName, pages: dict.pages };
+	const headerDict = {
+		menu: dict.menu,
+		orgName: dict.orgName,
+		pages: dict.pages,
+	};
 
 	return (
 		<html

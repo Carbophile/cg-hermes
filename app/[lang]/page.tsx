@@ -15,9 +15,9 @@
  */
 
 import { getDict, type Lang } from "@l10n/dict";
-import Faq from "./_page/components/Faq";
-import Landing from "./_page/components/Landing";
-import Stats from "./_page/components/Stats";
+import Faq from "./_page/Faq";
+import Landing from "./_page/Landing";
+import Stats from "./_page/Stats";
 
 interface RootPageProps {
 	params: Promise<{ lang: string }>;

@@ -19,6 +19,7 @@
 		"noUncheckedIndexedAccess": true,
 		"paths": {
 			"@/*": ["app/*"],
+			"@blog/*": ["blog/*"],
 			"@l10n/*": ["l10n/*"]
 		},
 		"plugins": [
