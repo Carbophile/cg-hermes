@@ -75,6 +75,13 @@
 		"projects": "Projekti"
 	},
 	"previous": "Prethodno",
+	"projectsPage": {
+		"status": {
+			"concluded": "Završeno",
+			"ongoing": "Tekuće"
+		},
+		"subtitle": "Istražite naš najnoviji rad i inicijative."
+	},
 	"search": "Pretraži objave...",
 	"stats": {
 		"heading": "Malo pomalo",
