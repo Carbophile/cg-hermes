@@ -99,6 +99,8 @@ const ContactPage = async ({ params }: ContactPageProps) => {
 							className={`group relative ${channel.className}`}
 							href={channel.href}
 							key={channel.href}
+							rel="noopener"
+							target="_blank"
 						>
 							<div className="absolute inset-0 rounded-lg bg-white transition-colors group-hover:bg-gray-50 dark:bg-gray-800 dark:group-hover:bg-gray-700" />
 							<div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] p-10">

@@ -65,6 +65,8 @@ const Footer = ({ dict }: FooterProps) => {
 							className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
 							href={item.href}
 							key={item.href}
+							rel="noopener"
+							target="_blank"
 						>
 							<span className="sr-only">{item.name}</span>
 							<item.icon aria-hidden="true" className="size-6" />
@@ -74,6 +76,8 @@ const Footer = ({ dict }: FooterProps) => {
 				<Link
 					className="mt-8 text-center text-gray-600 text-sm/6 hover:text-gray-800 md:order-1 md:mt-0 dark:text-gray-400 dark:hover:text-white"
 					href={noticeUrl}
+					rel="noopener"
+					target="_blank"
 				>
 					{dict.copyright}
 				</Link>
