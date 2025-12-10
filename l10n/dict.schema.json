@@ -28,6 +28,104 @@
 			"description": "The title of co-founder.",
 			"type": "string"
 		},
+		"collaborate": {
+			"description": "The prose for the collaborate page.",
+			"type": "string"
+		},
+		"collaboratePage": {
+			"description": "The content for the collaborate page.",
+			"properties": {
+				"conferences": {
+					"properties": {
+						"body": {
+							"description": "The body of the conferences section.",
+							"type": "string"
+						},
+						"group": {
+							"description": "The target group for the conferences section.",
+							"type": "string"
+						},
+						"subtitle": {
+							"description": "The subtitle of the conferences section.",
+							"type": "string"
+						}
+					},
+					"required": ["body", "group", "subtitle"],
+					"type": "object"
+				},
+				"contact": {
+					"description": "The contact prompt.",
+					"type": "string"
+				},
+				"k12": {
+					"properties": {
+						"body": {
+							"description": "The body of the K-12 section.",
+							"type": "string"
+						},
+						"group": {
+							"description": "The target group for the K-12 section.",
+							"type": "string"
+						},
+						"subtitle": {
+							"description": "The subtitle of the K-12 section.",
+							"type": "string"
+						}
+					},
+					"required": ["body", "group", "subtitle"],
+					"type": "object"
+				},
+				"ngos": {
+					"properties": {
+						"body": {
+							"description": "The body of the NGOs section.",
+							"type": "string"
+						},
+						"group": {
+							"description": "The target group for the NGOs section.",
+							"type": "string"
+						},
+						"subtitle": {
+							"description": "The subtitle of the NGOs section.",
+							"type": "string"
+						}
+					},
+					"required": ["body", "group", "subtitle"],
+					"type": "object"
+				},
+				"partner": {
+					"description": "The partner prompt.",
+					"type": "string"
+				},
+				"researchers": {
+					"properties": {
+						"body": {
+							"description": "The body of the researchers section.",
+							"type": "string"
+						},
+						"group": {
+							"description": "The target group for the researchers section.",
+							"type": "string"
+						},
+						"subtitle": {
+							"description": "The subtitle of the researchers section.",
+							"type": "string"
+						}
+					},
+					"required": ["body", "group", "subtitle"],
+					"type": "object"
+				}
+			},
+			"required": [
+				"conferences",
+				"contact",
+				"k12",
+				"ngos",
+				"partner",
+				"researchers"
+			],
+			"type": "object"
+		},
 		"contact": {
 			"description": "The contact information.",
 			"properties": {
@@ -88,9 +186,9 @@
 					},
 					"required": [
 						"consulting",
-						"projects",
 						"differCommercial",
-						"nonprofit"
+						"nonprofit",
+						"projects"
 					],
 					"type": "object"
 				},
@@ -212,6 +310,8 @@
 	"required": [
 		"blogSubtext",
 		"cofounder",
+		"collaborate",
+		"collaboratePage",
 		"contact",
 		"copyright",
 		"cybersecurity",
