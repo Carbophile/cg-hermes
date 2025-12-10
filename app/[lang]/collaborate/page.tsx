@@ -106,8 +106,8 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 									width="16"
 								/>
 								<div className="p-10">
-									<h3 className="font-semibold text-gray-500 text-sm/4 dark:text-gray-400">
-										{dict.collaboratePage.researchers.mainTitle}
+									<h3 className="font-semibold text-brand-primary text-sm/4">
+										{dict.collaboratePage.researchers.group}
 									</h3>
 									<p className="mt-2 font-medium text-gray-900 text-lg tracking-tight dark:text-white">
 										{dict.collaboratePage.researchers.subtitle}
@@ -129,8 +129,8 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 									width="16"
 								/>
 								<div className="p-10">
-									<h3 className="font-semibold text-gray-500 text-sm/4 dark:text-gray-400">
-										{dict.collaboratePage.k12.mainTitle}
+									<h3 className="font-semibold text-brand-primary text-sm/4">
+										{dict.collaboratePage.k12.group}
 									</h3>
 									<p className="mt-2 font-medium text-gray-900 text-lg tracking-tight dark:text-white">
 										{dict.collaboratePage.k12.subtitle}
@@ -152,8 +152,8 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 									width="16"
 								/>
 								<div className="p-10">
-									<h3 className="font-semibold text-gray-500 text-sm/4 dark:text-gray-400">
-										{dict.collaboratePage.ngos.mainTitle}
+									<h3 className="font-semibold text-brand-primary text-sm/4">
+										{dict.collaboratePage.ngos.group}
 									</h3>
 									<p className="mt-2 font-medium text-gray-900 text-lg tracking-tight dark:text-white">
 										{dict.collaboratePage.ngos.subtitle}
@@ -175,8 +175,8 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 									width="16"
 								/>
 								<div className="p-10">
-									<h3 className="font-semibold text-gray-500 text-sm/4 dark:text-gray-400">
-										{dict.collaboratePage.conferences.mainTitle}
+									<h3 className="font-semibold text-brand-primary text-sm/4">
+										{dict.collaboratePage.conferences.group}
 									</h3>
 									<p className="mt-2 font-medium text-gray-900 text-lg tracking-tight dark:text-white">
 										{dict.collaboratePage.conferences.subtitle}

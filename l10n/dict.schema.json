@@ -41,8 +41,8 @@
 							"description": "The body of the conferences section.",
 							"type": "string"
 						},
-						"mainTitle": {
-							"description": "The title of the conferences section.",
+						"group": {
+							"description": "The target group for the conferences section.",
 							"type": "string"
 						},
 						"subtitle": {
@@ -50,7 +50,7 @@
 							"type": "string"
 						}
 					},
-					"required": ["body", "mainTitle", "subtitle"],
+					"required": ["body", "group", "subtitle"],
 					"type": "object"
 				},
 				"contact": {
@@ -63,8 +63,8 @@
 							"description": "The body of the K-12 section.",
 							"type": "string"
 						},
-						"mainTitle": {
-							"description": "The title of the K-12 section.",
+						"group": {
+							"description": "The target group for the K-12 section.",
 							"type": "string"
 						},
 						"subtitle": {
@@ -72,7 +72,7 @@
 							"type": "string"
 						}
 					},
-					"required": ["body", "mainTitle", "subtitle"],
+					"required": ["body", "group", "subtitle"],
 					"type": "object"
 				},
 				"ngos": {
@@ -81,8 +81,8 @@
 							"description": "The body of the NGOs section.",
 							"type": "string"
 						},
-						"mainTitle": {
-							"description": "The title of the NGOs section.",
+						"group": {
+							"description": "The target group for the NGOs section.",
 							"type": "string"
 						},
 						"subtitle": {
@@ -90,7 +90,7 @@
 							"type": "string"
 						}
 					},
-					"required": ["body", "mainTitle", "subtitle"],
+					"required": ["body", "group", "subtitle"],
 					"type": "object"
 				},
 				"partner": {
@@ -103,8 +103,8 @@
 							"description": "The body of the researchers section.",
 							"type": "string"
 						},
-						"mainTitle": {
-							"description": "The title of the researchers section.",
+						"group": {
+							"description": "The target group for the researchers section.",
 							"type": "string"
 						},
 						"subtitle": {
@@ -112,7 +112,7 @@
 							"type": "string"
 						}
 					},
-					"required": ["body", "mainTitle", "subtitle"],
+					"required": ["body", "group", "subtitle"],
 					"type": "object"
 				}
 			},

@@ -6,24 +6,24 @@
 	"collaboratePage": {
 		"conferences": {
 			"body": "Bila bi nam čast govoriti na vašoj konferenciji o kibernetičkoj sigurnosti, otvorenom kodu ili privatnosti.",
-			"mainTitle": "Konferencije",
+			"group": "Konferencije",
 			"subtitle": "Prezentacije i govori"
 		},
 		"contact": "Kontaktirajte nas na partnership@carbophile.org",
 		"k12": {
 			"body": "Možemo vam pomoći educirati sljedeću generaciju digitalnih građana našim zanimljivim predavanjima i prezentacijama.",
-			"mainTitle": "K-12",
+			"group": "K-12",
 			"subtitle": "Predavanja"
 		},
 		"ngos": {
 			"body": "Možemo zajedno organizirati radionice, hackathone i druga događanja kako bismo angažirali našu zajednicu.",
-			"mainTitle": "NVO",
+			"group": "NVO",
 			"subtitle": "Radionice i događanja"
 		},
 		"partner": "Zainteresirani ste za partnerstvo s nama?",
 		"researchers": {
 			"body": "Uvijek tražimo talentirane istraživače da se pridruže našem timu i doprinesu našoj misiji proizvodnje nepristranih, visokokvalitetnih analiza i istraživačkih radova o novim prijetnjama, najboljim praksama i digitalnim pravima.",
-			"mainTitle": "Istraživači",
+			"group": "Istraživači",
 			"subtitle": "Istraživanje i procjene ranjivosti"
 		}
 	},
