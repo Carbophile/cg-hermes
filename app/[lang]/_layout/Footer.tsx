@@ -45,6 +45,9 @@ interface FooterProps {
 }
 
 const Footer = ({ dict }: FooterProps) => {
+	const noticeUrl =
+		"https://github.com/Carbophile/cg-hermes/blob/main/NOTICE.md";
+
 	const socials = [
 		{
 			href: "https://www.linkedin.com/company/103351222",
@@ -61,7 +64,7 @@ const Footer = ({ dict }: FooterProps) => {
 						<a
 							className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
 							href={item.href}
-							key={item.name}
+							key={item.href}
 						>
 							<span className="sr-only">{item.name}</span>
 							<item.icon aria-hidden="true" className="size-6" />
@@ -69,9 +72,7 @@ const Footer = ({ dict }: FooterProps) => {
 					))}
 				</div>
 				<p className="mt-8 text-center text-gray-600 text-sm/6 md:order-1 md:mt-0 dark:text-gray-400">
-					<Link href="https://github.com/Carbophile/cg-hermes/blob/main/NOTICE.md">
-						{dict.copyright}
-					</Link>
+					<Link href={noticeUrl}>{dict.copyright}</Link>
 				</p>
 			</div>
 		</footer>
