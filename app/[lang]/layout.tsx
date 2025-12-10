@@ -36,6 +36,7 @@ const RootLayout = async ({ params, children }: RootLayoutProps) => {
 	const dict = await getDict(lang);
 
 	const headerDict = {
+		languageSwitch: dict.languageSwitch,
 		menu: dict.menu,
 		orgName: dict.orgName,
 		pages: dict.pages,
