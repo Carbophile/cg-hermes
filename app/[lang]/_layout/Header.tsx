@@ -68,7 +68,7 @@ const Header = ({ dict }: HeaderProps) => {
 			{ href: `/${lang}/blog`, name: dict.pages?.blog },
 			{ href: `/${lang}/projects`, name: dict.pages?.projects },
 			{ href: `/${lang}/contact`, name: dict.pages?.contact },
-			{ href: `/${lang}/contact/collaborate`, name: dict.pages?.collaborate },
+			{ href: `/${lang}/collaborate`, name: dict.pages?.collaborate },
 		],
 		[
 			lang,

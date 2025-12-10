@@ -2,6 +2,31 @@
 	"$schema": "../dict.schema.json",
 	"blogSubtext": "The latest news, intel, and analysis straight from Carbophile Group.",
 	"cofounder": "Co-Founder",
+	"collaborate": "Are you a cybersecurity expert, teacher, educational insituion, or policymaker? We are always looking for new ways to collaborate and make a positive impact. Whether you want to contribute to our research, organize a joint event, or simply share your ideas, we'd love to hear from you.",
+	"collaboratePage": {
+		"conferences": {
+			"body": "We would be honored to talk at your conference to discuss cybersecurity, open-source, or privacy.",
+			"mainTitle": "Conferences",
+			"subtitle": "Presentations & talks"
+		},
+		"contact": "Contact us at partnership@carbophile.org",
+		"k12": {
+			"body": "We can help you educate the next generation of digital citizens with our engaging lectures and presentations.",
+			"mainTitle": "K-12",
+			"subtitle": "Lectures"
+		},
+		"ngos": {
+			"body": "We can co-host workshops, hackathons, and other events to engage our community.",
+			"mainTitle": "NGOs",
+			"subtitle": "Workshops & events"
+		},
+		"partner": "Interested in partnering with us?",
+		"researchers": {
+			"body": "We are always looking for talented researchers to join our team and contribute to our mission of producing unbiased, high-quality analysis and research papers on emerging threats, best practices, and digital rights.",
+			"mainTitle": "Researchers",
+			"subtitle": "Research & vulnerability assessments"
+		}
+	},
 	"contact": {
 		"address": "Address",
 		"email": "Email",
