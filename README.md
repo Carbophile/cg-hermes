@@ -113,4 +113,4 @@ To apply unsafe fixes (they are fine most of the time, just verify they didn't m
 pnpm run check:unsafe
 ```
 
-You will not be able to pull into `main` if there are formatting issues.
+You will not be able to merge into `main` if there are formatting issues.
