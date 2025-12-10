@@ -61,19 +61,26 @@ const Footer = ({ dict }: FooterProps) => {
 			<div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
 				<div className="flex justify-center gap-x-6 md:order-2">
 					{socials.map((item) => (
-						<a
+						<Link
 							className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
 							href={item.href}
 							key={item.href}
+							rel="noopener"
+							target="_blank"
 						>
 							<span className="sr-only">{item.name}</span>
 							<item.icon aria-hidden="true" className="size-6" />
-						</a>
+						</Link>
 					))}
 				</div>
-				<p className="mt-8 text-center text-gray-600 text-sm/6 md:order-1 md:mt-0 dark:text-gray-400">
-					<Link href={noticeUrl}>{dict.copyright}</Link>
-				</p>
+				<Link
+					className="mt-8 text-center text-gray-600 text-sm/6 hover:text-gray-800 md:order-1 md:mt-0 dark:text-gray-400 dark:hover:text-white"
+					href={noticeUrl}
+					rel="noopener"
+					target="_blank"
+				>
+					{dict.copyright}
+				</Link>
 			</div>
 		</footer>
 	);

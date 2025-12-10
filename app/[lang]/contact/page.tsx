@@ -42,6 +42,7 @@ import {
 	PhoneIcon,
 } from "@heroicons/react/24/outline";
 import { getDict, type Lang } from "@l10n/dict";
+import Link from "next/link";
 import { FaLinkedin } from "react-icons/fa";
 
 interface ContactPageProps {
@@ -94,10 +95,12 @@ const ContactPage = async ({ params }: ContactPageProps) => {
 				</p>
 				<div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6">
 					{contactChannels.map((channel) => (
-						<a
+						<Link
 							className={`group relative ${channel.className}`}
 							href={channel.href}
 							key={channel.href}
+							rel="noopener"
+							target="_blank"
 						>
 							<div className="absolute inset-0 rounded-lg bg-white transition-colors group-hover:bg-gray-50 dark:bg-gray-800 dark:group-hover:bg-gray-700" />
 							<div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] p-10">
@@ -113,7 +116,7 @@ const ContactPage = async ({ params }: ContactPageProps) => {
 								</p>
 							</div>
 							<div className="absolute inset-0 rounded-lg shadow-sm outline outline-black/5 dark:outline-white/15" />
-						</a>
+						</Link>
 					))}
 				</div>
 			</div>
