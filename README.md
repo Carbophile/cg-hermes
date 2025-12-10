@@ -22,7 +22,7 @@ The project codename comes from [Hermes](https://en.wikipedia.org/wiki/Hermes), 
 
 1. Clone the repository:
    ```shell
-   git clone git@github.com:Carbophile/cg-hermes.git
+   git clone https://github.com/Carbophile/cg-hermes.git
    cd cg-hermes
    ```
 
