@@ -110,6 +110,10 @@
 			"description": "The alt text for a headshot.",
 			"type": "string"
 		},
+		"languageSwitch": {
+			"description": "Prompt to switch in the OPPOSITE language.",
+			"type": "string"
+		},
 		"menu": {
 			"properties": {
 				"close": {
@@ -214,6 +218,7 @@
 		"faq",
 		"foundingQuote",
 		"headshot",
+		"languageSwitch",
 		"menu",
 		"mission",
 		"next",

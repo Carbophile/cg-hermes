@@ -44,10 +44,13 @@ import type { Dictionary } from "@l10n/Dict";
 import type { Lang } from "@l10n/dict";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useMemo, useState } from "react";
 
-type HeaderDict = Pick<Dictionary, "menu" | "orgName" | "pages">;
+type HeaderDict = Pick<
+	Dictionary,
+	"languageSwitch" | "menu" | "orgName" | "pages"
+>;
 
 interface HeaderProps {
 	dict: HeaderDict;
@@ -56,6 +59,8 @@ interface HeaderProps {
 const Header = ({ dict }: HeaderProps) => {
 	const { lang } = useParams<{ lang: Lang }>();
 
+	const pathName = usePathname();
+
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
 	const navigation = useMemo(
@@ -63,8 +68,15 @@ const Header = ({ dict }: HeaderProps) => {
 			{ href: `/${lang}/blog`, name: dict.pages?.blog },
 			{ href: `/${lang}/projects`, name: dict.pages?.projects },
 			{ href: `/${lang}/contact`, name: dict.pages?.contact },
+			{ href: `/${lang}/contact/collaborate`, name: dict.pages?.collaborate },
 		],
-		[lang, dict.pages?.blog, dict.pages?.projects, dict.pages?.contact],
+		[
+			lang,
+			dict.pages?.blog,
+			dict.pages?.projects,
+			dict.pages?.contact,
+			dict.pages?.collaborate,
+		],
 	);
 
 	return (
@@ -109,9 +121,12 @@ const Header = ({ dict }: HeaderProps) => {
 				<div className="flex flex-1 justify-end">
 					<Link
 						className="font-semibold text-gray-900 text-sm/6 dark:text-white"
-						href={`/${lang}/collaborate`}
+						href={pathName.replace(
+							`/${lang}`,
+							`/${lang === "en" ? "hr" : "en"}`,
+						)}
 					>
-						{dict.pages.collaborate} <span aria-hidden="true">&rarr;</span>
+						{dict.languageSwitch} <span aria-hidden="true">&rarr;</span>
 					</Link>
 				</div>
 			</nav>
