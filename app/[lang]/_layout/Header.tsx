@@ -127,7 +127,8 @@ const Header = ({ dict }: HeaderProps) => {
 						)}
 					>
 						{dict.languageSwitch} <span aria-hidden="true">&rarr;</span>
-					</Link>
+					</Link>{" "}
+					{/* Will have to be changed if we ever support more than 2 languages */}
 				</div>
 			</nav>
 			<Dialog
@@ -161,10 +162,14 @@ const Header = ({ dict }: HeaderProps) => {
 						<div className="flex flex-1 justify-end">
 							<Link
 								className="font-semibold text-gray-900 text-sm/6 dark:text-white"
-								href={`/${lang}/collaborate`}
+								href={pathName.replace(
+									`/${lang}`,
+									`/${lang === "en" ? "hr" : "en"}`,
+								)}
 							>
-								{dict.pages.collaborate} <span aria-hidden="true">&rarr;</span>
-							</Link>
+								{dict.languageSwitch} <span aria-hidden="true">&rarr;</span>
+							</Link>{" "}
+							{/* Will have to be changed if we ever support more than 2 languages */}
 						</div>
 					</div>
 					<div className="mt-6 space-y-2">
