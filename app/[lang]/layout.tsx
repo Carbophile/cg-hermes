@@ -17,7 +17,8 @@
 import { getDict, type Lang, langs } from "@l10n/dict";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
-import Header from "@/[lang]/_layout/Header";
+import Footer from "./_layout/Footer";
+import Header from "./_layout/Header";
 
 import "@/global.css";
 
@@ -48,6 +49,7 @@ const RootLayout = async ({ params, children }: RootLayoutProps) => {
 			<body>
 				<Header dict={headerDict} />
 				<main>{children}</main>
+				<Footer dict={dict} />
 			</body>
 		</html>
 	);

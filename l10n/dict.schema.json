@@ -59,6 +59,10 @@
 			"required": ["address", "email", "heading", "linkedin", "phone", "prose"],
 			"type": "object"
 		},
+		"copyright": {
+			"description": "Copyright notice",
+			"type": "string"
+		},
 		"cybersecurity": {
 			"description": "The word \"cybersecurity\".",
 			"type": "string"
@@ -205,6 +209,7 @@
 		"blogSubtext",
 		"cofounder",
 		"contact",
+		"copyright",
 		"cybersecurity",
 		"faq",
 		"foundingQuote",
