@@ -20,6 +20,7 @@ import type { ReactNode } from "react";
 import Header from "@/[lang]/_layout/Header";
 
 import "@/global.css";
+import Footer from "@/[lang]/_layout/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -48,6 +49,7 @@ const RootLayout = async ({ params, children }: RootLayoutProps) => {
 			<body>
 				<Header dict={headerDict} />
 				<main>{children}</main>
+				<Footer dict={dict} />
 			</body>
 		</html>
 	);
