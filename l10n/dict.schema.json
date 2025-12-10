@@ -265,6 +265,30 @@
 			"description": "The word \"Previous\".",
 			"type": "string"
 		},
+		"projectsPage": {
+			"properties": {
+				"status": {
+					"properties": {
+						"concluded": {
+							"description": "The concluded project status.",
+							"type": "string"
+						},
+						"ongoing": {
+							"description": "The ongoing project status.",
+							"type": "string"
+						}
+					},
+					"required": ["concluded", "ongoing"],
+					"type": "object"
+				},
+				"subtitle": {
+					"description": "The subtitle of the projects page.",
+					"type": "string"
+				}
+			},
+			"required": ["status", "subtitle"],
+			"type": "object"
+		},
 		"search": {
 			"description": "Prompt to search posts.",
 			"type": "string"
@@ -325,6 +349,7 @@
 		"orgName",
 		"pages",
 		"previous",
+		"projectsPage",
 		"search",
 		"stats",
 		"tagline"

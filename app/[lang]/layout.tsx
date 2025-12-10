@@ -47,9 +47,9 @@ const RootLayout = async ({ params, children }: RootLayoutProps) => {
 			className={`scheme-light dark:scheme-dark bg-white dark:bg-gray-900 ${inter.className}`}
 			lang={lang}
 		>
-			<body>
+			<body className="flex min-h-screen flex-col">
 				<Header dict={headerDict} />
-				<main>{children}</main>
+				<main className="flex-grow">{children}</main>
 				<Footer dict={dict} />
 			</body>
 		</html>

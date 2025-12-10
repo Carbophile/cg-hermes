@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-import { getAllPosts, getPostBySlug } from "@blog/blog";
 import { getDict, type Lang, langs } from "@l10n/dict";
-import Image from "next/image";
+import { getAllProjects, getProjectBySlug } from "@projects/projects";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -25,25 +24,25 @@ import type { Pluggable } from "unified";
 export const generateStaticParams = async () => {
 	const params = await Promise.all(
 		langs.map(async (lang) => {
-			const posts = await getAllPosts(lang);
-			return posts.map((post) => ({ lang, slug: post.slug }));
+			const projects = await getAllProjects(lang);
+			return projects.map((project) => ({ lang, slug: project.slug }));
 		}),
 	);
 
 	return params.flat();
 };
 
-interface BlogPostPageProps {
+interface ProjectPageProps {
 	params: Promise<{ lang: string; slug: string }>;
 }
 
-const BlogPostPage = async ({ params }: BlogPostPageProps) => {
+const ProjectPage = async ({ params }: ProjectPageProps) => {
 	const { lang, slug } = (await params) as { lang: Lang; slug: string };
 	const dict = await getDict(lang);
 
-	const post = await getPostBySlug(lang, slug);
+	const project = await getProjectBySlug(lang, slug);
 
-	if (!post) notFound();
+	if (!project) notFound();
 
 	const options = {
 		mdxOptions: {
@@ -57,36 +56,36 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 		<article>
 			<section className="mx-auto max-w-5xl px-4 py-12">
 				<div className="mb-8 text-center">
-					<h1 className="mb-2 font-bold text-3xl">{post.meta.title}</h1>
-					<time className="text-gray-500">
-						{new Date(post.meta.date).toLocaleDateString(lang, {
-							day: "numeric",
-							month: "long",
-							year: "numeric",
-						})}
-					</time>
-				</div>
-
-				<div className="mb-8 flex items-center justify-center space-x-4">
-					<Image
-						alt={`${dict.headshot} ${post.meta.author.name}`}
-						className="h-12 w-12 rounded-full"
-						height="1"
-						src={`/assets/headshots/${post.meta.author.photo}.webp`}
-						width="1"
-					/>
-					<div>
-						<p className="font-semibold">{post.meta.author.name}</p>
-						<p className="text-gray-500">{post.meta.author.title}</p>
+					<h1 className="mb-4 font-bold text-3xl">{project.meta.title}</h1>
+					<div className="flex flex-wrap items-center justify-center gap-4 text-sm">
+						<time className="text-gray-500 dark:text-gray-400">
+							{new Date(project.meta.date).toLocaleDateString(lang, {
+								day: "numeric",
+								month: "long",
+								year: "numeric",
+							})}
+						</time>
+						<span className="rounded-full bg-gray-100 px-3 py-1 font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-300">
+							{project.meta.category}
+						</span>
+						<span
+							className={`rounded-full px-3 py-1 font-medium ${
+								project.meta.status === "ongoing"
+									? "bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400"
+									: "bg-gray-50 text-gray-600 dark:bg-gray-800/60 dark:text-gray-400"
+							}`}
+						>
+							{dict.projectsPage.status[project.meta.status]}
+						</span>
 					</div>
 				</div>
 
 				<div className="prose dark:prose-invert mx-auto">
-					<MDXRemote options={options} source={post.content} />
+					<MDXRemote options={options} source={project.content} />
 				</div>
 			</section>
 		</article>
 	);
 };
 
-export default BlogPostPage;
+export default ProjectPage;

@@ -75,6 +75,13 @@
 		"projects": "Projects"
 	},
 	"previous": "Previous",
+	"projectsPage": {
+		"status": {
+			"concluded": "Concluded",
+			"ongoing": "Ongoing"
+		},
+		"subtitle": "Explore our latest work and ongoing initiatives."
+	},
 	"search": "Search posts...",
 	"stats": {
 		"heading": "Bit by bit",

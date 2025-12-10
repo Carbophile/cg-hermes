@@ -38,55 +38,54 @@
 
 "use client";
 
-import type { BlogPost } from "@blog/blog";
 import {
 	ArrowLongLeftIcon,
 	ArrowLongRightIcon,
 } from "@heroicons/react/20/solid";
 import type { Dictionary } from "@l10n/Dict";
 import type { Lang } from "@l10n/dict";
+import type { Project } from "@projects/projects";
 import Fuse from "fuse.js";
-import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
-interface BlogListProps {
-	dict: Pick<Dictionary, "headshot" | "next" | "previous" | "search">;
-	posts: BlogPost[];
+interface ProjectListProps {
+	projects: Project[];
+	dict: Pick<Dictionary, "next" | "previous" | "projectsPage" | "search">;
 }
 
-export const BlogList = ({ dict, posts }: BlogListProps) => {
+export const ProjectList = ({ projects, dict }: ProjectListProps) => {
 	const { lang } = useParams<{ lang: Lang }>();
 
-	const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>(posts);
+	const [filteredProjects, setFilteredProjects] = useState<Project[]>(projects);
 	const [searchQuery, setSearchQuery] = useState("");
 	const [currentPage, setCurrentPage] = useState(1);
-	const postsPerPage = 5;
+	const projectsPerPage = 6;
 
 	const fuse = useMemo(
 		() =>
-			new Fuse(posts, {
-				keys: ["meta.title", "meta.description", "meta.author.name"],
+			new Fuse(projects, {
+				keys: ["meta.title", "meta.description", "meta.category"],
 				threshold: 0.3,
 			}),
-		[posts],
+		[projects],
 	);
 
 	useEffect(() => {
 		if (searchQuery === "") {
-			setFilteredPosts(posts);
+			setFilteredProjects(projects);
 		} else {
 			const results = fuse.search(searchQuery);
-			setFilteredPosts(results.map((result) => result.item));
+			setFilteredProjects(results.map((result) => result.item));
 		}
 		setCurrentPage(1);
-	}, [searchQuery, posts, fuse]);
+	}, [searchQuery, fuse, projects]);
 
-	const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
-	const paginatedPosts = filteredPosts.slice(
-		(currentPage - 1) * postsPerPage,
-		currentPage * postsPerPage,
+	const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+	const paginatedProjects = filteredProjects.slice(
+		(currentPage - 1) * projectsPerPage,
+		currentPage * projectsPerPage,
 	);
 
 	const getPageNumbers = () => {
@@ -136,71 +135,53 @@ export const BlogList = ({ dict, posts }: BlogListProps) => {
 					value={searchQuery}
 				/>
 			</div>
-			<div className="mt-16 space-y-20 lg:mt-20">
-				{paginatedPosts.map((post: BlogPost) => (
+
+			<div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-gray-200 border-t pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3 dark:border-gray-700">
+				{paginatedProjects.map((project) => (
 					<article
-						className="relative isolate flex flex-col gap-8 lg:flex-row"
-						key={post.slug}
+						className="flex max-w-xl flex-col items-start justify-between"
+						key={project.slug}
 					>
-						<div className="relative aspect-video sm:aspect-2/1 lg:aspect-square lg:w-64 lg:shrink-0">
-							<Image
-								alt=""
-								className="absolute inset-0 size-full rounded-2xl bg-gray-50 object-cover dark:bg-gray-800"
-								height="1"
-								role="presentation"
-								src={`/assets/blog-thumbnails/${post.meta.thumbnail}.webp`}
-								width="1"
-							/>
-							<div className="absolute inset-0 inset-ring inset-ring-gray-900/10 rounded-2xl dark:inset-ring-white/10" />
+						<div className="flex items-center gap-x-4 text-xs">
+							<time
+								className="text-gray-500 dark:text-gray-400"
+								dateTime={project.meta.date}
+							>
+								{new Date(project.meta.date).toLocaleDateString(lang, {
+									day: "numeric",
+									month: "short",
+									year: "numeric",
+								})}
+							</time>
+							<span className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 dark:bg-gray-800/60 dark:text-gray-300">
+								{project.meta.category}
+							</span>
+							<span
+								className={`relative z-10 rounded-full px-3 py-1.5 font-medium ${
+									project.meta.status === "ongoing"
+										? "bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400"
+										: "bg-gray-50 text-gray-600 dark:bg-gray-800/60 dark:text-gray-400"
+								}`}
+							>
+								{dict.projectsPage.status[project.meta.status]}
+							</span>
 						</div>
-						<div>
-							<div className="flex items-center gap-x-4 text-xs">
-								<time
-									className="text-gray-500 dark:text-gray-400"
-									dateTime={post.meta.date}
-								>
-									{new Date(post.meta.date).toLocaleDateString(lang, {
-										day: "numeric",
-										month: "long",
-										year: "numeric",
-									})}
-								</time>
-							</div>
-							<div className="group relative max-w-xl">
-								<h3 className="mt-3 font-semibold text-gray-900 text-lg/6 group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-300">
-									<Link href={`/${lang}/blog/${post.slug}`}>
-										<span className="absolute inset-0" />
-										{post.meta.title}
-									</Link>
-								</h3>
-								<p className="mt-5 text-gray-600 text-sm/6 dark:text-gray-400">
-									{post.meta.description}
-								</p>
-							</div>
-							<div className="mt-6 flex border-gray-900/5 border-t pt-6 dark:border-white/10">
-								<div className="relative flex items-center gap-x-4">
-									<Image
-										alt={`${dict.headshot} ${post.meta.author.name}`}
-										className="size-10 rounded-full bg-gray-50 dark:bg-gray-800"
-										height="1"
-										src={`/assets/headshots/${post.meta.author.photo}.webp`}
-										width="1"
-									/>
-									<div className="text-sm/6">
-										<p className="font-semibold text-gray-900 dark:text-white">
-											{post.meta.author.name}
-										</p>
-										<p className="text-gray-600 dark:text-gray-400">
-											{post.meta.author.title}
-										</p>
-									</div>
-								</div>
-							</div>
+						<div className="group relative grow">
+							<h3 className="mt-3 font-semibold text-gray-900 text-lg/6 group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-300">
+								<Link href={`/${lang}/projects/${project.slug}`}>
+									<span className="absolute inset-0" />
+									{project.meta.title}
+								</Link>
+							</h3>
+							<p className="mt-5 line-clamp-3 text-gray-600 text-sm/6 dark:text-gray-400">
+								{project.meta.description}
+							</p>
 						</div>
 					</article>
 				))}
 			</div>
-			{filteredPosts.length > postsPerPage && (
+
+			{filteredProjects.length > projectsPerPage && (
 				<nav className="mt-16 flex items-center justify-between border-gray-200 border-t px-4 sm:px-0 dark:border-white/10">
 					<div className="-mt-px flex w-0 flex-1">
 						<button

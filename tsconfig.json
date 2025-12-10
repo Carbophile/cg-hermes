@@ -20,7 +20,8 @@
 		"paths": {
 			"@/*": ["app/*"],
 			"@blog/*": ["blog/*"],
-			"@l10n/*": ["l10n/*"]
+			"@l10n/*": ["l10n/*"],
+			"@projects/*": ["projects/*"]
 		},
 		"plugins": [
 			{
