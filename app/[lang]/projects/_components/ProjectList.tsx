@@ -80,7 +80,7 @@ export const ProjectList = ({ projects, dict }: ProjectListProps) => {
 			setFilteredProjects(results.map((result) => result.item));
 		}
 		setCurrentPage(1);
-	}, [searchQuery, projects, fuse]);
+	}, [searchQuery, fuse, projects]);
 
 	const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
 	const paginatedProjects = filteredProjects.slice(
@@ -89,7 +89,7 @@ export const ProjectList = ({ projects, dict }: ProjectListProps) => {
 	);
 
 	const getPageNumbers = () => {
-		const pageNumbers = [];
+		const pages: { key: string; value: number | string }[] = [];
 		const maxPagesToShow = 5;
 		const halfMaxPages = Math.floor(maxPagesToShow / 2);
 		let startPage = Math.max(1, currentPage - halfMaxPages);
@@ -104,24 +104,24 @@ export const ProjectList = ({ projects, dict }: ProjectListProps) => {
 		}
 
 		if (startPage > 1) {
-			pageNumbers.push(1);
+			pages.push({ key: "page-1", value: 1 });
 			if (startPage > 2) {
-				pageNumbers.push("...");
+				pages.push({ key: "ellipsis-start", value: "..." });
 			}
 		}
 
 		for (let i = startPage; i <= endPage; i++) {
-			pageNumbers.push(i);
+			pages.push({ key: `page-${i}`, value: i });
 		}
 
 		if (endPage < totalPages) {
 			if (endPage < totalPages - 1) {
-				pageNumbers.push("...");
+				pages.push({ key: "ellipsis-end", value: "..." });
 			}
-			pageNumbers.push(totalPages);
+			pages.push({ key: `page-${totalPages}`, value: totalPages });
 		}
 
-		return pageNumbers;
+		return pages;
 	};
 
 	return (
@@ -198,26 +198,26 @@ export const ProjectList = ({ projects, dict }: ProjectListProps) => {
 						</button>
 					</div>
 					<div className="md:-mt-px hidden md:flex">
-						{getPageNumbers().map((page) =>
-							typeof page === "number" ? (
+						{getPageNumbers().map((item) =>
+							typeof item.value === "number" ? (
 								<button
 									className={`inline-flex items-center border-t-2 px-4 pt-4 font-medium text-sm ${
-										currentPage === page
+										currentPage === item.value
 											? "border-brand-primary text-brand-primary"
 											: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:border-white/20"
 									}`}
-									key={`page-${page}`}
-									onClick={() => setCurrentPage(page)}
+									key={item.key}
+									onClick={() => setCurrentPage(item.value as number)}
 									type="button"
 								>
-									{page}
+									{item.value}
 								</button>
 							) : (
 								<span
 									className="inline-flex items-center border-transparent border-t-2 px-4 pt-4 font-medium text-gray-500 text-sm"
-									key={`ellipsis-${page}`}
+									key={item.key}
 								>
-									{page}
+									{item.value}
 								</span>
 							),
 						)}

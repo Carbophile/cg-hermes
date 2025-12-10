@@ -22,16 +22,14 @@ import rehypePrettyCode from "rehype-pretty-code";
 import type { Pluggable } from "unified";
 
 export const generateStaticParams = async () => {
-	const params: { lang: string; slug: string }[] = [];
+	const params = await Promise.all(
+		langs.map(async (lang) => {
+			const projects = await getAllProjects(lang);
+			return projects.map((project) => ({ lang, slug: project.slug }));
+		}),
+	);
 
-	for (const lang of langs) {
-		const projects = await getAllProjects(lang);
-		for (const project of projects) {
-			params.push({ lang, slug: project.slug });
-		}
-	}
-
-	return params;
+	return params.flat();
 };
 
 interface ProjectPageProps {

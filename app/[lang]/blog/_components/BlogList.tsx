@@ -90,7 +90,7 @@ export const BlogList = ({ dict, posts }: BlogListProps) => {
 	);
 
 	const getPageNumbers = () => {
-		const pageNumbers = [];
+		const pages: { key: string; value: number | string }[] = [];
 		const maxPagesToShow = 5;
 		const halfMaxPages = Math.floor(maxPagesToShow / 2);
 		let startPage = Math.max(1, currentPage - halfMaxPages);
@@ -105,24 +105,24 @@ export const BlogList = ({ dict, posts }: BlogListProps) => {
 		}
 
 		if (startPage > 1) {
-			pageNumbers.push(1);
+			pages.push({ key: "page-1", value: 1 });
 			if (startPage > 2) {
-				pageNumbers.push("...");
+				pages.push({ key: "ellipsis-start", value: "..." });
 			}
 		}
 
 		for (let i = startPage; i <= endPage; i++) {
-			pageNumbers.push(i);
+			pages.push({ key: `page-${i}`, value: i });
 		}
 
 		if (endPage < totalPages) {
 			if (endPage < totalPages - 1) {
-				pageNumbers.push("...");
+				pages.push({ key: "ellipsis-end", value: "..." });
 			}
-			pageNumbers.push(totalPages);
+			pages.push({ key: `page-${totalPages}`, value: totalPages });
 		}
 
-		return pageNumbers;
+		return pages;
 	};
 
 	return (
@@ -200,63 +200,65 @@ export const BlogList = ({ dict, posts }: BlogListProps) => {
 					</article>
 				))}
 			</div>
-			<nav className="mt-16 flex items-center justify-between border-gray-200 border-t px-4 sm:px-0 dark:border-white/10">
-				<div className="-mt-px flex w-0 flex-1">
-					<button
-						className="inline-flex items-center border-transparent border-t-2 pt-4 pr-1 font-medium text-gray-500 text-sm hover:border-gray-300 hover:text-gray-700 disabled:opacity-50 dark:text-gray-400 dark:hover:border-white/20 dark:hover:text-gray-200"
-						disabled={currentPage === 1}
-						onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-						type="button"
-					>
-						<ArrowLongLeftIcon
-							aria-hidden="true"
-							className="mr-3 size-5 text-gray-400 dark:text-gray-500"
-						/>
-						{dict.previous}
-					</button>
-				</div>
-				<div className="md:-mt-px hidden md:flex">
-					{getPageNumbers().map((page) =>
-						typeof page === "number" ? (
-							<button
-								className={`inline-flex items-center border-t-2 px-4 pt-4 font-medium text-sm ${
-									currentPage === page
-										? "border-brand-primary text-brand-primary"
-										: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:border-white/20"
-								}`}
-								key={`page-${page}`}
-								onClick={() => setCurrentPage(page)}
-								type="button"
-							>
-								{page}
-							</button>
-						) : (
-							<span
-								className="inline-flex items-center border-transparent border-t-2 px-4 pt-4 font-medium text-gray-500 text-sm"
-								key={`ellipsis-${page}`}
-							>
-								{page}
-							</span>
-						),
-					)}
-				</div>
-				<div className="-mt-px flex w-0 flex-1 justify-end">
-					<button
-						className="inline-flex items-center border-transparent border-t-2 pt-4 pl-1 font-medium text-gray-500 text-sm hover:border-gray-300 hover:text-gray-700 disabled:opacity-50 dark:text-gray-400 dark:hover:border-white/20 dark:hover:text-gray-200"
-						disabled={currentPage === totalPages}
-						onClick={() =>
-							setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-						}
-						type="button"
-					>
-						{dict.next}
-						<ArrowLongRightIcon
-							aria-hidden="true"
-							className="ml-3 size-5 text-gray-400 dark:text-gray-500"
-						/>
-					</button>
-				</div>
-			</nav>
+			{filteredPosts.length > postsPerPage && (
+				<nav className="mt-16 flex items-center justify-between border-gray-200 border-t px-4 sm:px-0 dark:border-white/10">
+					<div className="-mt-px flex w-0 flex-1">
+						<button
+							className="inline-flex items-center border-transparent border-t-2 pt-4 pr-1 font-medium text-gray-500 text-sm hover:border-gray-300 hover:text-gray-700 disabled:opacity-50 dark:text-gray-400 dark:hover:border-white/20 dark:hover:text-gray-200"
+							disabled={currentPage === 1}
+							onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+							type="button"
+						>
+							<ArrowLongLeftIcon
+								aria-hidden="true"
+								className="mr-3 size-5 text-gray-400 dark:text-gray-500"
+							/>
+							{dict.previous}
+						</button>
+					</div>
+					<div className="md:-mt-px hidden md:flex">
+						{getPageNumbers().map((item) =>
+							typeof item.value === "number" ? (
+								<button
+									className={`inline-flex items-center border-t-2 px-4 pt-4 font-medium text-sm ${
+										currentPage === item.value
+											? "border-brand-primary text-brand-primary"
+											: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:border-white/20"
+									}`}
+									key={item.key}
+									onClick={() => setCurrentPage(item.value as number)}
+									type="button"
+								>
+									{item.value}
+								</button>
+							) : (
+								<span
+									className="inline-flex items-center border-transparent border-t-2 px-4 pt-4 font-medium text-gray-500 text-sm"
+									key={item.key}
+								>
+									{item.value}
+								</span>
+							),
+						)}
+					</div>
+					<div className="-mt-px flex w-0 flex-1 justify-end">
+						<button
+							className="inline-flex items-center border-transparent border-t-2 pt-4 pl-1 font-medium text-gray-500 text-sm hover:border-gray-300 hover:text-gray-700 disabled:opacity-50 dark:text-gray-400 dark:hover:border-white/20 dark:hover:text-gray-200"
+							disabled={currentPage === totalPages}
+							onClick={() =>
+								setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+							}
+							type="button"
+						>
+							{dict.next}
+							<ArrowLongRightIcon
+								aria-hidden="true"
+								className="ml-3 size-5 text-gray-400 dark:text-gray-500"
+							/>
+						</button>
+					</div>
+				</nav>
+			)}
 		</>
 	);
 };

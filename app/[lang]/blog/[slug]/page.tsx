@@ -23,16 +23,14 @@ import rehypePrettyCode from "rehype-pretty-code";
 import type { Pluggable } from "unified";
 
 export const generateStaticParams = async () => {
-	const params: { lang: string; slug: string }[] = [];
+	const params = await Promise.all(
+		langs.map(async (lang) => {
+			const posts = await getAllPosts(lang);
+			return posts.map((post) => ({ lang, slug: post.slug }));
+		}),
+	);
 
-	for (const lang of langs) {
-		const posts = await getAllPosts(lang);
-		for (const post of posts) {
-			params.push({ lang, slug: post.slug });
-		}
-	}
-
-	return params;
+	return params.flat();
 };
 
 interface BlogPostPageProps {
