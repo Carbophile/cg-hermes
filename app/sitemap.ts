@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import { getAllPosts } from "@blog/blog";
+import { type BlogPost, getAllPosts } from "@blog/blog";
 import { langs } from "@l10n/dict";
-import { getAllProjects } from "@projects/projects";
+import { getAllProjects, type Project } from "@projects/projects";
 import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
@@ -26,38 +26,117 @@ const baseUrl = "https://carbophile.org";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const sitemapEntries: MetadataRoute.Sitemap = [];
 
+	// 1. Static pages
+	const staticPages = ["", "blog", "projects", "contact", "collaborate"];
+	for (const page of staticPages) {
+		const alternates = {
+			languages: Object.fromEntries(
+				langs.map((lang) => [
+					lang,
+					page === "" ? `${baseUrl}/${lang}` : `${baseUrl}/${lang}/${page}`,
+				]),
+			),
+		};
+
+		sitemapEntries.push({
+			alternates,
+			changeFrequency:
+				page === "blog" || page === "projects" ? "weekly" : "monthly",
+			priority: page === "" ? 1.0 : 0.25,
+			url: page === "" ? `${baseUrl}/en` : `${baseUrl}/en/${page}`,
+		});
+	}
+
+	// 2. Blog posts
+	const allPostsBySlug = new Map<string, { [lang: string]: BlogPost }>();
 	for (const lang of langs) {
-		const staticPages = ["", "blog", "projects", "contact", "collaborate"];
-
-		for (const page of staticPages) {
-			const url =
-				page === "" ? `${baseUrl}/${lang}` : `${baseUrl}/${lang}/${page}`;
-
-			sitemapEntries.push({
-				changeFrequency:
-					page === "blog" || page === "projects" ? "weekly" : "monthly",
-				priority: page === "" ? 1.0 : 0.25,
-				url,
-			});
-		}
-
 		const posts = await getAllPosts(lang);
 		for (const post of posts) {
-			sitemapEntries.push({
-				changeFrequency: "yearly",
-				lastModified: new Date(post.meta.date),
-				priority: 0.75,
-				url: `${baseUrl}/${lang}/blog/${post.slug}`,
-			});
+			let postsForSlug = allPostsBySlug.get(post.slug);
+			if (!postsForSlug) {
+				postsForSlug = {};
+				allPostsBySlug.set(post.slug, postsForSlug);
+			}
+			postsForSlug[lang] = post;
+		}
+	}
+
+	for (const postsByLang of allPostsBySlug.values()) {
+		const alternates = {
+			languages: Object.fromEntries(
+				Object.entries(postsByLang).map(([lang, post]) => [
+					lang,
+					`${baseUrl}/${lang}/blog/${post.slug}`,
+				]),
+			),
+		};
+
+		const primaryLang = "en";
+		let primaryPost = postsByLang[primaryLang];
+		let primaryPostLang = primaryLang;
+
+		if (!primaryPost) {
+			const firstLang = Object.keys(postsByLang)[0];
+			if (firstLang) {
+				primaryPostLang = firstLang;
+				primaryPost = postsByLang[firstLang];
+			}
 		}
 
+		if (primaryPost) {
+			sitemapEntries.push({
+				alternates,
+				changeFrequency: "yearly",
+				lastModified: new Date(primaryPost.meta.date),
+				priority: 0.75,
+				url: `${baseUrl}/${primaryPostLang}/blog/${primaryPost.slug}`,
+			});
+		}
+	}
+
+	// 3. Projects
+	const allProjectsBySlug = new Map<string, { [lang: string]: Project }>();
+	for (const lang of langs) {
 		const projects = await getAllProjects(lang);
 		for (const project of projects) {
+			let projectsForSlug = allProjectsBySlug.get(project.slug);
+			if (!projectsForSlug) {
+				projectsForSlug = {};
+				allProjectsBySlug.set(project.slug, projectsForSlug);
+			}
+			projectsForSlug[lang] = project;
+		}
+	}
+
+	for (const projectsByLang of allProjectsBySlug.values()) {
+		const alternates = {
+			languages: Object.fromEntries(
+				Object.entries(projectsByLang).map(([lang, project]) => [
+					lang,
+					`${baseUrl}/${lang}/projects/${project.slug}`,
+				]),
+			),
+		};
+
+		const primaryLang = "en";
+		let primaryProject = projectsByLang[primaryLang];
+		let primaryProjectLang = primaryLang;
+
+		if (!primaryProject) {
+			const firstLang = Object.keys(projectsByLang)[0];
+			if (firstLang) {
+				primaryProjectLang = firstLang;
+				primaryProject = projectsByLang[firstLang];
+			}
+		}
+
+		if (primaryProject) {
 			sitemapEntries.push({
+				alternates,
 				changeFrequency: "yearly",
-				lastModified: new Date(project.meta.date),
+				lastModified: new Date(primaryProject.meta.date),
 				priority: 0.5,
-				url: `${baseUrl}/${lang}/projects/${project.slug}`,
+				url: `${baseUrl}/${primaryProjectLang}/projects/${primaryProject.slug}`,
 			});
 		}
 	}
