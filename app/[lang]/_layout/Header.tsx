@@ -178,6 +178,7 @@ const Header = ({ dict }: HeaderProps) => {
 								className="-mx-3 block rounded-lg px-3 py-2 font-semibold text-base/7 text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-white/5"
 								href={item.href}
 								key={item.name}
+								onClick={() => setMobileMenuOpen(false)}
 							>
 								{item.name}
 							</Link>

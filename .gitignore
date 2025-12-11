@@ -8,5 +8,5 @@
 /.next/
 /out/
 
-# Type definitions
+# Type Definitions
 *.d.ts

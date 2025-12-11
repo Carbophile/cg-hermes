@@ -16,7 +16,7 @@ The project codename comes from [Hermes](https://en.wikipedia.org/wiki/Hermes), 
 - **Deployment:** Cloudflare Workers
 - **Content:** MDX (Markdown + JSX)
 
-## Local development
+## Local Development
 
 ### Installation
 
@@ -82,15 +82,15 @@ Client components should get a reduced dictionary with only the keys they need t
 
 Blog posts and project entries are stored as MDX files. File names should be in English regardless of language.
 
-#### Adding a new Blog Post
+#### Adding a New Blog Post
 
-1. Navigate to `blog/posts/[language]/`.
+1. Navigate to `blog/content/[language]/`.
 2. Create a new `.mdx` file.
 3. Populate the file with the frontmatter and the blog content itself.
 4. If needed, add the author's headshot to `public/assets/headshots/`
 5. Create variations for all other languages with the same file name.
 
-#### Adding a new Project:
+#### Adding a New Project:
 
 1. Navigate to `projects/content/[language]/`.
 2. Create a new `.mdx` file.

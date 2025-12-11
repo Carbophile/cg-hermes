@@ -74,7 +74,7 @@ const Footer = ({ dict }: FooterProps) => {
 					))}
 				</div>
 				<Link
-					className="mt-8 text-center text-gray-600 text-sm/6 hover:text-gray-800 md:order-1 md:mt-0 dark:text-gray-400 dark:hover:text-white"
+					className="mt-8 block text-center text-gray-600 text-sm/6 hover:text-gray-800 md:order-1 md:mt-0 dark:text-gray-400 dark:hover:text-white"
 					href={noticeUrl}
 					rel="noopener"
 					target="_blank"
