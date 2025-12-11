@@ -42,10 +42,9 @@ export interface BlogPost {
 }
 
 const readPost = async (filePath: string): Promise<BlogPost | null> => {
+	if (memoryCache.has(filePath)) return memoryCache.get(filePath);
+
 	const slug = path.basename(filePath, path.extname(filePath));
-
-	if (memoryCache.has(slug)) return memoryCache.get(slug);
-
 	const fileContents = await fs.readFile(filePath, "utf-8");
 	const { content, data } = matter(fileContents);
 
@@ -63,7 +62,7 @@ const readPost = async (filePath: string): Promise<BlogPost | null> => {
 		slug,
 	};
 
-	memoryCache.set(slug, post);
+	memoryCache.set(filePath, post);
 
 	return post;
 };
