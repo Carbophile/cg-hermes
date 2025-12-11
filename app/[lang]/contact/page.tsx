@@ -42,12 +42,31 @@ import {
 	PhoneIcon,
 } from "@heroicons/react/24/outline";
 import { getDict, type Lang } from "@l10n/dict";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { FaLinkedin } from "react-icons/fa";
 
 interface ContactPageProps {
 	params: Promise<{ lang: string }>;
 }
+
+export const generateMetadata = async ({
+	params,
+}: ContactPageProps): Promise<Metadata> => {
+	const { lang } = (await params) as { lang: Lang };
+	const dict = await getDict(lang);
+
+	return {
+		alternates: {
+			canonical: "/en/contact",
+			languages: {
+				en: "/en/contact",
+				hr: "/hr/contact",
+			},
+		},
+		title: dict.pages.contact,
+	};
+};
 
 const ContactPage = async ({ params }: ContactPageProps) => {
 	const { lang } = (await params) as { lang: Lang };

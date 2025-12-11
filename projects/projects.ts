@@ -21,6 +21,8 @@ import matter from "gray-matter";
 
 const projectsDirectory = path.join(process.cwd(), "projects/content");
 
+const memoryCache = new Map();
+
 export type ProjectStatus = "ongoing" | "concluded";
 
 export interface ProjectFrontmatter {
@@ -39,12 +41,15 @@ export interface Project {
 
 const readProject = async (filePath: string): Promise<Project | null> => {
 	const slug = path.basename(filePath, path.extname(filePath));
+
+	if (memoryCache.has(slug)) return memoryCache.get(slug);
+
 	const fileContents = await fs.readFile(filePath, "utf-8");
 	const { content, data } = matter(fileContents);
 
 	const frontmatter = data as ProjectFrontmatter;
 
-	return {
+	const project = {
 		content,
 		meta: {
 			category: frontmatter.category,
@@ -55,6 +60,10 @@ const readProject = async (filePath: string): Promise<Project | null> => {
 		},
 		slug,
 	};
+
+	memoryCache.set(slug, project);
+
+	return project;
 };
 
 export const getProjectBySlug = async (

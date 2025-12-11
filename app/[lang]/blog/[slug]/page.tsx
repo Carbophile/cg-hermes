@@ -16,6 +16,7 @@
 
 import { getAllPosts, getPostBySlug } from "@blog/blog";
 import { getDict, type Lang, langs } from "@l10n/dict";
+import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -36,6 +37,39 @@ export const generateStaticParams = async () => {
 interface BlogPostPageProps {
 	params: Promise<{ lang: string; slug: string }>;
 }
+
+export const generateMetadata = async ({
+	params,
+}: BlogPostPageProps): Promise<Metadata> => {
+	const { lang, slug } = (await params) as { lang: Lang; slug: string };
+	const dict = await getDict(lang);
+
+	const post = await getPostBySlug(lang, slug);
+
+	if (!post) notFound();
+
+	return {
+		alternates: {
+			canonical: `/en/blog/${slug}`,
+			languages: {
+				en: `/en/blog/${slug}`,
+				hr: `/hr/blog/${slug}`,
+			},
+		},
+		authors: [{ name: post.meta.author.name }],
+		description: post.meta.description,
+		openGraph: {
+			authors: [post.meta.author.name],
+			description: post.meta.description,
+			images: [{ url: `/assets/blog-thumbnails/${post.meta.thumbnail}.webp` }],
+			locale: lang,
+			siteName: dict.orgName,
+			title: post.meta.title,
+			type: "article",
+		},
+		title: post.meta.title,
+	};
+};
 
 const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 	const { lang, slug } = (await params) as { lang: Lang; slug: string };

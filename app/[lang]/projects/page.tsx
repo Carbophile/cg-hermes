@@ -38,11 +38,30 @@
 
 import { getDict, type Lang } from "@l10n/dict";
 import { getAllProjects } from "@projects/projects";
+import type { Metadata } from "next";
 import { ProjectList } from "./_components/ProjectList";
 
 interface ProjectsPageProps {
 	params: Promise<{ lang: string }>;
 }
+
+export const generateMetadata = async ({
+	params,
+}: ProjectsPageProps): Promise<Metadata> => {
+	const { lang } = (await params) as { lang: Lang };
+	const dict = await getDict(lang);
+
+	return {
+		alternates: {
+			canonical: "/en/projects",
+			languages: {
+				en: "/en/projects",
+				hr: "/hr/projects",
+			},
+		},
+		title: dict.pages.projects,
+	};
+};
 
 const ProjectsPage = async ({ params }: ProjectsPageProps) => {
 	const { lang } = (await params) as { lang: Lang };

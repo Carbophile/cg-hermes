@@ -15,12 +15,15 @@
  */
 
 import { getDict, type Lang, langs } from "@l10n/dict";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
 import Footer from "./_layout/Footer";
 import Header from "./_layout/Header";
 
 import "@/global.css";
+
+const websiteUrl = new URL("https://carbophile.org");
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +33,32 @@ interface RootLayoutProps {
 	params: Promise<{ lang: string }>;
 	children: ReactNode;
 }
+
+export const generateMetadata = async ({
+	params,
+}: RootLayoutProps): Promise<Metadata> => {
+	const { lang } = (await params) as { lang: Lang };
+	const dict = await getDict(lang);
+
+	return {
+		alternates: {
+			canonical: "/en",
+			languages: {
+				en: "/en",
+				hr: "/hr",
+			},
+		},
+		description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
+		icons: {
+			icon: "/assets/CG-brandmark.svg",
+		},
+		metadataBase: websiteUrl,
+		title: {
+			default: dict.orgName,
+			template: `%s | ${dict.orgName}`,
+		},
+	};
+};
 
 const RootLayout = async ({ params, children }: RootLayoutProps) => {
 	const { lang } = (await params) as { lang: Lang };

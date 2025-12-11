@@ -37,11 +37,30 @@
  */
 
 import { getDict, type Lang } from "@l10n/dict";
+import type { Metadata } from "next";
 import Image from "next/image";
 
 interface CollaboratePageProps {
 	params: Promise<{ lang: string }>;
 }
+
+export const generateMetadata = async ({
+	params,
+}: CollaboratePageProps): Promise<Metadata> => {
+	const { lang } = (await params) as { lang: Lang };
+	const dict = await getDict(lang);
+
+	return {
+		alternates: {
+			canonical: "/en/collaborate",
+			languages: {
+				en: "/en/collaborate",
+				hr: "/hr/collaborate",
+			},
+		},
+		title: dict.pages.collaborate,
+	};
+};
 
 const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 	const { lang } = (await params) as { lang: Lang };
