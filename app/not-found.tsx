@@ -40,8 +40,16 @@ import { Inter } from "next/font/google";
 import Link from "next/link";
 
 import "@/global.css";
+import type { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+	icons: {
+		icon: "/assets/CG-brandmark.svg",
+	},
+	title: "Not Found | Carbophile Group",
+};
 
 const NotFound = () => (
 	<main

@@ -16,6 +16,7 @@
 
 import { getDict, type Lang, langs } from "@l10n/dict";
 import { getAllProjects, getProjectBySlug } from "@projects/projects";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -35,6 +36,36 @@ export const generateStaticParams = async () => {
 interface ProjectPageProps {
 	params: Promise<{ lang: string; slug: string }>;
 }
+
+export const generateMetadata = async ({
+	params,
+}: ProjectPageProps): Promise<Metadata> => {
+	const { lang, slug } = (await params) as { lang: Lang; slug: string };
+	const dict = await getDict(lang);
+
+	const project = await getProjectBySlug(lang, slug);
+
+	if (!project) notFound();
+
+	return {
+		alternates: {
+			canonical: `/en/projects/${slug}`,
+			languages: {
+				en: `/en/projects/${slug}`,
+				hr: `/hr/projects/${slug}`,
+			},
+		},
+		description: project.meta.description,
+		openGraph: {
+			description: project.meta.description,
+			locale: lang,
+			siteName: dict.orgName,
+			title: project.meta.title,
+			type: "article",
+		},
+		title: project.meta.title,
+	};
+};
 
 const ProjectPage = async ({ params }: ProjectPageProps) => {
 	const { lang, slug } = (await params) as { lang: Lang; slug: string };

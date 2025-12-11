@@ -38,11 +38,30 @@
 
 import { getAllPosts } from "@blog/blog";
 import { getDict, type Lang } from "@l10n/dict";
+import type { Metadata } from "next";
 import { BlogList } from "./_components/BlogList";
 
 interface BlogListPageProps {
 	params: Promise<{ lang: string }>;
 }
+
+export const generateMetadata = async ({
+	params,
+}: BlogListPageProps): Promise<Metadata> => {
+	const { lang } = (await params) as { lang: Lang };
+	const dict = await getDict(lang);
+
+	return {
+		alternates: {
+			canonical: "/en/blog",
+			languages: {
+				en: "/en/blog",
+				hr: "/hr/blog",
+			},
+		},
+		title: dict.pages.blog,
+	};
+};
 
 const BlogListPage = async ({ params }: BlogListPageProps) => {
 	const { lang } = (await params) as { lang: Lang };
