@@ -19,7 +19,7 @@ import path from "node:path";
 import type { Lang } from "@l10n/dict";
 import matter from "gray-matter";
 
-const postDirectory = path.join(process.cwd(), "blog/posts");
+const postDirectory = path.join(process.cwd(), "blog/content");
 
 interface PostFrontmatter {
 	author: {

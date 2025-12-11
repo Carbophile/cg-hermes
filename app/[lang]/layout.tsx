@@ -49,7 +49,7 @@ const RootLayout = async ({ params, children }: RootLayoutProps) => {
 		>
 			<body className="flex min-h-screen flex-col">
 				<Header dict={headerDict} />
-				<main className="flex-grow">{children}</main>
+				<main className="grow">{children}</main>
 				<Footer dict={dict} />
 			</body>
 		</html>
