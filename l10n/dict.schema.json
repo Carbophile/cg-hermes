@@ -307,6 +307,10 @@
 				"stats": {
 					"description": "The statistics for the landing page.",
 					"properties": {
+						"committees": {
+							"description": "The title of the committees stat.",
+							"type": "string"
+						},
 						"heading": {
 							"description": "The heading of the stats section.",
 							"type": "string"
@@ -315,26 +319,16 @@
 							"description": "The title of the members stat.",
 							"type": "string"
 						},
-						"presentations": {
-							"description": "The title of the presentations stat.",
+						"posts": {
+							"description": "The title of the posts stat.",
 							"type": "string"
 						},
 						"projects": {
 							"description": "The title of the projects stat.",
 							"type": "string"
-						},
-						"vulnerabilities": {
-							"description": "The title of the vulnerabilities stat.",
-							"type": "string"
 						}
 					},
-					"required": [
-						"heading",
-						"members",
-						"presentations",
-						"projects",
-						"vulnerabilities"
-					],
+					"required": ["committees", "heading", "members", "posts", "projects"],
 					"type": "object"
 				}
 			},

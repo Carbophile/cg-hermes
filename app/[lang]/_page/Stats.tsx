@@ -40,14 +40,16 @@ import type { Dictionary } from "@l10n/Dict";
 
 interface StatsProps {
 	dict: Dictionary;
+	postCount: number;
+	projectCount: number;
 }
 
-const Stats = ({ dict }: StatsProps) => {
+const Stats = ({ dict, postCount, projectCount }: StatsProps) => {
 	const stats = [
 		{ name: dict.landing.stats?.members, value: "4" },
-		{ name: dict.landing.stats?.projects, value: "2" },
-		{ name: dict.landing.stats?.presentations, value: "0" },
-		{ name: dict.landing.stats?.vulnerabilities, value: "0" },
+		{ name: dict.landing.stats?.projects, value: projectCount },
+		{ name: dict.landing.stats?.posts, value: postCount },
+		{ name: dict.landing.stats?.committees, value: "2" },
 	];
 
 	return (
