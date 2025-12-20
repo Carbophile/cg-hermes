@@ -47,8 +47,8 @@ interface StatsProps {
 const Stats = ({ dict, postCount, projectCount }: StatsProps) => {
 	const stats = [
 		{ name: dict.landing.stats?.members, value: "4" },
-		{ name: dict.landing.stats?.projects, value: projectCount },
-		{ name: dict.landing.stats?.posts, value: postCount },
+		{ name: dict.landing.stats?.projects, value: projectCount.toString() },
+		{ name: dict.landing.stats?.posts, value: postCount.toString() },
 		{ name: dict.landing.stats?.committees, value: "2" },
 	];
 
