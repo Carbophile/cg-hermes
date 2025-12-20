@@ -95,7 +95,7 @@ const Landing = ({ dict, lang }: LandingProps) => (
 				{/** biome-ignore lint/a11y/noInteractiveElementToNoninteractiveRole: <The video truly is non-interactive and serves no functional purpose> */}
 				<video
 					autoPlay
-					className="md:-ml-4 w-3xl max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-228 lg:ml-0 dark:ring-white/10"
+					className="w-3xl max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-228 md:-ml-4 lg:ml-0 dark:ring-white/10"
 					loop
 					muted
 					role="presentation"

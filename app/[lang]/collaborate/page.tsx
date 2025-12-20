@@ -71,7 +71,7 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 			<div className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:px-8 dark:bg-gray-900">
 				<Image
 					alt=""
-					className="-z-10 absolute inset-0 size-full object-cover opacity-10"
+					className="absolute inset-0 -z-10 size-full object-cover opacity-10"
 					height="9"
 					role="presentation"
 					src="/assets/PIX-classroom-stock.webp"
@@ -79,7 +79,7 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 				/>
 				<div
 					aria-hidden="true"
-					className="sm:-top-10 sm:-z-10 hidden sm:absolute sm:right-1/2 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
+					className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
 				>
 					<div
 						className="aspect-1097/845 w-274.25 bg-linear-to-tr from-brand-primary to-brand-primary-light opacity-15 dark:opacity-20"
@@ -91,7 +91,7 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 				</div>
 				<div
 					aria-hidden="true"
-					className="-top-52 -z-10 -translate-x-1/2 sm:-top-112 absolute left-1/2 transform-gpu blur-3xl sm:ml-16 sm:translate-x-0"
+					className="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:-top-112 sm:ml-16 sm:translate-x-0"
 				>
 					<div
 						className="aspect-1097/845 w-274.25 bg-linear-to-tr from-brand-primary to-brand-primary-light opacity-15 dark:opacity-20"

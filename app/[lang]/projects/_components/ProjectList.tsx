@@ -197,7 +197,7 @@ export const ProjectList = ({ projects, dict }: ProjectListProps) => {
 							{dict.previous}
 						</button>
 					</div>
-					<div className="md:-mt-px hidden md:flex">
+					<div className="hidden md:-mt-px md:flex">
 						{getPageNumbers().map((item) =>
 							typeof item.value === "number" ? (
 								<button
