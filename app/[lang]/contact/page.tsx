@@ -42,11 +42,10 @@ import {
 	PhoneIcon,
 } from "@heroicons/react/24/outline";
 import { getDict, type Lang } from "@l10n/dict";
+import { createMetadata } from "@lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FaLinkedin } from "react-icons/fa";
-
-const websiteUrl = new URL("https://carbophile.org");
 
 interface ContactPageProps {
 	params: Promise<{ lang: string }>;
@@ -58,25 +57,13 @@ export const generateMetadata = async ({
 	const { lang } = (await params) as { lang: Lang };
 	const dict = await getDict(lang);
 
-	return {
-		alternates: {
-			canonical: "/en/contact",
-			languages: {
-				en: "/en/contact",
-				hr: "/hr/contact",
-			},
-		},
-		openGraph: {
-			alternateLocale: lang === "en" ? "hr" : "en",
-			description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
-			locale: lang,
-			siteName: dict.orgName,
-			title: dict.pages.contact,
-			type: "website",
-			url: `${websiteUrl.toString()}/${lang}/contact`,
-		},
+	return createMetadata({
+		description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
+		lang,
+		path: "contact",
+		siteName: dict.orgName,
 		title: dict.pages.contact,
-	};
+	});
 };
 
 const ContactPage = async ({ params }: ContactPageProps) => {

@@ -38,17 +38,14 @@
 
 "use client";
 
-import {
-	ArrowLongLeftIcon,
-	ArrowLongRightIcon,
-} from "@heroicons/react/20/solid";
 import type { Dictionary } from "@l10n/Dict";
 import type { Lang } from "@l10n/dict";
 import type { Project } from "@projects/projects";
-import Fuse from "fuse.js";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { Pagination } from "@/[lang]/_components/Pagination";
+import { SearchInput } from "@/[lang]/_components/SearchInput";
+import { useSearchAndPagination } from "@/[lang]/_hooks/useSearchAndPagination";
 
 interface ProjectListProps {
 	projects: Project[];
@@ -58,83 +55,27 @@ interface ProjectListProps {
 export const ProjectList = ({ projects, dict }: ProjectListProps) => {
 	const { lang } = useParams<{ lang: Lang }>();
 
-	const [filteredProjects, setFilteredProjects] = useState<Project[]>(projects);
-	const [searchQuery, setSearchQuery] = useState("");
-	const [currentPage, setCurrentPage] = useState(1);
-	const projectsPerPage = 6;
-
-	const fuse = useMemo(
-		() =>
-			new Fuse(projects, {
-				keys: ["meta.title", "meta.description", "meta.category"],
-				threshold: 0.3,
-			}),
-		[projects],
+	const {
+		searchQuery,
+		setSearchQuery,
+		currentPage,
+		setCurrentPage,
+		totalPages,
+		paginatedItems: paginatedProjects,
+		filteredCount,
+	} = useSearchAndPagination(
+		projects,
+		["meta.title", "meta.description", "meta.category"],
+		6,
 	);
-
-	useEffect(() => {
-		if (searchQuery === "") {
-			setFilteredProjects(projects);
-		} else {
-			const results = fuse.search(searchQuery);
-			setFilteredProjects(results.map((result) => result.item));
-		}
-		setCurrentPage(1);
-	}, [searchQuery, fuse, projects]);
-
-	const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
-	const paginatedProjects = filteredProjects.slice(
-		(currentPage - 1) * projectsPerPage,
-		currentPage * projectsPerPage,
-	);
-
-	const getPageNumbers = () => {
-		const pages: { key: string; value: number | string }[] = [];
-		const maxPagesToShow = 5;
-		const halfMaxPages = Math.floor(maxPagesToShow / 2);
-		let startPage = Math.max(1, currentPage - halfMaxPages);
-		let endPage = Math.min(totalPages, currentPage + halfMaxPages);
-
-		if (currentPage - 1 <= halfMaxPages) {
-			endPage = Math.min(totalPages, maxPagesToShow);
-		}
-
-		if (totalPages - currentPage <= halfMaxPages) {
-			startPage = Math.max(1, totalPages - maxPagesToShow + 1);
-		}
-
-		if (startPage > 1) {
-			pages.push({ key: "page-1", value: 1 });
-			if (startPage > 2) {
-				pages.push({ key: "ellipsis-start", value: "..." });
-			}
-		}
-
-		for (let i = startPage; i <= endPage; i++) {
-			pages.push({ key: `page-${i}`, value: i });
-		}
-
-		if (endPage < totalPages) {
-			if (endPage < totalPages - 1) {
-				pages.push({ key: "ellipsis-end", value: "..." });
-			}
-			pages.push({ key: `page-${totalPages}`, value: totalPages });
-		}
-
-		return pages;
-	};
 
 	return (
 		<>
-			<div className="mt-8">
-				<input
-					className="w-full rounded-md border-gray-300 bg-white px-4 py-2 text-gray-900 shadow-sm focus:border-brand-primary focus:ring-brand-primary dark:bg-gray-800 dark:text-white"
-					onChange={(e) => setSearchQuery(e.target.value)}
-					placeholder={dict.search}
-					type="text"
-					value={searchQuery}
-				/>
-			</div>
+			<SearchInput
+				onChange={setSearchQuery}
+				placeholder={dict.search}
+				value={searchQuery}
+			/>
 
 			<div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-gray-200 border-t pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3 dark:border-gray-700">
 				{paginatedProjects.map((project) => (
@@ -181,64 +122,13 @@ export const ProjectList = ({ projects, dict }: ProjectListProps) => {
 				))}
 			</div>
 
-			{filteredProjects.length > projectsPerPage && (
-				<nav className="mt-16 flex items-center justify-between border-gray-200 border-t px-4 sm:px-0 dark:border-white/10">
-					<div className="-mt-px flex w-0 flex-1">
-						<button
-							className="inline-flex items-center border-transparent border-t-2 pt-4 pr-1 font-medium text-gray-500 text-sm hover:border-gray-300 hover:text-gray-700 disabled:opacity-50 dark:text-gray-400 dark:hover:border-white/20 dark:hover:text-gray-200"
-							disabled={currentPage === 1}
-							onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-							type="button"
-						>
-							<ArrowLongLeftIcon
-								aria-hidden="true"
-								className="mr-3 size-5 text-gray-400 dark:text-gray-500"
-							/>
-							{dict.previous}
-						</button>
-					</div>
-					<div className="hidden md:-mt-px md:flex">
-						{getPageNumbers().map((item) =>
-							typeof item.value === "number" ? (
-								<button
-									className={`inline-flex items-center border-t-2 px-4 pt-4 font-medium text-sm ${
-										currentPage === item.value
-											? "border-brand-primary text-brand-primary"
-											: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:border-white/20"
-									}`}
-									key={item.key}
-									onClick={() => setCurrentPage(item.value as number)}
-									type="button"
-								>
-									{item.value}
-								</button>
-							) : (
-								<span
-									className="inline-flex items-center border-transparent border-t-2 px-4 pt-4 font-medium text-gray-500 text-sm"
-									key={item.key}
-								>
-									{item.value}
-								</span>
-							),
-						)}
-					</div>
-					<div className="-mt-px flex w-0 flex-1 justify-end">
-						<button
-							className="inline-flex items-center border-transparent border-t-2 pt-4 pl-1 font-medium text-gray-500 text-sm hover:border-gray-300 hover:text-gray-700 disabled:opacity-50 dark:text-gray-400 dark:hover:border-white/20 dark:hover:text-gray-200"
-							disabled={currentPage === totalPages}
-							onClick={() =>
-								setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-							}
-							type="button"
-						>
-							{dict.next}
-							<ArrowLongRightIcon
-								aria-hidden="true"
-								className="ml-3 size-5 text-gray-400 dark:text-gray-500"
-							/>
-						</button>
-					</div>
-				</nav>
+			{filteredCount > 6 && (
+				<Pagination
+					currentPage={currentPage}
+					dict={dict}
+					onPageChange={setCurrentPage}
+					totalPages={totalPages}
+				/>
 			)}
 		</>
 	);

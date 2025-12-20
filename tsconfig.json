@@ -21,6 +21,7 @@
 			"@/*": ["app/*"],
 			"@blog/*": ["blog/*"],
 			"@l10n/*": ["l10n/*"],
+			"@lib/*": ["lib/*"],
 			"@projects/*": ["projects/*"]
 		},
 		"plugins": [

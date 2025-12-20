@@ -16,12 +16,11 @@
 
 import { type BlogPost, getAllPosts } from "@blog/blog";
 import { langs } from "@l10n/dict";
+import { websiteUrl } from "@lib/constants";
 import { getAllProjects, type Project } from "@projects/projects";
 import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
-
-const baseUrl = "https://carbophile.org";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const sitemapEntries: MetadataRoute.Sitemap = [];
@@ -33,7 +32,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			languages: Object.fromEntries(
 				langs.map((lang) => [
 					lang,
-					page === "" ? `${baseUrl}/${lang}` : `${baseUrl}/${lang}/${page}`,
+					page === ""
+						? `${websiteUrl}/${lang}`
+						: `${websiteUrl}/${lang}/${page}`,
 				]),
 			),
 		};
@@ -43,7 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			changeFrequency:
 				page === "blog" || page === "projects" ? "weekly" : "monthly",
 			priority: page === "" ? 1.0 : 0.25,
-			url: page === "" ? `${baseUrl}/en` : `${baseUrl}/en/${page}`,
+			url: page === "" ? `${websiteUrl}/en` : `${websiteUrl}/en/${page}`,
 		});
 	}
 
@@ -66,7 +67,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			languages: Object.fromEntries(
 				Object.entries(postsByLang).map(([lang, post]) => [
 					lang,
-					`${baseUrl}/${lang}/blog/${post.slug}`,
+					`${websiteUrl}/${lang}/blog/${post.slug}`,
 				]),
 			),
 		};
@@ -89,7 +90,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 				changeFrequency: "yearly",
 				lastModified: new Date(primaryPost.meta.date),
 				priority: 0.75,
-				url: `${baseUrl}/${primaryPostLang}/blog/${primaryPost.slug}`,
+				url: `${websiteUrl}/${primaryPostLang}/blog/${primaryPost.slug}`,
 			});
 		}
 	}
@@ -113,7 +114,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			languages: Object.fromEntries(
 				Object.entries(projectsByLang).map(([lang, project]) => [
 					lang,
-					`${baseUrl}/${lang}/projects/${project.slug}`,
+					`${websiteUrl}/${lang}/projects/${project.slug}`,
 				]),
 			),
 		};
@@ -136,7 +137,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 				changeFrequency: "yearly",
 				lastModified: new Date(primaryProject.meta.date),
 				priority: 0.5,
-				url: `${baseUrl}/${primaryProjectLang}/projects/${primaryProject.slug}`,
+				url: `${websiteUrl}/${primaryProjectLang}/projects/${primaryProject.slug}`,
 			});
 		}
 	}

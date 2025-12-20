@@ -15,6 +15,7 @@
  */
 
 import { getDict, type Lang, langs } from "@l10n/dict";
+import { websiteUrl } from "@lib/constants";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
@@ -22,8 +23,6 @@ import Footer from "./_layout/Footer";
 import Header from "./_layout/Header";
 
 import "@/global.css";
-
-const websiteUrl = new URL("https://carbophile.org");
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -41,27 +40,11 @@ export const generateMetadata = async ({
 	const dict = await getDict(lang);
 
 	return {
-		alternates: {
-			canonical: "/en",
-			languages: {
-				en: "/en",
-				hr: "/hr",
-			},
-		},
 		description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
 		icons: {
 			icon: "/assets/CG-brandmark.svg",
 		},
-		metadataBase: websiteUrl,
-		openGraph: {
-			alternateLocale: lang === "en" ? "hr" : "en",
-			description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
-			locale: lang,
-			siteName: dict.orgName,
-			title: dict.orgName,
-			type: "website",
-			url: `${websiteUrl.toString()}/${lang}`,
-		},
+		metadataBase: new URL(websiteUrl),
 		title: {
 			default: dict.orgName,
 			template: `%s | ${dict.orgName}`,

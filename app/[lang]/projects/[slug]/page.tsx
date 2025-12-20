@@ -15,14 +15,13 @@
  */
 
 import { getDict, type Lang, langs } from "@l10n/dict";
+import { createMetadata } from "@lib/seo";
 import { getAllProjects, getProjectBySlug } from "@projects/projects";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
 import type { Pluggable } from "unified";
-
-const websiteUrl = new URL("https://carbophile.org");
 
 export const generateStaticParams = async () => {
 	const params = await Promise.all(
@@ -49,26 +48,14 @@ export const generateMetadata = async ({
 
 	if (!project) notFound();
 
-	return {
-		alternates: {
-			canonical: `/en/projects/${slug}`,
-			languages: {
-				en: `/en/projects/${slug}`,
-				hr: `/hr/projects/${slug}`,
-			},
-		},
+	return createMetadata({
 		description: project.meta.description,
-		openGraph: {
-			alternateLocale: lang === "en" ? "hr" : "en",
-			description: project.meta.description,
-			locale: lang,
-			siteName: dict.orgName,
-			title: project.meta.title,
-			type: "article",
-			url: `${websiteUrl.toString()}/${lang}/projects/${slug}`,
-		},
+		lang,
+		path: `projects/${slug}`,
+		siteName: dict.orgName,
 		title: project.meta.title,
-	};
+		type: "article",
+	});
 };
 
 const ProjectPage = async ({ params }: ProjectPageProps) => {

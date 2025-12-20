@@ -15,6 +15,8 @@
  */
 
 import { getDict, type Lang } from "@l10n/dict";
+import { createMetadata } from "@lib/seo";
+import type { Metadata } from "next";
 import Faq from "./_page/Faq";
 import Landing from "./_page/Landing";
 import Stats from "./_page/Stats";
@@ -22,6 +24,21 @@ import Stats from "./_page/Stats";
 interface RootPageProps {
 	params: Promise<{ lang: string }>;
 }
+
+export const generateMetadata = async ({
+	params,
+}: RootPageProps): Promise<Metadata> => {
+	const { lang } = (await params) as { lang: Lang };
+	const dict = await getDict(lang);
+
+	return createMetadata({
+		description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
+		lang,
+		path: "",
+		siteName: dict.orgName,
+		title: dict.orgName,
+	});
+};
 
 const RootPage = async ({ params }: RootPageProps) => {
 	const { lang } = (await params) as { lang: Lang };

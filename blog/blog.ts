@@ -14,14 +14,7 @@
  * limitations under the License.
  */
 
-import fs from "node:fs/promises";
-import path from "node:path";
-import type { Lang } from "@l10n/dict";
-import matter from "gray-matter";
-
-const postDirectory = path.join(process.cwd(), "blog/content");
-
-const memoryCache = new Map();
+import { type ContentItem, ContentLoader } from "@lib/content-loader";
 
 interface PostFrontmatter {
 	author: {
@@ -35,61 +28,14 @@ interface PostFrontmatter {
 	title: string;
 }
 
-export interface BlogPost {
-	slug: string;
-	meta: PostFrontmatter;
-	content: string;
-}
+export type BlogPost = ContentItem<PostFrontmatter>;
 
-const readPost = async (filePath: string): Promise<BlogPost | null> => {
-	if (memoryCache.has(filePath)) return memoryCache.get(filePath);
+const blogLoader = new ContentLoader<PostFrontmatter, PostFrontmatter>(
+	"blog/content",
+	(data) => data,
+);
 
-	const slug = path.basename(filePath, path.extname(filePath));
-	const fileContents = await fs.readFile(filePath, "utf-8");
-	const { content, data } = matter(fileContents);
+export const getPostBySlug = (lang: string, slug: string) =>
+	blogLoader.getItemBySlug(lang, slug);
 
-	const frontmatter = data as PostFrontmatter;
-
-	const post = {
-		content,
-		meta: {
-			author: frontmatter.author,
-			date: frontmatter.date,
-			description: frontmatter.description,
-			thumbnail: frontmatter.thumbnail,
-			title: frontmatter.title,
-		},
-		slug,
-	};
-
-	memoryCache.set(filePath, post);
-
-	return post;
-};
-
-export const getPostBySlug = async (
-	lang: Lang,
-	slug: string,
-): Promise<BlogPost | null> => {
-	const fullPath = path.join(postDirectory, lang, `${slug}.mdx`);
-	return readPost(fullPath);
-};
-
-export const getAllPosts = async (lang: string): Promise<BlogPost[]> => {
-	const dir = path.join(postDirectory, lang);
-
-	const files = await fs.readdir(dir);
-
-	const posts = await Promise.all(
-		files
-			.filter((file) => path.extname(file) === ".mdx")
-			.map((file) => readPost(path.join(dir, file))),
-	);
-
-	return posts
-		.filter((p): p is BlogPost => p !== null)
-		.sort(
-			(a, b) =>
-				new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime(),
-		);
-};
+export const getAllPosts = (lang: string) => blogLoader.getAllItems(lang);
