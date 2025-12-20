@@ -23,14 +23,14 @@ export function createMetadata({
 	siteName,
 }: MetadataProps): Metadata {
 	const alternateLocale = lang === "en" ? "hr" : "en";
-	const url = `${websiteUrl}/${lang}/${path}`;
+	const url = [websiteUrl, lang, path].filter(Boolean).join("/");
 
 	return {
 		alternates: {
-			canonical: `/en/${path}`,
+			canonical: ["/en", path].filter(Boolean).join("/"),
 			languages: {
-				en: `/en/${path}`,
-				hr: `/hr/${path}`,
+				en: ["/en", path].filter(Boolean).join("/"),
+				hr: ["/hr", path].filter(Boolean).join("/"),
 			},
 		},
 		authors: authors ? authors.map((name) => ({ name })) : undefined,
