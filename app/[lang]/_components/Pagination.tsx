@@ -48,7 +48,7 @@ interface PaginationProps {
 	currentPage: number;
 	totalPages: number;
 	onPageChange: (page: number) => void;
-	dict: Pick<Dictionary, "next" | "previous">;
+	dict: Pick<Dictionary["common"], "next" | "previous">;
 }
 
 export const Pagination = ({

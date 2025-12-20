@@ -53,11 +53,11 @@ export const generateMetadata = async ({
 	const dict = await getDict(lang);
 
 	return createMetadata({
-		description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
+		description: `${dict.common.cybersecurity} ${dict.common.tagline}. ${dict.landing.mission}`,
 		lang,
 		path: "blog",
-		siteName: dict.orgName,
-		title: dict.pages.blog,
+		siteName: dict.common.orgName,
+		title: dict.common.pages.blog,
 	});
 };
 
@@ -66,10 +66,10 @@ const BlogListPage = async ({ params }: BlogListPageProps) => {
 	const dict = await getDict(lang);
 
 	const blogListDict = {
-		headshot: dict.headshot,
-		next: dict.next,
-		previous: dict.previous,
-		search: dict.search,
+		headshot: dict.common.headshot,
+		next: dict.common.next,
+		previous: dict.common.previous,
+		search: dict.common.search,
 	};
 
 	const posts = await getAllPosts(lang);
@@ -79,10 +79,10 @@ const BlogListPage = async ({ params }: BlogListPageProps) => {
 			<div className="mx-auto max-w-7xl px-6 lg:px-8">
 				<div className="mx-auto max-w-2xl lg:max-w-4xl">
 					<h2 className="text-pretty font-semibold text-4xl text-gray-900 tracking-tight sm:text-5xl dark:text-white">
-						{dict.pages.blog}
+						{dict.common.pages.blog}
 					</h2>
 					<p className="mt-2 text-gray-600 text-lg/8 dark:text-gray-400">
-						{dict.blogSubtext}
+						{dict.blog.subtext}
 					</p>
 					<BlogList dict={blogListDict} posts={posts} />
 				</div>

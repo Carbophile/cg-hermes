@@ -53,27 +53,29 @@ const Landing = ({ dict, lang }: LandingProps) => (
 				<div className="lg:pt-4 lg:pr-4">
 					<div className="lg:max-w-lg">
 						<p className="mt-2 text-pretty font-semibold text-4xl text-gray-900 tracking-tight sm:text-5xl dark:text-white">
-							<span className="text-brand-primary">{dict.cybersecurity}</span>{" "}
-							{dict.tagline}
+							<span className="text-brand-primary">
+								{dict.common.cybersecurity}
+							</span>{" "}
+							{dict.common.tagline}
 						</p>
 						<p className="mt-6 text-gray-700 text-lg/8 dark:text-gray-300">
-							{dict.mission}
+							{dict.landing.mission}
 						</p>
 						<div className="mt-8">
 							<Link
 								className="inline-flex rounded-md bg-brand-primary px-3.5 py-2.5 font-semibold text-sm text-white shadow-xs hover:bg-brand-primary-light focus-visible:outline-2 focus-visible:outline-brand-primary focus-visible:outline-offset-2"
 								href={`/${lang}/blog`}
 							>
-								{dict.pages.blog}
+								{dict.common.pages.blog}
 							</Link>
 						</div>
 						<figure className="mt-16 border-gray-200 border-l pl-8 text-gray-700 dark:border-gray-700 dark:text-gray-300">
 							<blockquote className="text-base/7">
-								<p>“{dict.foundingQuote}”</p>
+								<p>“{dict.landing.foundingQuote}”</p>
 							</blockquote>
 							<figcaption className="mt-6 flex gap-x-4 text-sm/6">
 								<Image
-									alt={`${dict.headshot} Borna Punda`}
+									alt={`${dict.common.headshot} Borna Punda`}
 									className="size-6 flex-none rounded-full"
 									height="1"
 									src="/assets/headshots/CG-borna-punda.webp"
@@ -85,7 +87,7 @@ const Landing = ({ dict, lang }: LandingProps) => (
 									</span>{" "}
 									—{" "}
 									<span className="text-gray-600 dark:text-gray-400">
-										{dict.cofounder}
+										{dict.common.cofounder}
 									</span>
 								</div>
 							</figcaption>

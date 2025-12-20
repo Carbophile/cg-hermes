@@ -49,7 +49,10 @@ import { useSearchAndPagination } from "@/[lang]/_hooks/useSearchAndPagination";
 
 interface ProjectListProps {
 	projects: Project[];
-	dict: Pick<Dictionary, "next" | "previous" | "projectsPage" | "search">;
+	dict: Pick<
+		Dictionary["common"] & { projectsPage: Dictionary["projects"] },
+		"next" | "previous" | "projectsPage" | "search"
+	>;
 }
 
 export const ProjectList = ({ projects, dict }: ProjectListProps) => {

@@ -79,7 +79,7 @@ const Footer = ({ dict }: FooterProps) => {
 					rel="noopener"
 					target="_blank"
 				>
-					{dict.copyright}
+					{dict.common.copyright}
 				</Link>
 			</div>
 		</footer>

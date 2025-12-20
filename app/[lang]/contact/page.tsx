@@ -58,11 +58,11 @@ export const generateMetadata = async ({
 	const dict = await getDict(lang);
 
 	return createMetadata({
-		description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
+		description: `${dict.common.cybersecurity} ${dict.common.tagline}. ${dict.landing.mission}`,
 		lang,
 		path: "contact",
-		siteName: dict.orgName,
-		title: dict.pages.contact,
+		siteName: dict.common.orgName,
+		title: dict.common.pages.contact,
 	});
 };
 

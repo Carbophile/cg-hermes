@@ -55,7 +55,7 @@ export const generateMetadata = async ({
 		image: `/assets/blog-thumbnails/${post.meta.thumbnail}.webp`,
 		lang,
 		path: `blog/${slug}`,
-		siteName: dict.orgName,
+		siteName: dict.common.orgName,
 		title: post.meta.title,
 		type: "article",
 	});
@@ -93,7 +93,7 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 
 				<div className="mb-8 flex items-center justify-center space-x-4">
 					<Image
-						alt={`${dict.headshot} ${post.meta.author.name}`}
+						alt={`${dict.common.headshot} ${post.meta.author.name}`}
 						className="h-12 w-12 rounded-full"
 						height="1"
 						src={`/assets/headshots/${post.meta.author.photo}.webp`}

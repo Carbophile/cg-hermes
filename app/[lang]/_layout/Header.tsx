@@ -47,10 +47,7 @@ import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { useMemo, useState } from "react";
 
-type HeaderDict = Pick<
-	Dictionary,
-	"languageSwitch" | "menu" | "orgName" | "pages"
->;
+type HeaderDict = Pick<Dictionary, "common">;
 
 interface HeaderProps {
 	dict: HeaderDict;
@@ -65,17 +62,17 @@ const Header = ({ dict }: HeaderProps) => {
 
 	const navigation = useMemo(
 		() => [
-			{ href: `/${lang}/blog`, name: dict.pages?.blog },
-			{ href: `/${lang}/projects`, name: dict.pages?.projects },
-			{ href: `/${lang}/contact`, name: dict.pages?.contact },
-			{ href: `/${lang}/collaborate`, name: dict.pages?.collaborate },
+			{ href: `/${lang}/blog`, name: dict.common.pages?.blog },
+			{ href: `/${lang}/projects`, name: dict.common.pages?.projects },
+			{ href: `/${lang}/contact`, name: dict.common.pages?.contact },
+			{ href: `/${lang}/collaborate`, name: dict.common.pages?.collaborate },
 		],
 		[
 			lang,
-			dict.pages?.blog,
-			dict.pages?.projects,
-			dict.pages?.contact,
-			dict.pages?.collaborate,
+			dict.common.pages?.blog,
+			dict.common.pages?.projects,
+			dict.common.pages?.contact,
+			dict.common.pages?.collaborate,
 		],
 	);
 
@@ -103,13 +100,13 @@ const Header = ({ dict }: HeaderProps) => {
 							onClick={() => setMobileMenuOpen(true)}
 							type="button"
 						>
-							<span className="sr-only">{dict.menu.open}</span>
+							<span className="sr-only">{dict.common.menu.open}</span>
 							<Bars3Icon aria-hidden="true" className="size-6" />
 						</button>
 					</div>
 				</div>
 				<Link className="-m-1.5 p-1.5" href={`/${lang}`}>
-					<span className="sr-only">{dict.orgName}</span>
+					<span className="sr-only">{dict.common.orgName}</span>
 					<Image
 						alt=""
 						className="h-12 w-auto"
@@ -126,7 +123,7 @@ const Header = ({ dict }: HeaderProps) => {
 							`/${lang === "en" ? "hr" : "en"}`,
 						)}
 					>
-						{dict.languageSwitch} <span aria-hidden="true">&rarr;</span>
+						{dict.common.languageSwitch} <span aria-hidden="true">&rarr;</span>
 					</Link>{" "}
 					{/* Will have to be changed if we ever support more than 2 languages */}
 				</div>
@@ -145,12 +142,12 @@ const Header = ({ dict }: HeaderProps) => {
 								onClick={() => setMobileMenuOpen(false)}
 								type="button"
 							>
-								<span className="sr-only">{dict.menu.close}</span>
+								<span className="sr-only">{dict.common.menu.close}</span>
 								<XMarkIcon aria-hidden="true" className="size-6" />
 							</button>
 						</div>
 						<Link className="-m-1.5 p-1.5" href={`/${lang}`}>
-							<span className="sr-only">{dict.orgName}</span>
+							<span className="sr-only">{dict.common.orgName}</span>
 							<Image
 								alt=""
 								className="h-12 w-auto"
@@ -167,7 +164,8 @@ const Header = ({ dict }: HeaderProps) => {
 									`/${lang === "en" ? "hr" : "en"}`,
 								)}
 							>
-								{dict.languageSwitch} <span aria-hidden="true">&rarr;</span>
+								{dict.common.languageSwitch}{" "}
+								<span aria-hidden="true">&rarr;</span>
 							</Link>{" "}
 							{/* Will have to be changed if we ever support more than 2 languages */}
 						</div>

@@ -49,7 +49,7 @@ import { SearchInput } from "@/[lang]/_components/SearchInput";
 import { useSearchAndPagination } from "@/[lang]/_hooks/useSearchAndPagination";
 
 interface BlogListProps {
-	dict: Pick<Dictionary, "headshot" | "next" | "previous" | "search">;
+	dict: Pick<Dictionary["common"], "headshot" | "next" | "previous" | "search">;
 	posts: BlogPost[];
 }
 
