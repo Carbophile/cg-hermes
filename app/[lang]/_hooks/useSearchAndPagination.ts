@@ -15,7 +15,7 @@
  */
 
 import Fuse from "fuse.js";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 export function useSearchAndPagination<T>(
 	items: T[],
@@ -26,14 +26,22 @@ export function useSearchAndPagination<T>(
 	const [searchQuery, setSearchQuery] = useState("");
 	const [currentPage, setCurrentPage] = useState(1);
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <searchKeys is stringified because we want to track when the value itself changes, not the reference to the array>
+	const searchKeysRef = useRef(searchKeys);
+
+	if (
+		searchKeys.length !== searchKeysRef.current.length ||
+		!searchKeys.every((key, i) => key === searchKeysRef.current[i])
+	) {
+		searchKeysRef.current = searchKeys;
+	}
+
 	const fuse = useMemo(
 		() =>
 			new Fuse(items, {
-				keys: searchKeys,
+				keys: searchKeysRef.current,
 				threshold: 0.3,
 			}),
-		[items, JSON.stringify(searchKeys)],
+		[items],
 	);
 
 	useEffect(() => {

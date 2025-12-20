@@ -36,6 +36,8 @@
  * other projects without a separate license from Tailwind Labs Inc.
  */
 
+"use client";
+
 interface SearchInputProps {
 	value: string;
 	onChange: (value: string) => void;

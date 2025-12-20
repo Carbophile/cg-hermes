@@ -58,22 +58,17 @@ export class ContentLoader<Frontmatter, Meta extends BaseMeta> {
 			return cached;
 		}
 
-		try {
-			const fileContents = await fs.readFile(filePath, "utf-8");
-			const { content, data } = matter(fileContents);
+		const fileContents = await fs.readFile(filePath, "utf-8");
+		const { content, data } = matter(fileContents);
 
-			const item: ContentItem<Meta> = {
-				content,
-				meta: this.mapFrontmatter(data as Frontmatter),
-				slug,
-			};
+		const item: ContentItem<Meta> = {
+			content,
+			meta: this.mapFrontmatter(data as Frontmatter),
+			slug,
+		};
 
-			this.cache.set(filePath, item);
-			return item;
-		} catch (error) {
-			console.error(`Error reading file ${filePath}:`, error);
-			return null;
-		}
+		this.cache.set(filePath, item);
+		return item;
 	}
 
 	async getAllItems(lang: string): Promise<ContentItem<Meta>[]> {

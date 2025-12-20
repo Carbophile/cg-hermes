@@ -36,6 +36,8 @@
  * other projects without a separate license from Tailwind Labs Inc.
  */
 
+"use client";
+
 import {
 	ArrowLongLeftIcon,
 	ArrowLongRightIcon,
