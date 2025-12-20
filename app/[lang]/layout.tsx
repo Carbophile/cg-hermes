@@ -53,6 +53,15 @@ export const generateMetadata = async ({
 			icon: "/assets/CG-brandmark.svg",
 		},
 		metadataBase: websiteUrl,
+		openGraph: {
+			alternateLocale: lang === "en" ? "hr" : "en",
+			description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
+			locale: lang,
+			siteName: dict.orgName,
+			title: dict.orgName,
+			type: "website",
+			url: `${websiteUrl.toString()}/${lang}`,
+		},
 		title: {
 			default: dict.orgName,
 			template: `%s | ${dict.orgName}`,
