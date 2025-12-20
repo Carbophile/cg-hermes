@@ -8,5 +8,11 @@
 		"command": "pnpm run build"
 	},
 	"compatibility_date": "2025-12-01",
-	"name": "cg-hermes"
+	"name": "cg-hermes",
+	"preview_urls": true,
+	"route": {
+		"custom_domain": true,
+		"pattern": "carbophile.org"
+	},
+	"workers_dev": false
 }
