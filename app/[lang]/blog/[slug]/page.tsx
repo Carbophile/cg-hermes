@@ -16,14 +16,13 @@
 
 import { getAllPosts, getPostBySlug } from "@blog/blog";
 import { getDict, type Lang, langs } from "@l10n/dict";
+import { createMetadata } from "@lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
 import type { Pluggable } from "unified";
-
-const websiteUrl = new URL("https://carbophile.org");
 
 export const generateStaticParams = async () => {
 	const params = await Promise.all(
@@ -50,29 +49,16 @@ export const generateMetadata = async ({
 
 	if (!post) notFound();
 
-	return {
-		alternates: {
-			canonical: `/en/blog/${slug}`,
-			languages: {
-				en: `/en/blog/${slug}`,
-				hr: `/hr/blog/${slug}`,
-			},
-		},
-		authors: [{ name: post.meta.author.name }],
+	return createMetadata({
+		authors: [post.meta.author.name],
 		description: post.meta.description,
-		openGraph: {
-			alternateLocale: lang === "en" ? "hr" : "en",
-			authors: [post.meta.author.name],
-			description: post.meta.description,
-			images: [{ url: `/assets/blog-thumbnails/${post.meta.thumbnail}.webp` }],
-			locale: lang,
-			siteName: dict.orgName,
-			title: post.meta.title,
-			type: "article",
-			url: `${websiteUrl.toString()}/${lang}/blog/${slug}`,
-		},
+		image: `/assets/blog-thumbnails/${post.meta.thumbnail}.webp`,
+		lang,
+		path: `blog/${slug}`,
+		siteName: dict.orgName,
 		title: post.meta.title,
-	};
+		type: "article",
+	});
 };
 
 const BlogPostPage = async ({ params }: BlogPostPageProps) => {

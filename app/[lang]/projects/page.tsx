@@ -37,11 +37,10 @@
  */
 
 import { getDict, type Lang } from "@l10n/dict";
+import { createMetadata } from "@lib/seo";
 import { getAllProjects } from "@projects/projects";
 import type { Metadata } from "next";
 import { ProjectList } from "./_components/ProjectList";
-
-const websiteUrl = new URL("https://carbophile.org");
 
 interface ProjectsPageProps {
 	params: Promise<{ lang: string }>;
@@ -53,25 +52,13 @@ export const generateMetadata = async ({
 	const { lang } = (await params) as { lang: Lang };
 	const dict = await getDict(lang);
 
-	return {
-		alternates: {
-			canonical: "/en/projects",
-			languages: {
-				en: "/en/projects",
-				hr: "/hr/projects",
-			},
-		},
-		openGraph: {
-			alternateLocale: lang === "en" ? "hr" : "en",
-			description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
-			locale: lang,
-			siteName: dict.orgName,
-			title: `${dict.pages.projects} | ${dict.orgName}`,
-			type: "website",
-			url: `${websiteUrl.toString()}/${lang}/projects`,
-		},
+	return createMetadata({
+		description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
+		lang,
+		path: "projects",
+		siteName: dict.orgName,
 		title: dict.pages.projects,
-	};
+	});
 };
 
 const ProjectsPage = async ({ params }: ProjectsPageProps) => {

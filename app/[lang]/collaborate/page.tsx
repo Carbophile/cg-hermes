@@ -37,10 +37,9 @@
  */
 
 import { getDict, type Lang } from "@l10n/dict";
+import { createMetadata } from "@lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
-
-const websiteUrl = new URL("https://carbophile.org");
 
 interface CollaboratePageProps {
 	params: Promise<{ lang: string }>;
@@ -52,25 +51,13 @@ export const generateMetadata = async ({
 	const { lang } = (await params) as { lang: Lang };
 	const dict = await getDict(lang);
 
-	return {
-		alternates: {
-			canonical: "/en/collaborate",
-			languages: {
-				en: "/en/collaborate",
-				hr: "/hr/collaborate",
-			},
-		},
-		openGraph: {
-			alternateLocale: lang === "en" ? "hr" : "en",
-			description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
-			locale: lang,
-			siteName: dict.orgName,
-			title: dict.pages.collaborate,
-			type: "website",
-			url: `${websiteUrl.toString()}/${lang}/collaborate`,
-		},
+	return createMetadata({
+		description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
+		lang,
+		path: "collaborate",
+		siteName: dict.orgName,
 		title: dict.pages.collaborate,
-	};
+	});
 };
 
 const CollaboratePage = async ({ params }: CollaboratePageProps) => {
