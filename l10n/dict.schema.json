@@ -20,20 +20,19 @@
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"description": "A dictionary of localized strings.",
 	"properties": {
-		"blogSubtext": {
-			"description": "The subtext for the blog page.",
-			"type": "string"
-		},
-		"cofounder": {
-			"description": "The title of co-founder.",
-			"type": "string"
+		"blog": {
+			"description": "The blog page.",
+			"properties": {
+				"subtext": {
+					"description": "The subtext for the blog page.",
+					"type": "string"
+				}
+			},
+			"required": ["subtext"],
+			"type": "object"
 		},
 		"collaborate": {
-			"description": "The prose for the collaborate page.",
-			"type": "string"
-		},
-		"collaboratePage": {
-			"description": "The content for the collaborate page.",
+			"description": "The collaborate page.",
 			"properties": {
 				"conferences": {
 					"properties": {
@@ -97,6 +96,10 @@
 					"description": "The partner prompt.",
 					"type": "string"
 				},
+				"prose": {
+					"description": "The prose for the collaborate page.",
+					"type": "string"
+				},
 				"researchers": {
 					"properties": {
 						"body": {
@@ -122,7 +125,105 @@
 				"k12",
 				"ngos",
 				"partner",
+				"prose",
 				"researchers"
+			],
+			"type": "object"
+		},
+		"common": {
+			"description": "Common strings.",
+			"properties": {
+				"cofounder": {
+					"description": "The title of co-founder.",
+					"type": "string"
+				},
+				"copyright": {
+					"description": "Copyright notice",
+					"type": "string"
+				},
+				"cybersecurity": {
+					"description": "The word \"cybersecurity\".",
+					"type": "string"
+				},
+				"headshot": {
+					"description": "The alt text for a headshot.",
+					"type": "string"
+				},
+				"languageSwitch": {
+					"description": "Prompt to switch in the OPPOSITE language.",
+					"type": "string"
+				},
+				"menu": {
+					"properties": {
+						"close": {
+							"description": "The alt text for closing a menu.",
+							"type": "string"
+						},
+						"open": {
+							"description": "The alt text for opening a menu.",
+							"type": "string"
+						}
+					},
+					"required": ["close", "open"],
+					"type": "object"
+				},
+				"next": {
+					"description": "The word \"Next\".",
+					"type": "string"
+				},
+				"orgName": {
+					"description": "The name of the illustrious CG.",
+					"type": "string"
+				},
+				"pages": {
+					"description": "The pages of the website.",
+					"properties": {
+						"blog": {
+							"description": "The title of the blog page.",
+							"type": "string"
+						},
+						"collaborate": {
+							"description": "The title of the collaborate page.",
+							"type": "string"
+						},
+						"contact": {
+							"description": "The title of the contact page.",
+							"type": "string"
+						},
+						"projects": {
+							"description": "The title of the projects page.",
+							"type": "string"
+						}
+					},
+					"required": ["blog", "collaborate", "contact", "projects"],
+					"type": "object"
+				},
+				"previous": {
+					"description": "The word \"Previous\".",
+					"type": "string"
+				},
+				"search": {
+					"description": "Prompt to search posts.",
+					"type": "string"
+				},
+				"tagline": {
+					"description": "The tagline for the landing page.",
+					"type": "string"
+				}
+			},
+			"required": [
+				"cofounder",
+				"copyright",
+				"cybersecurity",
+				"headshot",
+				"languageSwitch",
+				"menu",
+				"next",
+				"orgName",
+				"pages",
+				"previous",
+				"search",
+				"tagline"
 			],
 			"type": "object"
 		},
@@ -157,115 +258,91 @@
 			"required": ["address", "email", "heading", "linkedin", "phone", "prose"],
 			"type": "object"
 		},
-		"copyright": {
-			"description": "Copyright notice",
-			"type": "string"
-		},
-		"cybersecurity": {
-			"description": "The word \"cybersecurity\".",
-			"type": "string"
-		},
-		"faq": {
-			"description": "The frequently asked questions for the landing page.",
+		"landing": {
+			"description": "The landing page.",
 			"properties": {
-				"faqs": {
-					"description": "The list of FAQs.",
+				"faq": {
+					"description": "The frequently asked questions for the landing page.",
 					"properties": {
-						"consulting": {
-							"$ref": "#/$defs/faqItem"
+						"faqs": {
+							"description": "The list of FAQs.",
+							"properties": {
+								"consulting": {
+									"$ref": "#/$defs/faqItem"
+								},
+								"differCommercial": {
+									"$ref": "#/$defs/faqItem"
+								},
+								"nonprofit": {
+									"$ref": "#/$defs/faqItem"
+								},
+								"projects": {
+									"$ref": "#/$defs/faqItem"
+								}
+							},
+							"required": [
+								"consulting",
+								"differCommercial",
+								"nonprofit",
+								"projects"
+							],
+							"type": "object"
 						},
-						"differCommercial": {
-							"$ref": "#/$defs/faqItem"
+						"heading": {
+							"description": "The heading of the FAQ section.",
+							"type": "string"
+						}
+					},
+					"required": ["faqs", "heading"],
+					"type": "object"
+				},
+				"foundingQuote": {
+					"description": "The quote from Borna Punda for the landing page.",
+					"type": "string"
+				},
+				"mission": {
+					"description": "The mission statement for the landing page.",
+					"type": "string"
+				},
+				"stats": {
+					"description": "The statistics for the landing page.",
+					"properties": {
+						"heading": {
+							"description": "The heading of the stats section.",
+							"type": "string"
 						},
-						"nonprofit": {
-							"$ref": "#/$defs/faqItem"
+						"members": {
+							"description": "The title of the members stat.",
+							"type": "string"
+						},
+						"presentations": {
+							"description": "The title of the presentations stat.",
+							"type": "string"
 						},
 						"projects": {
-							"$ref": "#/$defs/faqItem"
+							"description": "The title of the projects stat.",
+							"type": "string"
+						},
+						"vulnerabilities": {
+							"description": "The title of the vulnerabilities stat.",
+							"type": "string"
 						}
 					},
 					"required": [
-						"consulting",
-						"differCommercial",
-						"nonprofit",
-						"projects"
+						"heading",
+						"members",
+						"presentations",
+						"projects",
+						"vulnerabilities"
 					],
 					"type": "object"
-				},
-				"heading": {
-					"description": "The heading of the FAQ section.",
-					"type": "string"
 				}
 			},
-			"required": ["faqs", "heading"],
+			"required": ["faq", "foundingQuote", "mission", "stats"],
 			"type": "object"
 		},
-		"foundingQuote": {
-			"description": "The quote from Borna Punda for the landing page.",
-			"type": "string"
-		},
-		"headshot": {
-			"description": "The alt text for a headshot.",
-			"type": "string"
-		},
-		"languageSwitch": {
-			"description": "Prompt to switch in the OPPOSITE language.",
-			"type": "string"
-		},
-		"menu": {
-			"properties": {
-				"close": {
-					"description": "The alt text for closing a menu.",
-					"type": "string"
-				},
-				"open": {
-					"description": "The alt text for opening a menu.",
-					"type": "string"
-				}
-			},
-			"required": ["close", "open"],
-			"type": "object"
-		},
-		"mission": {
-			"description": "The mission statement for the landing page.",
-			"type": "string"
-		},
-		"next": {
-			"description": "The word \"Next\".",
-			"type": "string"
-		},
-		"orgName": {
-			"description": "The name of the illustrious CG.",
-			"type": "string"
-		},
-		"pages": {
-			"description": "The pages of the website.",
-			"properties": {
-				"blog": {
-					"description": "The title of the blog page.",
-					"type": "string"
-				},
-				"collaborate": {
-					"description": "The title of the collaborate page.",
-					"type": "string"
-				},
-				"contact": {
-					"description": "The title of the contact page.",
-					"type": "string"
-				},
-				"projects": {
-					"description": "The title of the projects page.",
-					"type": "string"
-				}
-			},
-			"required": ["blog", "collaborate", "contact", "projects"],
-			"type": "object"
-		},
-		"previous": {
-			"description": "The word \"Previous\".",
-			"type": "string"
-		},
-		"projectsPage": {
+		"projects": {
+			"description": "The projects page.",
 			"properties": {
 				"status": {
 					"properties": {
@@ -288,71 +365,15 @@
 			},
 			"required": ["status", "subtitle"],
 			"type": "object"
-		},
-		"search": {
-			"description": "Prompt to search posts.",
-			"type": "string"
-		},
-		"stats": {
-			"description": "The statistics for the landing page.",
-			"properties": {
-				"heading": {
-					"description": "The heading of the stats section.",
-					"type": "string"
-				},
-				"members": {
-					"description": "The title of the members stat.",
-					"type": "string"
-				},
-				"presentations": {
-					"description": "The title of the presentations stat.",
-					"type": "string"
-				},
-				"projects": {
-					"description": "The title of the projects stat.",
-					"type": "string"
-				},
-				"vulnerabilities": {
-					"description": "The title of the vulnerabilities stat.",
-					"type": "string"
-				}
-			},
-			"required": [
-				"heading",
-				"members",
-				"presentations",
-				"projects",
-				"vulnerabilities"
-			],
-			"type": "object"
-		},
-		"tagline": {
-			"description": "The tagline for the landing page.",
-			"type": "string"
 		}
 	},
 	"required": [
-		"blogSubtext",
-		"cofounder",
+		"blog",
 		"collaborate",
-		"collaboratePage",
+		"common",
 		"contact",
-		"copyright",
-		"cybersecurity",
-		"faq",
-		"foundingQuote",
-		"headshot",
-		"languageSwitch",
-		"menu",
-		"mission",
-		"next",
-		"orgName",
-		"pages",
-		"previous",
-		"projectsPage",
-		"search",
-		"stats",
-		"tagline"
+		"landing",
+		"projects"
 	],
 	"title": "Dictionary",
 	"type": "object"

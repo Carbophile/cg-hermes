@@ -51,20 +51,20 @@ interface FaqProps {
 const Faq = ({ dict }: FaqProps) => {
 	const faqs = [
 		{
-			answer: dict.faq.faqs.projects.answer,
-			question: dict.faq.faqs.projects.question,
+			answer: dict.landing.faq.faqs.projects.answer,
+			question: dict.landing.faq.faqs.projects.question,
 		},
 		{
-			answer: dict.faq.faqs.differCommercial.answer,
-			question: dict.faq.faqs.differCommercial.question,
+			answer: dict.landing.faq.faqs.differCommercial.answer,
+			question: dict.landing.faq.faqs.differCommercial.question,
 		},
 		{
-			answer: dict.faq.faqs.nonprofit.answer,
-			question: dict.faq.faqs.nonprofit.question,
+			answer: dict.landing.faq.faqs.nonprofit.answer,
+			question: dict.landing.faq.faqs.nonprofit.question,
 		},
 		{
-			answer: dict.faq.faqs.consulting.answer,
-			question: dict.faq.faqs.consulting.question,
+			answer: dict.landing.faq.faqs.consulting.answer,
+			question: dict.landing.faq.faqs.consulting.question,
 		},
 	];
 
@@ -73,7 +73,7 @@ const Faq = ({ dict }: FaqProps) => {
 			<div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
 				<div className="mx-auto max-w-4xl">
 					<h2 className="font-semibold text-4xl text-gray-900 tracking-tight sm:text-5xl dark:text-white">
-						{dict.faq.heading}
+						{dict.landing.faq.heading}
 					</h2>
 					<dl className="mt-16 divide-y divide-gray-900/10 dark:divide-white/10">
 						{faqs.map((faq) => (

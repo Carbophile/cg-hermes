@@ -52,11 +52,11 @@ export const generateMetadata = async ({
 	const dict = await getDict(lang);
 
 	return createMetadata({
-		description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
+		description: `${dict.common.cybersecurity} ${dict.common.tagline}. ${dict.landing.mission}`,
 		lang,
 		path: "collaborate",
-		siteName: dict.orgName,
-		title: dict.pages.collaborate,
+		siteName: dict.common.orgName,
+		title: dict.common.pages.collaborate,
 	});
 };
 
@@ -101,10 +101,10 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 				</div>
 				<div className="mx-auto max-w-2xl">
 					<h2 className="text-center font-semibold text-5xl text-gray-900 tracking-tight sm:text-7xl dark:text-white">
-						{dict.pages.collaborate}
+						{dict.common.pages.collaborate}
 					</h2>
 					<p className="mt-8 text-pretty text-justify font-medium text-gray-700 text-lg sm:text-xl/8 dark:text-gray-400">
-						{dict.collaborate}
+						{dict.collaborate.prose}
 					</p>
 				</div>
 			</div>
@@ -124,13 +124,13 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 								/>
 								<div className="p-10">
 									<h3 className="font-semibold text-brand-primary text-sm/4">
-										{dict.collaboratePage.researchers.group}
+										{dict.collaborate.researchers.group}
 									</h3>
 									<p className="mt-2 font-medium text-gray-900 text-lg tracking-tight dark:text-white">
-										{dict.collaboratePage.researchers.subtitle}
+										{dict.collaborate.researchers.subtitle}
 									</p>
 									<p className="mt-2 max-w-lg text-gray-600 text-sm/6 dark:text-gray-400">
-										{dict.collaboratePage.researchers.body}
+										{dict.collaborate.researchers.body}
 									</p>
 								</div>
 							</div>
@@ -147,13 +147,13 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 								/>
 								<div className="p-10">
 									<h3 className="font-semibold text-brand-primary text-sm/4">
-										{dict.collaboratePage.k12.group}
+										{dict.collaborate.k12.group}
 									</h3>
 									<p className="mt-2 font-medium text-gray-900 text-lg tracking-tight dark:text-white">
-										{dict.collaboratePage.k12.subtitle}
+										{dict.collaborate.k12.subtitle}
 									</p>
 									<p className="mt-2 max-w-lg text-gray-600 text-sm/6 dark:text-gray-400">
-										{dict.collaboratePage.k12.body}
+										{dict.collaborate.k12.body}
 									</p>
 								</div>
 							</div>
@@ -170,13 +170,13 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 								/>
 								<div className="p-10">
 									<h3 className="font-semibold text-brand-primary text-sm/4">
-										{dict.collaboratePage.ngos.group}
+										{dict.collaborate.ngos.group}
 									</h3>
 									<p className="mt-2 font-medium text-gray-900 text-lg tracking-tight dark:text-white">
-										{dict.collaboratePage.ngos.subtitle}
+										{dict.collaborate.ngos.subtitle}
 									</p>
 									<p className="mt-2 max-w-lg text-gray-600 text-sm/6 dark:text-gray-400">
-										{dict.collaboratePage.ngos.body}
+										{dict.collaborate.ngos.body}
 									</p>
 								</div>
 							</div>
@@ -193,13 +193,13 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 								/>
 								<div className="p-10">
 									<h3 className="font-semibold text-brand-primary text-sm/4">
-										{dict.collaboratePage.conferences.group}
+										{dict.collaborate.conferences.group}
 									</h3>
 									<p className="mt-2 font-medium text-gray-900 text-lg tracking-tight dark:text-white">
-										{dict.collaboratePage.conferences.subtitle}
+										{dict.collaborate.conferences.subtitle}
 									</p>
 									<p className="mt-2 max-w-lg text-gray-600 text-sm/6 dark:text-gray-400">
-										{dict.collaboratePage.conferences.body}
+										{dict.collaborate.conferences.body}
 									</p>
 								</div>
 							</div>
@@ -207,13 +207,13 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 					</div>
 					<div className="mt-16 text-center">
 						<p className="text-gray-600 text-lg dark:text-gray-400">
-							{dict.collaboratePage.partner}
+							{dict.collaborate.partner}
 						</p>
 						<a
 							className="mt-4 inline-block font-medium text-brand-primary text-lg hover:text-brand-primary-light"
 							href="mailto:partnership@carbophile.org"
 						>
-							{dict.collaboratePage.contact}
+							{dict.collaborate.contact}
 						</a>
 					</div>
 				</div>

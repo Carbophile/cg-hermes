@@ -40,14 +40,14 @@ export const generateMetadata = async ({
 	const dict = await getDict(lang);
 
 	return {
-		description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
+		description: `${dict.common.cybersecurity} ${dict.common.tagline}. ${dict.landing.mission}`,
 		icons: {
 			icon: "/assets/CG-brandmark.svg",
 		},
 		metadataBase: new URL(websiteUrl),
 		title: {
-			default: dict.orgName,
-			template: `%s | ${dict.orgName}`,
+			default: dict.common.orgName,
+			template: `%s | ${dict.common.orgName}`,
 		},
 	};
 };
@@ -57,10 +57,7 @@ const RootLayout = async ({ params, children }: RootLayoutProps) => {
 	const dict = await getDict(lang);
 
 	const headerDict = {
-		languageSwitch: dict.languageSwitch,
-		menu: dict.menu,
-		orgName: dict.orgName,
-		pages: dict.pages,
+		common: dict.common,
 	};
 
 	return (

@@ -52,7 +52,7 @@ export const generateMetadata = async ({
 		description: project.meta.description,
 		lang,
 		path: `projects/${slug}`,
-		siteName: dict.orgName,
+		siteName: dict.common.orgName,
 		title: project.meta.title,
 		type: "article",
 	});
@@ -97,7 +97,7 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
 									: "bg-gray-50 text-gray-600 dark:bg-gray-800/60 dark:text-gray-400"
 							}`}
 						>
-							{dict.projectsPage.status[project.meta.status]}
+							{dict.projects.status[project.meta.status]}
 						</span>
 					</div>
 				</div>

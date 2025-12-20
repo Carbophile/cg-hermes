@@ -53,11 +53,11 @@ export const generateMetadata = async ({
 	const dict = await getDict(lang);
 
 	return createMetadata({
-		description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
+		description: `${dict.common.cybersecurity} ${dict.common.tagline}. ${dict.landing.mission}`,
 		lang,
 		path: "projects",
-		siteName: dict.orgName,
-		title: dict.pages.projects,
+		siteName: dict.common.orgName,
+		title: dict.common.pages.projects,
 	});
 };
 
@@ -66,10 +66,10 @@ const ProjectsPage = async ({ params }: ProjectsPageProps) => {
 	const dict = await getDict(lang);
 
 	const projectsPageDict = {
-		next: dict.next,
-		previous: dict.previous,
-		projectsPage: dict.projectsPage,
-		search: dict.search,
+		next: dict.common.next,
+		previous: dict.common.previous,
+		projectsPage: dict.projects,
+		search: dict.common.search,
 	};
 
 	const projects = await getAllProjects(lang);
@@ -79,10 +79,10 @@ const ProjectsPage = async ({ params }: ProjectsPageProps) => {
 			<div className="mx-auto max-w-7xl px-6 lg:px-8">
 				<div className="mx-auto max-w-2xl lg:mx-0">
 					<h2 className="text-pretty font-semibold text-4xl text-gray-900 tracking-tight sm:text-5xl dark:text-white">
-						{dict.pages.projects}
+						{dict.common.pages.projects}
 					</h2>
 					<p className="mt-2 text-gray-600 text-lg/8 dark:text-gray-300">
-						{dict.projectsPage.subtitle}
+						{dict.projects.subtitle}
 					</p>
 				</div>
 				<ProjectList dict={projectsPageDict} projects={projects} />

@@ -32,11 +32,11 @@ export const generateMetadata = async ({
 	const dict = await getDict(lang);
 
 	return createMetadata({
-		description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
+		description: `${dict.common.cybersecurity} ${dict.common.tagline}. ${dict.landing.mission}`,
 		lang,
 		path: "",
-		siteName: dict.orgName,
-		title: dict.orgName,
+		siteName: dict.common.orgName,
+		title: dict.common.orgName,
 	});
 };
 

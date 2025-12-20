@@ -44,10 +44,10 @@ interface StatsProps {
 
 const Stats = ({ dict }: StatsProps) => {
 	const stats = [
-		{ name: dict.stats?.members, value: "4" },
-		{ name: dict.stats?.projects, value: "2" },
-		{ name: dict.stats?.presentations, value: "0" },
-		{ name: dict.stats?.vulnerabilities, value: "0" },
+		{ name: dict.landing.stats?.members, value: "4" },
+		{ name: dict.landing.stats?.projects, value: "2" },
+		{ name: dict.landing.stats?.presentations, value: "0" },
+		{ name: dict.landing.stats?.vulnerabilities, value: "0" },
 	];
 
 	return (
@@ -56,7 +56,7 @@ const Stats = ({ dict }: StatsProps) => {
 				<div className="mx-auto max-w-2xl lg:max-w-none">
 					<div className="text-center">
 						<h2 className="text-balance font-semibold text-4xl text-gray-900 tracking-tight sm:text-5xl dark:text-white">
-							{dict.stats?.heading}
+							{dict.landing.stats?.heading}
 						</h2>
 					</div>
 					<dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4">

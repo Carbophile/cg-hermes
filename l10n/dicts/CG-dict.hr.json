@@ -1,9 +1,9 @@
 {
 	"$schema": "../dict.schema.json",
-	"blogSubtext": "Najnovije vijesti, podaci, i analize izravno od Carbophile Grupe.",
-	"cofounder": "Suosnivač",
-	"collaborate": "Jeste li stručnjak za kibernetičku sigurnost, učitelj, obrazovna ustanova, ili političar? Uvijek tražimo nove načine za suradnju i ostvarivanje pozitivnog utjecaja. Bez obzira želite li doprinijeti našem istraživanju, organizirati zajednički događaj, ili jednostavno podijeliti svoje ideje, voljeli bismo Vas čuti.",
-	"collaboratePage": {
+	"blog": {
+		"subtext": "Najnovije vijesti, podaci, i analize izravno od Carbophile Grupe."
+	},
+	"collaborate": {
 		"conferences": {
 			"body": "Bila bi nam čast govoriti na vašoj konferenciji o kibernetičkoj sigurnosti, otvorenom kodu ili privatnosti.",
 			"group": "Konferencije",
@@ -21,11 +21,34 @@
 			"subtitle": "Radionice i događanja"
 		},
 		"partner": "Zainteresirani ste za partnerstvo s nama?",
+		"prose": "Jeste li stručnjak za kibernetičku sigurnost, učitelj, obrazovna ustanova, ili političar? Uvijek tražimo nove načine za suradnju i ostvarivanje pozitivnog utjecaja. Bez obzira želite li doprinijeti našem istraživanju, organizirati zajednički događaj, ili jednostavno podijeliti svoje ideje, voljeli bismo Vas čuti.",
 		"researchers": {
 			"body": "Uvijek tražimo talentirane istraživače da se pridruže našem timu i doprinesu našoj misiji proizvodnje nepristranih, visokokvalitetnih analiza i istraživačkih radova o novim prijetnjama, najboljim praksama i digitalnim pravima.",
 			"group": "Istraživači",
 			"subtitle": "Istraživanje i procjene ranjivosti"
 		}
+	},
+	"common": {
+		"cofounder": "Suosnivač",
+		"copyright": "© 2025 Carbophile Grupa. Određena prava pridržana.",
+		"cybersecurity": "Kibernetička sigurnost",
+		"headshot": "Fotografija osobe",
+		"languageSwitch": "English language",
+		"menu": {
+			"close": "Zatvori izbornik",
+			"open": "Otvori izbornik"
+		},
+		"next": "Sljedeće",
+		"orgName": "Carbophile Grupa",
+		"pages": {
+			"blog": "Blog",
+			"collaborate": "Surađujte",
+			"contact": "Kontakt",
+			"projects": "Projekti"
+		},
+		"previous": "Prethodno",
+		"search": "Pretraži objave...",
+		"tagline": "je temeljno ljudsko pravo"
 	},
 	"contact": {
 		"address": "Adresa",
@@ -35,60 +58,43 @@
 		"phone": "Mobitel",
 		"prose": "Imate pitanje, ideju za projekt, ili nam se samo želite javiti? Voljeli bismo vas čuti."
 	},
-	"copyright": "© 2025 Carbophile Grupa. Određena prava pridržana.",
-	"cybersecurity": "Kibernetička sigurnost",
-	"faq": {
-		"faqs": {
-			"consulting": {
-				"answer": "Trenutno ne nudimo nikakve savjetodavne usluge.",
-				"question": "Nudite li savjetodavne usluge?"
+	"landing": {
+		"faq": {
+			"faqs": {
+				"consulting": {
+					"answer": "Trenutno ne nudimo nikakve savjetodavne usluge.",
+					"question": "Nudite li savjetodavne usluge?"
+				},
+				"differCommercial": {
+					"answer": "Kao neprofitna organizacija, naša primarna motivacija nije ostvarivanje profita, već pružanje vrijednosti zajednici. To nam omogućuje da sav naš rad nudimo besplatno ili po sniženoj cijeni.",
+					"question": "Kako se razlikujete od komercijalnih tvrtki za kibernetičku sigurnost?"
+				},
+				"nonprofit": {
+					"answer": "Da! Carbophile Group je udruga sukladno članku 4. Zakona o udrugama Republike Hrvatske.",
+					"question": "Je li Carbophile Group neprofitna organizacija?"
+				},
+				"projects": {
+					"answer": "Prvenstveno radimo na izradi i slobodnom dijeljenju nepristranih, visokokvalitetnih analiza i istraživačkih radova o novim prijetnjama, najboljim praksama, i digitalnim pravima.",
+					"question": "Na kakvim projektima radite?"
+				}
 			},
-			"differCommercial": {
-				"answer": "Kao neprofitna organizacija, naša primarna motivacija nije ostvarivanje profita, već pružanje vrijednosti zajednici. To nam omogućuje da sav naš rad nudimo besplatno ili po sniženoj cijeni.",
-				"question": "Kako se razlikujete od komercijalnih tvrtki za kibernetičku sigurnost?"
-			},
-			"nonprofit": {
-				"answer": "Da! Carbophile Group je udruga sukladno članku 4. Zakona o udrugama Republike Hrvatske.",
-				"question": "Je li Carbophile Group neprofitna organizacija?"
-			},
-			"projects": {
-				"answer": "Prvenstveno radimo na izradi i slobodnom dijeljenju nepristranih, visokokvalitetnih analiza i istraživačkih radova o novim prijetnjama, najboljim praksama, i digitalnim pravima.",
-				"question": "Na kakvim projektima radite?"
-			}
+			"heading": "Često postavljana pitanja"
 		},
-		"heading": "Često postavljana pitanja"
+		"foundingQuote": "Jako sam razočaran stanjem neprofitnog sektora kibernetičke sigurnosti u Hrvatskoj. Nemamo udruga, nemamo zagovornike za privatnost, i nemamo niti jedno tijelo za numeriranje CVE-ova. Visokokvalitetni resursi su rijetki. Zato smo osnovali Carbophile Group, kako bi to promijenili.",
+		"mission": "U Carbophile Grupi, naša je misija da tako i ostane. Mi smo hrvatska zajednica stručnjaka za kibernetičku sigurnost, programera, i zagovornika privatnosti posvećenih izgradnji sigurnijeg digitalnog svijeta.",
+		"stats": {
+			"heading": "Malo pomalo",
+			"members": "Članova",
+			"presentations": "Prezentacija",
+			"projects": "Projekata",
+			"vulnerabilities": "Prijavljenih ranjivosti"
+		}
 	},
-	"foundingQuote": "Jako sam razočaran stanjem neprofitnog sektora kibernetičke sigurnosti u Hrvatskoj. Nemamo udruga, nemamo zagovornike za privatnost, i nemamo niti jedno tijelo za numeriranje CVE-ova. Visokokvalitetni resursi su rijetki. Zato smo osnovali Carbophile Group, kako bi to promijenili.",
-	"headshot": "Fotografija osobe",
-	"languageSwitch": "English language",
-	"menu": {
-		"close": "Zatvori izbornik",
-		"open": "Otvori izbornik"
-	},
-	"mission": "U Carbophile Grupi, naša je misija da tako i ostane. Mi smo hrvatska zajednica stručnjaka za kibernetičku sigurnost, programera, i zagovornika privatnosti posvećenih izgradnji sigurnijeg digitalnog svijeta.",
-	"next": "Sljedeće",
-	"orgName": "Carbophile Grupa",
-	"pages": {
-		"blog": "Blog",
-		"collaborate": "Surađujte",
-		"contact": "Kontakt",
-		"projects": "Projekti"
-	},
-	"previous": "Prethodno",
-	"projectsPage": {
+	"projects": {
 		"status": {
 			"concluded": "Završeno",
 			"ongoing": "Tekuće"
 		},
 		"subtitle": "Istražite naš najnoviji rad i inicijative."
-	},
-	"search": "Pretraži objave...",
-	"stats": {
-		"heading": "Malo pomalo",
-		"members": "Članova",
-		"presentations": "Prezentacija",
-		"projects": "Projekata",
-		"vulnerabilities": "Prijavljenih ranjivosti"
-	},
-	"tagline": "je temeljno ljudsko pravo"
+	}
 }
