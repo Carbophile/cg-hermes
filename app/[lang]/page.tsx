@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
+import { getAllPosts } from "@blog/blog";
 import { getDict, type Lang } from "@l10n/dict";
 import { createMetadata } from "@lib/seo";
+import { getAllProjects } from "@projects/projects";
 import type { Metadata } from "next";
 import Faq from "./_page/Faq";
 import Landing from "./_page/Landing";
@@ -44,10 +46,19 @@ const RootPage = async ({ params }: RootPageProps) => {
 	const { lang } = (await params) as { lang: Lang };
 	const dict = await getDict(lang);
 
+	const [posts, projects] = await Promise.all([
+		getAllPosts(lang),
+		getAllProjects(lang),
+	]);
+
 	return (
 		<>
 			<Landing dict={dict} lang={lang} />
-			<Stats dict={dict} />
+			<Stats
+				dict={dict}
+				postCount={posts.length}
+				projectCount={projects.length}
+			/>
 			<Faq dict={dict} />
 		</>
 	);

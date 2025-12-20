@@ -83,11 +83,11 @@
 		"foundingQuote": "I am greatly disappointed with the state of the non-profit cybersecurity sector in Croatia. We have no associations, no privacy advocacies, and no CVE numbering authorities. High-quality resources are few and far between. That's why we founded Carbophile Group, to change that.",
 		"mission": "At Carbophile Group, our mission is to keep it that way. We are a Croatian collective of cybersecurity experts, developers, and privacy advocates dedicated to building a safer digital world.",
 		"stats": {
+			"committees": "Committees",
 			"heading": "Bit by bit",
 			"members": "Members",
-			"presentations": "Presentations",
-			"projects": "Projects",
-			"vulnerabilities": "Reported Vulnerabilities"
+			"posts": "Posts",
+			"projects": "Projects"
 		}
 	},
 	"projects": {
