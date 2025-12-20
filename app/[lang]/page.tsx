@@ -46,8 +46,10 @@ const RootPage = async ({ params }: RootPageProps) => {
 	const { lang } = (await params) as { lang: Lang };
 	const dict = await getDict(lang);
 
-	const posts = await getAllPosts(lang);
-	const projects = await getAllProjects(lang);
+	const [posts, projects] = await Promise.all([
+		getAllPosts(lang),
+		getAllProjects(lang),
+	]);
 
 	return (
 		<>
