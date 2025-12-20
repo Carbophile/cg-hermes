@@ -73,10 +73,10 @@ const ContactPage = async ({ params }: ContactPageProps) => {
 	const contactChannels = [
 		{
 			className: "lg:col-span-2",
-			href: "mailto:info@carbophile.com",
+			href: "mailto:info@carbophile.org",
 			icon: EnvelopeIcon,
 			name: dict.contact.email,
-			value: "info@carbophile.com",
+			value: "info@carbophile.org",
 		},
 		{
 			className: "lg:col-span-2",
