@@ -22,6 +22,8 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
 import type { Pluggable } from "unified";
 
+const websiteUrl = new URL("https://carbophile.org");
+
 export const generateStaticParams = async () => {
 	const params = await Promise.all(
 		langs.map(async (lang) => {
@@ -57,11 +59,13 @@ export const generateMetadata = async ({
 		},
 		description: project.meta.description,
 		openGraph: {
+			alternateLocale: lang === "en" ? "hr" : "en",
 			description: project.meta.description,
 			locale: lang,
 			siteName: dict.orgName,
 			title: project.meta.title,
 			type: "article",
+			url: `${websiteUrl.toString()}/${lang}/projects/${slug}`,
 		},
 		title: project.meta.title,
 	};

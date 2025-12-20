@@ -46,6 +46,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FaLinkedin } from "react-icons/fa";
 
+const websiteUrl = new URL("https://carbophile.org");
+
 interface ContactPageProps {
 	params: Promise<{ lang: string }>;
 }
@@ -63,6 +65,15 @@ export const generateMetadata = async ({
 				en: "/en/contact",
 				hr: "/hr/contact",
 			},
+		},
+		openGraph: {
+			alternateLocale: lang === "en" ? "hr" : "en",
+			description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
+			locale: lang,
+			siteName: dict.orgName,
+			title: dict.pages.contact,
+			type: "website",
+			url: `${websiteUrl.toString()}/${lang}/contact`,
 		},
 		title: dict.pages.contact,
 	};

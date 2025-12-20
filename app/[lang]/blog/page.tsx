@@ -41,6 +41,8 @@ import { getDict, type Lang } from "@l10n/dict";
 import type { Metadata } from "next";
 import { BlogList } from "./_components/BlogList";
 
+const websiteUrl = new URL("https://carbophile.org");
+
 interface BlogListPageProps {
 	params: Promise<{ lang: string }>;
 }
@@ -58,6 +60,15 @@ export const generateMetadata = async ({
 				en: "/en/blog",
 				hr: "/hr/blog",
 			},
+		},
+		openGraph: {
+			alternateLocale: lang === "en" ? "hr" : "en",
+			description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
+			locale: lang,
+			siteName: dict.orgName,
+			title: `${dict.pages.blog} | ${dict.orgName}`,
+			type: "website",
+			url: `${websiteUrl.toString()}/{lang}/blog`,
 		},
 		title: dict.pages.blog,
 	};

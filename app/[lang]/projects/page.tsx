@@ -41,6 +41,8 @@ import { getAllProjects } from "@projects/projects";
 import type { Metadata } from "next";
 import { ProjectList } from "./_components/ProjectList";
 
+const websiteUrl = new URL("https://carbophile.org");
+
 interface ProjectsPageProps {
 	params: Promise<{ lang: string }>;
 }
@@ -58,6 +60,15 @@ export const generateMetadata = async ({
 				en: "/en/projects",
 				hr: "/hr/projects",
 			},
+		},
+		openGraph: {
+			alternateLocale: lang === "en" ? "hr" : "en",
+			description: `${dict.cybersecurity} ${dict.tagline}. ${dict.mission}`,
+			locale: lang,
+			siteName: dict.orgName,
+			title: `${dict.pages.projects} | ${dict.orgName}`,
+			type: "website",
+			url: `${websiteUrl.toString()}/${lang}/projects`,
 		},
 		title: dict.pages.projects,
 	};

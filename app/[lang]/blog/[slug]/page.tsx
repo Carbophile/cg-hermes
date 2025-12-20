@@ -23,6 +23,8 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
 import type { Pluggable } from "unified";
 
+const websiteUrl = new URL("https://carbophile.org");
+
 export const generateStaticParams = async () => {
 	const params = await Promise.all(
 		langs.map(async (lang) => {
@@ -59,6 +61,7 @@ export const generateMetadata = async ({
 		authors: [{ name: post.meta.author.name }],
 		description: post.meta.description,
 		openGraph: {
+			alternateLocale: lang === "en" ? "hr" : "en",
 			authors: [post.meta.author.name],
 			description: post.meta.description,
 			images: [{ url: `/assets/blog-thumbnails/${post.meta.thumbnail}.webp` }],
@@ -66,6 +69,7 @@ export const generateMetadata = async ({
 			siteName: dict.orgName,
 			title: post.meta.title,
 			type: "article",
+			url: `${websiteUrl.toString()}/${lang}/blog/${slug}`,
 		},
 		title: post.meta.title,
 	};
