@@ -68,7 +68,7 @@ export const generateMetadata = async ({
 			siteName: dict.orgName,
 			title: `${dict.pages.blog} | ${dict.orgName}`,
 			type: "website",
-			url: `${websiteUrl.toString()}/{lang}/blog`,
+			url: `${websiteUrl.toString()}/${lang}/blog`,
 		},
 		title: dict.pages.blog,
 	};
