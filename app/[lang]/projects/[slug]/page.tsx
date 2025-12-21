@@ -77,7 +77,12 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
 
 	const components = {
 		// biome-ignore lint/suspicious/noExplicitAny: <Typing this would be unnecessary trouble. I trust the MDX parser to provide valid props>
-		a: (props: any) => <Link {...props} rel="noopener" target="_blank" />,
+		a: (props: any) => {
+			if (props.href?.startsWith("http")) {
+				return <a {...props} rel="noopener noreferrer" target="_blank" />;
+			}
+			return <Link {...props} />;
+		},
 	};
 
 	return (
