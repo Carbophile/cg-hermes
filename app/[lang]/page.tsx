@@ -19,6 +19,8 @@ import { getDict, type Lang } from "@l10n/dict";
 import { createMetadata } from "@lib/seo";
 import { getAllProjects } from "@projects/projects";
 import type { Metadata } from "next";
+import type { FAQPage, WithContext } from "schema-dts";
+import JsonLd from "./_components/JsonLd";
 import Faq from "./_page/Faq";
 import Landing from "./_page/Landing";
 import Stats from "./_page/Stats";
@@ -51,8 +53,27 @@ const RootPage = async ({ params }: RootPageProps) => {
 		getAllProjects(lang),
 	]);
 
+	const faqs = Object.values(dict.landing.faq.faqs) as {
+		answer: string;
+		question: string;
+	}[];
+
+	const faqJsonLd: WithContext<FAQPage> = {
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: faqs.map((faq) => ({
+			"@type": "Question",
+			acceptedAnswer: {
+				"@type": "Answer",
+				text: faq.answer,
+			},
+			name: faq.question,
+		})),
+	};
+
 	return (
 		<>
+			<JsonLd data={faqJsonLd} />
 			<Landing dict={dict} lang={lang} />
 			<Stats
 				dict={dict}

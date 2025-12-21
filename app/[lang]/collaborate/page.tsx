@@ -37,9 +37,12 @@
  */
 
 import { getDict, type Lang } from "@l10n/dict";
+import { websiteUrl } from "@lib/constants";
 import { createMetadata } from "@lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
+import type { BreadcrumbList, WithContext } from "schema-dts";
+import JsonLd from "../_components/JsonLd";
 
 interface CollaboratePageProps {
 	params: Promise<{ lang: string }>;
@@ -64,8 +67,28 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 	const { lang } = (await params) as { lang: Lang };
 	const dict = await getDict(lang);
 
+	const breadcrumbJsonLd: WithContext<BreadcrumbList> = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				item: `${websiteUrl}/${lang}`,
+				name: dict.common.pages.home,
+				position: 1,
+			},
+			{
+				"@type": "ListItem",
+				item: `${websiteUrl}/${lang}/collaborate`,
+				name: dict.common.pages.collaborate,
+				position: 2,
+			},
+		],
+	};
+
 	return (
 		<article>
+			<JsonLd data={breadcrumbJsonLd} />
 			<div className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:px-8 dark:bg-gray-900">
 				<Image
 					alt=""
