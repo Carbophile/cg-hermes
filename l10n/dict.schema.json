@@ -259,7 +259,15 @@
 					"type": "string"
 				}
 			},
-			"required": ["address", "email", "heading", "linkedin", "phone", "prose"],
+			"required": [
+				"address",
+				"email",
+				"heading",
+				"linkedin",
+				"phone",
+				"prose",
+				"twitter"
+			],
 			"type": "object"
 		},
 		"landing": {
