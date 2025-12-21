@@ -40,7 +40,7 @@ export const generateMetadata = async ({
 		lang,
 		path: "",
 		siteName: dict.common.orgName,
-		title: dict.common.orgName,
+		title: `${dict.common.orgName} | ${dict.common.orgDesc}`,
 	});
 };
 

@@ -52,12 +52,12 @@ const Landing = ({ dict, lang }: LandingProps) => (
 			<div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start">
 				<div className="lg:pt-4 lg:pr-4">
 					<div className="lg:max-w-lg">
-						<p className="mt-2 text-pretty font-semibold text-4xl text-gray-900 tracking-tight sm:text-5xl dark:text-white">
+						<h1 className="mt-2 text-pretty font-semibold text-4xl text-gray-900 tracking-tight sm:text-5xl dark:text-white">
 							<span className="text-brand-primary">
 								{dict.common.cybersecurity}
 							</span>{" "}
 							{dict.common.tagline}
-						</p>
+						</h1>
 						<p className="mt-6 text-gray-700 text-lg/8 dark:text-gray-300">
 							{dict.landing.mission}
 						</p>
