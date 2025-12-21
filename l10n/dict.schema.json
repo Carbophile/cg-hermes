@@ -253,6 +253,10 @@
 				"prose": {
 					"description": "The prose of the contact section.",
 					"type": "string"
+				},
+				"twitter": {
+					"description": "The word \"Twitter\".",
+					"type": "string"
 				}
 			},
 			"required": ["address", "email", "heading", "linkedin", "phone", "prose"],

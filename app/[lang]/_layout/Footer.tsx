@@ -38,7 +38,7 @@
 
 import type { Dictionary } from "@l10n/Dict";
 import Link from "next/link";
-import { FaLinkedin } from "react-icons/fa";
+import { FaLinkedin, FaTwitter } from "react-icons/fa";
 
 interface FooterProps {
 	dict: Dictionary;
@@ -53,6 +53,11 @@ const Footer = ({ dict }: FooterProps) => {
 			href: "https://www.linkedin.com/company/103351222",
 			icon: FaLinkedin,
 			name: dict.contact.linkedin,
+		},
+		{
+			href: "https://x.com/CarbophileGroup",
+			icon: FaTwitter,
+			name: dict.contact.twitter,
 		},
 	];
 
