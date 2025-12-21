@@ -67,6 +67,7 @@ export const generateMetadata = async ({
 
 const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 	const { lang, slug } = (await params) as { lang: Lang; slug: string };
+	const dict = await getDict(lang);
 
 	const post = await getPostBySlug(lang, slug);
 
@@ -112,13 +113,13 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 			{
 				"@type": "ListItem",
 				item: `${websiteUrl}/${lang}`,
-				name: "Home",
+				name: dict.common.pages.home,
 				position: 1,
 			},
 			{
 				"@type": "ListItem",
 				item: `${websiteUrl}/${lang}/blog`,
-				name: "Blog",
+				name: dict.common.pages.blog,
 				position: 2,
 			},
 			{

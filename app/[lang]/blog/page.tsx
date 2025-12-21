@@ -83,13 +83,13 @@ const BlogListPage = async ({ params }: BlogListPageProps) => {
 			{
 				"@type": "ListItem",
 				item: `${websiteUrl}/${lang}`,
-				name: "Home",
+				name: dict.common.pages.home,
 				position: 1,
 			},
 			{
 				"@type": "ListItem",
 				item: `${websiteUrl}/${lang}/blog`,
-				name: "Blog",
+				name: dict.common.pages.blog,
 				position: 2,
 			},
 		],

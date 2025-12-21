@@ -108,13 +108,13 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
 			{
 				"@type": "ListItem",
 				item: `${websiteUrl}/${lang}`,
-				name: "Home",
+				name: dict.common.pages.home,
 				position: 1,
 			},
 			{
 				"@type": "ListItem",
 				item: `${websiteUrl}/${lang}/projects`,
-				name: "Projects",
+				name: dict.common.pages.projects,
 				position: 2,
 			},
 			{

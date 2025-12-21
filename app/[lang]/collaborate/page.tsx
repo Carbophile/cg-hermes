@@ -74,13 +74,13 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 			{
 				"@type": "ListItem",
 				item: `${websiteUrl}/${lang}`,
-				name: "Home",
+				name: dict.common.pages.home,
 				position: 1,
 			},
 			{
 				"@type": "ListItem",
 				item: `${websiteUrl}/${lang}/collaborate`,
-				name: "Collaborate",
+				name: dict.common.pages.collaborate,
 				position: 2,
 			},
 		],

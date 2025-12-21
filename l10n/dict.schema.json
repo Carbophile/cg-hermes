@@ -186,12 +186,16 @@
 							"description": "The title of the contact page.",
 							"type": "string"
 						},
+						"home": {
+							"description": "The title of the home page.",
+							"type": "string"
+						},
 						"projects": {
 							"description": "The title of the projects page.",
 							"type": "string"
 						}
 					},
-					"required": ["blog", "collaborate", "contact", "projects"],
+					"required": ["blog", "collaborate", "contact", "home", "projects"],
 					"type": "object"
 				},
 				"previous": {
