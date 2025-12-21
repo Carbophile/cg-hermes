@@ -19,6 +19,7 @@ import { getDict, type Lang, langs } from "@l10n/dict";
 import { createMetadata } from "@lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -77,6 +78,11 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 		},
 	};
 
+	const components = {
+		// biome-ignore lint/suspicious/noExplicitAny: <Typing this would be unnecessary trouble. I trust the MDX parser to provide valid props>
+		a: (props: any) => <Link {...props} rel="noopener" target="_blank" />,
+	};
+
 	return (
 		<article>
 			<section className="mx-auto max-w-5xl px-4 py-12">
@@ -106,7 +112,11 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 				</div>
 
 				<div className="prose dark:prose-invert mx-auto">
-					<MDXRemote options={options} source={post.content} />
+					<MDXRemote
+						components={components}
+						options={options}
+						source={post.content}
+					/>
 				</div>
 			</section>
 		</article>

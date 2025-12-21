@@ -18,6 +18,7 @@ import { getDict, type Lang, langs } from "@l10n/dict";
 import { createMetadata } from "@lib/seo";
 import { getAllProjects, getProjectBySlug } from "@projects/projects";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -74,6 +75,11 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
 		},
 	};
 
+	const components = {
+		// biome-ignore lint/suspicious/noExplicitAny: <Typing this would be unnecessary trouble. I trust the MDX parser to provide valid props>
+		a: (props: any) => <Link {...props} rel="noopener" target="_blank" />,
+	};
+
 	return (
 		<article>
 			<section className="mx-auto max-w-5xl px-4 py-12">
@@ -103,7 +109,11 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
 				</div>
 
 				<div className="prose dark:prose-invert mx-auto">
-					<MDXRemote options={options} source={project.content} />
+					<MDXRemote
+						components={components}
+						options={options}
+						source={project.content}
+					/>
 				</div>
 			</section>
 		</article>
