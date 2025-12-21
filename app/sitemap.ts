@@ -14,13 +14,64 @@
  * limitations under the License.
  */
 
-import { type BlogPost, getAllPosts } from "@blog/blog";
+import { getAllPosts } from "@blog/blog";
 import { langs } from "@l10n/dict";
 import { websiteUrl } from "@lib/constants";
-import { getAllProjects, type Project } from "@projects/projects";
+import { getAllProjects } from "@projects/projects";
 import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
+
+interface ContentItem {
+	slug: string;
+	meta: {
+		date: string;
+	};
+}
+
+async function generateContentEntries<T extends ContentItem>(
+	contentType: string,
+	fetchItems: (lang: string) => Promise<T[]>,
+	priority: number,
+): Promise<MetadataRoute.Sitemap> {
+	const sitemapEntries: MetadataRoute.Sitemap = [];
+	const allItemsBySlug = new Map<string, { [lang: string]: T }>();
+
+	for (const lang of langs) {
+		const items = await fetchItems(lang);
+		for (const item of items) {
+			let itemsForSlug = allItemsBySlug.get(item.slug);
+			if (!itemsForSlug) {
+				itemsForSlug = {};
+				allItemsBySlug.set(item.slug, itemsForSlug);
+			}
+			itemsForSlug[lang] = item;
+		}
+	}
+
+	for (const itemsByLang of allItemsBySlug.values()) {
+		const alternates = {
+			languages: Object.fromEntries(
+				Object.entries(itemsByLang).map(([lang, item]) => [
+					lang,
+					`${websiteUrl}/${lang}/${contentType}/${item.slug}`,
+				]),
+			),
+		};
+
+		for (const [lang, item] of Object.entries(itemsByLang)) {
+			sitemapEntries.push({
+				alternates,
+				changeFrequency: "yearly",
+				lastModified: new Date(item.meta.date),
+				priority,
+				url: `${websiteUrl}/${lang}/${contentType}/${item.slug}`,
+			});
+		}
+	}
+
+	return sitemapEntries;
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const sitemapEntries: MetadataRoute.Sitemap = [];
@@ -39,108 +90,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			),
 		};
 
-		sitemapEntries.push({
-			alternates,
-			changeFrequency:
-				page === "blog" || page === "projects" ? "weekly" : "monthly",
-			priority: page === "" ? 1.0 : 0.25,
-			url: page === "" ? `${websiteUrl}/en` : `${websiteUrl}/en/${page}`,
-		});
+		for (const lang of langs) {
+			sitemapEntries.push({
+				alternates,
+				changeFrequency:
+					page === "blog" || page === "projects" ? "weekly" : "monthly",
+				priority: page === "" ? 1.0 : 0.25,
+				url:
+					page === ""
+						? `${websiteUrl}/${lang}`
+						: `${websiteUrl}/${lang}/${page}`,
+			});
+		}
 	}
 
 	// 2. Blog posts
-	const allPostsBySlug = new Map<string, { [lang: string]: BlogPost }>();
-	for (const lang of langs) {
-		const posts = await getAllPosts(lang);
-		for (const post of posts) {
-			let postsForSlug = allPostsBySlug.get(post.slug);
-			if (!postsForSlug) {
-				postsForSlug = {};
-				allPostsBySlug.set(post.slug, postsForSlug);
-			}
-			postsForSlug[lang] = post;
-		}
-	}
-
-	for (const postsByLang of allPostsBySlug.values()) {
-		const alternates = {
-			languages: Object.fromEntries(
-				Object.entries(postsByLang).map(([lang, post]) => [
-					lang,
-					`${websiteUrl}/${lang}/blog/${post.slug}`,
-				]),
-			),
-		};
-
-		const primaryLang = "en";
-		let primaryPost = postsByLang[primaryLang];
-		let primaryPostLang = primaryLang;
-
-		if (!primaryPost) {
-			const firstLang = Object.keys(postsByLang)[0];
-			if (firstLang) {
-				primaryPostLang = firstLang;
-				primaryPost = postsByLang[firstLang];
-			}
-		}
-
-		if (primaryPost) {
-			sitemapEntries.push({
-				alternates,
-				changeFrequency: "yearly",
-				lastModified: new Date(primaryPost.meta.date),
-				priority: 0.75,
-				url: `${websiteUrl}/${primaryPostLang}/blog/${primaryPost.slug}`,
-			});
-		}
-	}
+	sitemapEntries.push(
+		...(await generateContentEntries("blog", getAllPosts, 0.75)),
+	);
 
 	// 3. Projects
-	const allProjectsBySlug = new Map<string, { [lang: string]: Project }>();
-	for (const lang of langs) {
-		const projects = await getAllProjects(lang);
-		for (const project of projects) {
-			let projectsForSlug = allProjectsBySlug.get(project.slug);
-			if (!projectsForSlug) {
-				projectsForSlug = {};
-				allProjectsBySlug.set(project.slug, projectsForSlug);
-			}
-			projectsForSlug[lang] = project;
-		}
-	}
-
-	for (const projectsByLang of allProjectsBySlug.values()) {
-		const alternates = {
-			languages: Object.fromEntries(
-				Object.entries(projectsByLang).map(([lang, project]) => [
-					lang,
-					`${websiteUrl}/${lang}/projects/${project.slug}`,
-				]),
-			),
-		};
-
-		const primaryLang = "en";
-		let primaryProject = projectsByLang[primaryLang];
-		let primaryProjectLang = primaryLang;
-
-		if (!primaryProject) {
-			const firstLang = Object.keys(projectsByLang)[0];
-			if (firstLang) {
-				primaryProjectLang = firstLang;
-				primaryProject = projectsByLang[firstLang];
-			}
-		}
-
-		if (primaryProject) {
-			sitemapEntries.push({
-				alternates,
-				changeFrequency: "yearly",
-				lastModified: new Date(primaryProject.meta.date),
-				priority: 0.5,
-				url: `${websiteUrl}/${primaryProjectLang}/projects/${primaryProject.slug}`,
-			});
-		}
-	}
+	sitemapEntries.push(
+		...(await generateContentEntries("projects", getAllProjects, 0.5)),
+	);
 
 	return sitemapEntries;
 }
