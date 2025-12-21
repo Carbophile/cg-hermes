@@ -39,13 +39,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			),
 		};
 
-		sitemapEntries.push({
-			alternates,
-			changeFrequency:
-				page === "blog" || page === "projects" ? "weekly" : "monthly",
-			priority: page === "" ? 1.0 : 0.25,
-			url: page === "" ? `${websiteUrl}/en` : `${websiteUrl}/en/${page}`,
-		});
+		for (const lang of langs) {
+			sitemapEntries.push({
+				alternates,
+				changeFrequency:
+					page === "blog" || page === "projects" ? "weekly" : "monthly",
+				priority: page === "" ? 1.0 : 0.25,
+				url:
+					page === ""
+						? `${websiteUrl}/${lang}`
+						: `${websiteUrl}/${lang}/${page}`,
+			});
+		}
 	}
 
 	// 2. Blog posts
@@ -72,25 +77,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			),
 		};
 
-		const primaryLang = "en";
-		let primaryPost = postsByLang[primaryLang];
-		let primaryPostLang = primaryLang;
-
-		if (!primaryPost) {
-			const firstLang = Object.keys(postsByLang)[0];
-			if (firstLang) {
-				primaryPostLang = firstLang;
-				primaryPost = postsByLang[firstLang];
-			}
-		}
-
-		if (primaryPost) {
+		for (const [lang, post] of Object.entries(postsByLang)) {
 			sitemapEntries.push({
 				alternates,
 				changeFrequency: "yearly",
-				lastModified: new Date(primaryPost.meta.date),
+				lastModified: new Date(post.meta.date),
 				priority: 0.75,
-				url: `${websiteUrl}/${primaryPostLang}/blog/${primaryPost.slug}`,
+				url: `${websiteUrl}/${lang}/blog/${post.slug}`,
 			});
 		}
 	}
@@ -119,25 +112,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			),
 		};
 
-		const primaryLang = "en";
-		let primaryProject = projectsByLang[primaryLang];
-		let primaryProjectLang = primaryLang;
-
-		if (!primaryProject) {
-			const firstLang = Object.keys(projectsByLang)[0];
-			if (firstLang) {
-				primaryProjectLang = firstLang;
-				primaryProject = projectsByLang[firstLang];
-			}
-		}
-
-		if (primaryProject) {
+		for (const [lang, project] of Object.entries(projectsByLang)) {
 			sitemapEntries.push({
 				alternates,
 				changeFrequency: "yearly",
-				lastModified: new Date(primaryProject.meta.date),
+				lastModified: new Date(project.meta.date),
 				priority: 0.5,
-				url: `${websiteUrl}/${primaryProjectLang}/projects/${primaryProject.slug}`,
+				url: `${websiteUrl}/${lang}/projects/${project.slug}`,
 			});
 		}
 	}

@@ -27,7 +27,7 @@ export function createMetadata({
 
 	return {
 		alternates: {
-			canonical: ["/en", path].filter(Boolean).join("/"),
+			canonical: url,
 			languages: {
 				en: ["/en", path].filter(Boolean).join("/"),
 				hr: ["/hr", path].filter(Boolean).join("/"),
