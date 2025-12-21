@@ -49,24 +49,10 @@ interface FaqProps {
 }
 
 const Faq = ({ dict }: FaqProps) => {
-	const faqs = [
-		{
-			answer: dict.landing.faq.faqs.projects.answer,
-			question: dict.landing.faq.faqs.projects.question,
-		},
-		{
-			answer: dict.landing.faq.faqs.differCommercial.answer,
-			question: dict.landing.faq.faqs.differCommercial.question,
-		},
-		{
-			answer: dict.landing.faq.faqs.nonprofit.answer,
-			question: dict.landing.faq.faqs.nonprofit.question,
-		},
-		{
-			answer: dict.landing.faq.faqs.consulting.answer,
-			question: dict.landing.faq.faqs.consulting.question,
-		},
-	];
+	const faqs = Object.values(dict.landing.faq.faqs) as {
+		answer: string;
+		question: string;
+	}[];
 
 	return (
 		<div className="bg-white dark:bg-gray-900">
