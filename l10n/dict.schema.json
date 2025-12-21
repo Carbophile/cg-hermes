@@ -167,6 +167,10 @@
 					"description": "The word \"Next\".",
 					"type": "string"
 				},
+				"orgDesc": {
+					"description": "Very short organizational identifier.",
+					"type": "string"
+				},
 				"orgName": {
 					"description": "The name of the illustrious CG.",
 					"type": "string"
@@ -218,6 +222,7 @@
 				"languageSwitch",
 				"menu",
 				"next",
+				"orgDesc",
 				"orgName",
 				"pages",
 				"previous",
