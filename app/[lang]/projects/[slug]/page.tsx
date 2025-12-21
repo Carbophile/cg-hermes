@@ -15,6 +15,7 @@
  */
 
 import { getDict, type Lang, langs } from "@l10n/dict";
+import { websiteUrl } from "@lib/constants";
 import { createMetadata } from "@lib/seo";
 import { getAllProjects, getProjectBySlug } from "@projects/projects";
 import type { Metadata } from "next";
@@ -22,7 +23,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
+import type { Article, BreadcrumbList, WithContext } from "schema-dts";
 import type { Pluggable } from "unified";
+import JsonLd from "../../_components/JsonLd";
 
 export const generateStaticParams = async () => {
 	const params = await Promise.all(
@@ -85,8 +88,47 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
 		},
 	};
 
+	const jsonLd: WithContext<Article> = {
+		"@context": "https://schema.org",
+		"@type": "Article",
+		author: {
+			"@type": "Organization",
+			name: dict.common.orgName,
+		},
+		datePublished: new Date(project.meta.date).toISOString(),
+		description: project.meta.description,
+		headline: project.meta.title,
+		url: `${websiteUrl}/${lang}/projects/${slug}`,
+	};
+
+	const breadcrumbJsonLd: WithContext<BreadcrumbList> = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				item: `${websiteUrl}/${lang}`,
+				name: "Home",
+				position: 1,
+			},
+			{
+				"@type": "ListItem",
+				item: `${websiteUrl}/${lang}/projects`,
+				name: "Projects",
+				position: 2,
+			},
+			{
+				"@type": "ListItem",
+				item: `${websiteUrl}/${lang}/projects/${slug}`,
+				name: project.meta.title,
+				position: 3,
+			},
+		],
+	};
+
 	return (
 		<article>
+			<JsonLd data={[jsonLd, breadcrumbJsonLd]} />
 			<section className="mx-auto max-w-5xl px-4 py-12">
 				<div className="mb-8 text-center">
 					<h1 className="mb-4 font-bold text-3xl">{project.meta.title}</h1>

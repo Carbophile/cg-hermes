@@ -37,9 +37,12 @@
  */
 
 import { getDict, type Lang } from "@l10n/dict";
+import { websiteUrl } from "@lib/constants";
 import { createMetadata } from "@lib/seo";
 import { getAllProjects } from "@projects/projects";
 import type { Metadata } from "next";
+import type { BreadcrumbList, WithContext } from "schema-dts";
+import JsonLd from "../_components/JsonLd";
 import { ProjectList } from "./_components/ProjectList";
 
 interface ProjectsPageProps {
@@ -74,8 +77,28 @@ const ProjectsPage = async ({ params }: ProjectsPageProps) => {
 
 	const projects = await getAllProjects(lang);
 
+	const breadcrumbJsonLd: WithContext<BreadcrumbList> = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				item: `${websiteUrl}/${lang}`,
+				name: "Home",
+				position: 1,
+			},
+			{
+				"@type": "ListItem",
+				item: `${websiteUrl}/${lang}/projects`,
+				name: "Projects",
+				position: 2,
+			},
+		],
+	};
+
 	return (
 		<div className="bg-white py-24 sm:py-32 dark:bg-gray-900">
+			<JsonLd data={breadcrumbJsonLd} />
 			<div className="mx-auto max-w-7xl px-6 lg:px-8">
 				<div className="mx-auto max-w-2xl lg:mx-0">
 					<h2 className="text-pretty font-semibold text-4xl text-gray-900 tracking-tight sm:text-5xl dark:text-white">

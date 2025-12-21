@@ -19,6 +19,8 @@ import { websiteUrl } from "@lib/constants";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
+import type { Organization, WebSite, WithContext } from "schema-dts";
+import JsonLd from "./_components/JsonLd";
 import Footer from "./_layout/Footer";
 import Header from "./_layout/Header";
 
@@ -60,12 +62,28 @@ const RootLayout = async ({ params, children }: RootLayoutProps) => {
 		common: dict.common,
 	};
 
+	const organizationJsonLd: WithContext<Organization> = {
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		logo: `${websiteUrl}/assets/CG-brandmark.svg`,
+		name: dict.common.orgName,
+		url: websiteUrl,
+	};
+
+	const websiteJsonLd: WithContext<WebSite> = {
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		name: dict.common.orgName,
+		url: websiteUrl,
+	};
+
 	return (
 		<html
 			className={`scheme-light dark:scheme-dark bg-white dark:bg-gray-900 ${inter.className}`}
 			lang={lang}
 		>
 			<body className="flex min-h-screen flex-col">
+				<JsonLd data={[organizationJsonLd, websiteJsonLd]} />
 				<Header dict={headerDict} />
 				<main className="grow">{children}</main>
 				<Footer dict={dict} />

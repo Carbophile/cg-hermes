@@ -42,10 +42,13 @@ import {
 	PhoneIcon,
 } from "@heroicons/react/24/outline";
 import { getDict, type Lang } from "@l10n/dict";
+import { websiteUrl } from "@lib/constants";
 import { createMetadata } from "@lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FaLinkedin } from "react-icons/fa";
+import type { ContactPage as ContactPageDts, WithContext } from "schema-dts";
+import JsonLd from "../_components/JsonLd";
 
 interface ContactPageProps {
 	params: Promise<{ lang: string }>;
@@ -101,8 +104,16 @@ const ContactPage = async ({ params }: ContactPageProps) => {
 		},
 	];
 
+	const contactJsonLd: WithContext<ContactPageDts> = {
+		"@context": "https://schema.org",
+		"@type": "ContactPage",
+		name: dict.common.pages.contact,
+		url: `${websiteUrl}/${lang}/contact`,
+	};
+
 	return (
 		<div className="bg-white py-24 sm:py-32 dark:bg-gray-900">
+			<JsonLd data={contactJsonLd} />
 			<div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
 				<h2 className="font-semibold text-base/7 text-brand-primary">
 					{dict.contact.prose}
