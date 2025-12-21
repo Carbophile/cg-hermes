@@ -75,9 +75,10 @@ const Landing = ({ dict, lang }: LandingProps) => (
 							</blockquote>
 							<figcaption className="mt-6 flex gap-x-4 text-sm/6">
 								<Image
-									alt={`${dict.common.headshot} Borna Punda`}
+									alt=""
 									className="size-6 flex-none rounded-full"
 									height="1"
+									role="presentation"
 									src="/assets/headshots/CG-borna-punda.webp"
 									width="1"
 								/>

@@ -49,7 +49,7 @@ import { SearchInput } from "@/[lang]/_components/SearchInput";
 import { useSearchAndPagination } from "@/[lang]/_hooks/useSearchAndPagination";
 
 interface BlogListProps {
-	dict: Pick<Dictionary["common"], "headshot" | "next" | "previous" | "search">;
+	dict: Pick<Dictionary["common"], "next" | "previous" | "search">;
 	posts: BlogPost[];
 }
 
@@ -121,9 +121,10 @@ export const BlogList = ({ dict, posts }: BlogListProps) => {
 							<div className="mt-6 flex border-gray-900/5 border-t pt-6 dark:border-white/10">
 								<div className="relative flex items-center gap-x-4">
 									<Image
-										alt={`${dict.headshot} ${post.meta.author.name}`}
+										alt=""
 										className="size-10 rounded-full bg-gray-50 dark:bg-gray-800"
 										height="1"
+										role="presentation"
 										src={`/assets/headshots/${post.meta.author.photo}.webp`}
 										width="1"
 									/>

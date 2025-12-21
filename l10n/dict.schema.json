@@ -145,10 +145,6 @@
 					"description": "The word \"cybersecurity\".",
 					"type": "string"
 				},
-				"headshot": {
-					"description": "The alt text for a headshot.",
-					"type": "string"
-				},
 				"languageSwitch": {
 					"description": "Prompt to switch in the OPPOSITE language.",
 					"type": "string"
@@ -215,7 +211,6 @@
 				"cofounder",
 				"copyright",
 				"cybersecurity",
-				"headshot",
 				"languageSwitch",
 				"menu",
 				"next",
