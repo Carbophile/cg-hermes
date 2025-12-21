@@ -83,7 +83,7 @@ const Faq = ({ dict }: FaqProps) => {
 								key={faq.question}
 							>
 								<dt>
-									<DisclosureButton className="group flex w-full items-start justify-between text-left text-gray-900 dark:text-white">
+									<DisclosureButton className="group flex w-full cursor-pointer items-start justify-between text-left text-gray-900 dark:text-white">
 										<span className="font-semibold text-base/7">
 											{faq.question}
 										</span>
