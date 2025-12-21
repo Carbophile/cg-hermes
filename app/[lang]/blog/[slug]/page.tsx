@@ -64,7 +64,6 @@ export const generateMetadata = async ({
 
 const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 	const { lang, slug } = (await params) as { lang: Lang; slug: string };
-	const dict = await getDict(lang);
 
 	const post = await getPostBySlug(lang, slug);
 
@@ -104,9 +103,10 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 
 				<div className="mb-8 flex items-center justify-center space-x-4">
 					<Image
-						alt={`${dict.common.headshot} ${post.meta.author.name}`}
+						alt=""
 						className="h-12 w-12 rounded-full"
 						height="1"
+						role="presentation"
 						src={`/assets/headshots/${post.meta.author.photo}.webp`}
 						width="1"
 					/>

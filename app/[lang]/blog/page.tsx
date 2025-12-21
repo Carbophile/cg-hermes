@@ -66,7 +66,6 @@ const BlogListPage = async ({ params }: BlogListPageProps) => {
 	const dict = await getDict(lang);
 
 	const blogListDict = {
-		headshot: dict.common.headshot,
 		next: dict.common.next,
 		previous: dict.common.previous,
 		search: dict.common.search,
