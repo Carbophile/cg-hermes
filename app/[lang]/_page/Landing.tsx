@@ -101,6 +101,7 @@ const Landing = ({ dict, lang }: LandingProps) => (
 					className="w-3xl max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-228 md:-ml-4 lg:ml-0 dark:ring-white/10"
 					loop
 					muted
+					playsInline
 					poster="/assets/PIX-server-stock.webp"
 					role="presentation"
 					src="/assets/PIX-server-stock.webm"
