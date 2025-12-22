@@ -27,6 +27,8 @@ export function getAssetPath(path: string): string {
 		return `/assets/${hashedPath}`;
 	}
 
-	// Fallback if not found (maybe file was just added and manifest not rebuilt) or if it's already a full path
+	console.warn(
+		`Asset not found in manifest: ${cleanKey}. Run "pnpm run fingerprint".`,
+	);
 	return `/assets/${cleanKey}`;
 }

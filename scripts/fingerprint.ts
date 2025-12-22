@@ -29,12 +29,7 @@ function cleanDirectory(dir: string) {
 }
 
 function ensureDirectoryExistence(filePath: string) {
-	const dirname = path.dirname(filePath);
-	if (fs.existsSync(dirname)) {
-		return;
-	}
-	ensureDirectoryExistence(dirname);
-	fs.mkdirSync(dirname);
+	fs.mkdirSync(path.dirname(filePath), { recursive: true });
 }
 
 function getFiles(dir: string): string[] {
@@ -64,7 +59,7 @@ function fingerprint() {
 	for (const file of files) {
 		const content = fs.readFileSync(file);
 		const hash = crypto
-			.createHash("md5")
+			.createHash("sha256")
 			.update(content)
 			.digest("hex")
 			.substring(0, 8);
