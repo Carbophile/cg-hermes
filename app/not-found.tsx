@@ -43,7 +43,7 @@ import "@/global.css";
 import { getAssetPath } from "@lib/assets";
 import type { Metadata } from "next";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ display: "swap", subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	icons: {
