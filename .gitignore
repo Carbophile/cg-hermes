@@ -1,3 +1,7 @@
+# Assets
+/lib/assets-manifest.json
+/public/assets
+
 # Cloudflare Workers
 /.wrangler/
 

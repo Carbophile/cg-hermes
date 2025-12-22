@@ -38,6 +38,7 @@
 
 import type { Dictionary } from "@l10n/Dict";
 import type { Lang } from "@l10n/dict";
+import { getAssetPath } from "@lib/assets";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -79,7 +80,7 @@ const Landing = ({ dict, lang }: LandingProps) => (
 									className="size-6 flex-none rounded-full"
 									height="1"
 									role="presentation"
-									src="/assets/headshots/CG-borna-punda.webp"
+									src={getAssetPath("headshots/CG-borna-punda.webp")}
 									width="1"
 								/>
 								<div>
@@ -102,9 +103,9 @@ const Landing = ({ dict, lang }: LandingProps) => (
 					loop
 					muted
 					playsInline
-					poster="/assets/PIX-server-stock.webp"
+					poster={getAssetPath("PIX-server-stock.webp")}
 					role="presentation"
-					src="/assets/PIX-server-stock.webm"
+					src={getAssetPath("PIX-server-stock.webm")}
 					tabIndex={-1}
 				/>
 			</div>
