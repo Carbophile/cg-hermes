@@ -94,10 +94,10 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 				<Image
 					alt=""
 					className="absolute inset-0 -z-10 size-full object-cover opacity-10"
-					height="9"
+					fill
 					role="presentation"
+					sizes="100vw"
 					src={getAssetPath("PIX-classroom-stock.webp")}
-					width="16"
 				/>
 				<div
 					aria-hidden="true"
@@ -137,14 +137,14 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 				<div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
 					<div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
 						<div className="flex p-px lg:col-span-4">
-							<div className="w-full overflow-hidden rounded-lg bg-white shadow-sm outline outline-black/5 max-lg:rounded-t-4xl lg:rounded-tl-4xl dark:bg-gray-800 dark:shadow-none dark:outline-white/15">
+							<div className="relative h-80 w-full overflow-hidden rounded-lg bg-white shadow-sm outline outline-black/5 max-lg:rounded-t-4xl lg:rounded-tl-4xl dark:bg-gray-800 dark:shadow-none dark:outline-white/15">
 								<Image
 									alt=""
-									className="h-80 w-full object-cover object-left"
-									height="9"
+									className="object-cover object-left"
+									fill
 									role="presentation"
+									sizes="(min-width: 1024px) 66vw, 100vw"
 									src={getAssetPath("PIX-paperwork-stock.webp")}
-									width="16"
 								/>
 								<div className="p-10">
 									<h3 className="font-semibold text-brand-primary text-sm/4">
@@ -160,14 +160,14 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 							</div>
 						</div>
 						<div className="flex p-px lg:col-span-2">
-							<div className="w-full overflow-hidden rounded-lg bg-white shadow-sm outline outline-black/5 lg:rounded-tr-4xl dark:bg-gray-800 dark:shadow-none dark:outline-white/15">
+							<div className="relative h-80 w-full overflow-hidden rounded-lg bg-white shadow-sm outline outline-black/5 lg:rounded-tr-4xl dark:bg-gray-800 dark:shadow-none dark:outline-white/15">
 								<Image
 									alt=""
-									className="h-80 w-full object-cover"
-									height="9"
+									className="object-cover"
+									fill
 									role="presentation"
+									sizes="(min-width: 1024px) 33vw, 100vw"
 									src={getAssetPath("PIX-children-stock.webp")}
-									width="16"
 								/>
 								<div className="p-10">
 									<h3 className="font-semibold text-brand-primary text-sm/4">
@@ -183,14 +183,14 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 							</div>
 						</div>
 						<div className="flex p-px lg:col-span-2">
-							<div className="w-full overflow-hidden rounded-lg bg-white shadow-sm outline outline-black/5 lg:rounded-bl-4xl dark:bg-gray-800 dark:shadow-none dark:outline-white/15">
+							<div className="relative h-80 w-full overflow-hidden rounded-lg bg-white shadow-sm outline outline-black/5 lg:rounded-bl-4xl dark:bg-gray-800 dark:shadow-none dark:outline-white/15">
 								<Image
 									alt=""
-									className="h-80 w-full object-cover"
-									height="9"
+									className="object-cover"
+									fill
 									role="presentation"
+									sizes="(min-width: 1024px) 33vw, 100vw"
 									src={getAssetPath("PIX-workshop-stock.webp")}
-									width="16"
 								/>
 								<div className="p-10">
 									<h3 className="font-semibold text-brand-primary text-sm/4">
@@ -206,14 +206,14 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 							</div>
 						</div>
 						<div className="flex p-px lg:col-span-4">
-							<div className="w-full overflow-hidden rounded-lg bg-white shadow-sm outline outline-black/5 max-lg:rounded-b-4xl lg:rounded-br-4xl dark:bg-gray-800 dark:shadow-none dark:outline-white/15">
+							<div className="relative h-80 w-full overflow-hidden rounded-lg bg-white shadow-sm outline outline-black/5 max-lg:rounded-b-4xl lg:rounded-br-4xl dark:bg-gray-800 dark:shadow-none dark:outline-white/15">
 								<Image
 									alt=""
-									className="h-80 w-full object-cover object-left"
-									height="9"
+									className="object-cover object-left"
+									fill
 									role="presentation"
+									sizes="(min-width: 1024px) 66vw, 100vw"
 									src={getAssetPath("PIX-conference-stock.webp")}
-									width="16"
 								/>
 								<div className="p-10">
 									<h3 className="font-semibold text-brand-primary text-sm/4">

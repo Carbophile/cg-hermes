@@ -161,10 +161,10 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 					<Image
 						alt=""
 						className="h-12 w-12 rounded-full"
-						height="1"
+						height="48"
 						role="presentation"
 						src={getAssetPath(`headshots/${post.meta.author.photo}.webp`)}
-						width="1"
+						width="48"
 					/>
 					<div>
 						<p className="font-semibold">{post.meta.author.name}</p>

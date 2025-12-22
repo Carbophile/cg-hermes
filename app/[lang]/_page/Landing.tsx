@@ -86,10 +86,10 @@ const Landing = ({ dict, lang }: LandingProps) => {
 									<Image
 										alt=""
 										className="size-6 flex-none rounded-full"
-										height="1"
+										height="24"
 										role="presentation"
 										src={getAssetPath("headshots/CG-borna-punda.webp")}
-										width="1"
+										width="24"
 									/>
 									<div>
 										<span className="font-semibold text-gray-900 dark:text-white">
