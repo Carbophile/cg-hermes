@@ -88,12 +88,12 @@ export const BlogList = ({ dict, posts }: BlogListProps) => {
 							<Image
 								alt=""
 								className="absolute inset-0 size-full rounded-2xl bg-gray-50 object-cover dark:bg-gray-800"
-								height="1"
+								fill
 								role="presentation"
+								sizes="(min-width: 1024px) 16rem, 100vw"
 								src={getAssetPath(
 									`blog-thumbnails/${post.meta.thumbnail}.webp`,
 								)}
-								width="1"
 							/>
 							<div className="absolute inset-0 inset-ring inset-ring-gray-900/10 rounded-2xl dark:inset-ring-white/10" />
 						</div>
@@ -126,12 +126,12 @@ export const BlogList = ({ dict, posts }: BlogListProps) => {
 									<Image
 										alt=""
 										className="size-10 rounded-full bg-gray-50 dark:bg-gray-800"
-										height="1"
+										height="40"
 										role="presentation"
 										src={getAssetPath(
 											`headshots/${post.meta.author.photo}.webp`,
 										)}
-										width="1"
+										width="40"
 									/>
 									<div className="text-sm/6">
 										<p className="font-semibold text-gray-900 dark:text-white">

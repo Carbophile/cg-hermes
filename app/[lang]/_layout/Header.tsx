@@ -111,10 +111,10 @@ const Header = ({ dict }: HeaderProps) => {
 					<Image
 						alt=""
 						className="h-12 w-auto"
-						height="1"
+						height="48"
 						src={getAssetPath("CG-brandmark.svg")}
 						unoptimized
-						width="1"
+						width="48"
 					/>{" "}
 				</Link>
 				<div className="flex flex-1 justify-end">
@@ -153,10 +153,10 @@ const Header = ({ dict }: HeaderProps) => {
 							<Image
 								alt=""
 								className="h-12 w-auto"
-								height="1"
+								height="48"
 								src={getAssetPath("CG-brandmark.svg")}
 								unoptimized
-								width="1"
+								width="48"
 							/>{" "}
 						</Link>
 						<div className="flex flex-1 justify-end">
