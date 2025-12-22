@@ -72,8 +72,8 @@
 					"question": "Kako se razlikujete od komercijalnih tvrtki za kibernetičku sigurnost?"
 				},
 				"nonprofit": {
-					"answer": "Da! Carbophile Group je udruga sukladno članku 4. Zakona o udrugama Republike Hrvatske.",
-					"question": "Je li Carbophile Group neprofitna organizacija?"
+					"answer": "Da! Carbophile Grupa je udruga sukladno članku 4. Zakona o udrugama Republike Hrvatske.",
+					"question": "Je li Carbophile Grupa neprofitna organizacija?"
 				},
 				"projects": {
 					"answer": "Prvenstveno radimo na izradi i slobodnom dijeljenju nepristranih, visokokvalitetnih analiza i istraživačkih radova o novim prijetnjama, najboljim praksama, i digitalnim pravima.",
@@ -82,7 +82,7 @@
 			},
 			"heading": "Često postavljana pitanja"
 		},
-		"foundingQuote": "Jako sam razočaran stanjem neprofitnog sektora kibernetičke sigurnosti u Hrvatskoj. Nemamo udruga, nemamo zagovornike za privatnost, i nemamo niti jedno tijelo za numeriranje CVE-ova. Visokokvalitetni resursi su rijetki. Zato smo osnovali Carbophile Group, kako bi to promijenili.",
+		"foundingQuote": "Jako sam razočaran stanjem neprofitnog sektora kibernetičke sigurnosti u Hrvatskoj. Nemamo udruga, nemamo zagovornike za privatnost, i nemamo niti jedno tijelo za numeriranje CVE-ova. Visokokvalitetni resursi su rijetki. Zato smo osnovali Carbophile Grupu, kako bi to promijenili.",
 		"mission": "U Carbophile Grupi, naša je misija da tako i ostane. Mi smo hrvatska zajednica stručnjaka za kibernetičku sigurnost, programera, i zagovornika privatnosti posvećenih izgradnji sigurnijeg digitalnog svijeta.",
 		"stats": {
 			"committees": "Povjerenstava",
