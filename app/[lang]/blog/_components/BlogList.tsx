@@ -79,7 +79,7 @@ export const BlogList = ({ dict, posts }: BlogListProps) => {
 				value={searchQuery}
 			/>
 			<div className="mt-16 space-y-20 lg:mt-20">
-				{paginatedPosts.map((post: BlogPost) => (
+				{paginatedPosts.map((post: BlogPost, index: number) => (
 					<article
 						className="relative isolate flex flex-col gap-8 lg:flex-row"
 						key={post.slug}
@@ -89,6 +89,8 @@ export const BlogList = ({ dict, posts }: BlogListProps) => {
 								alt=""
 								className="absolute inset-0 size-full rounded-2xl bg-gray-50 object-cover dark:bg-gray-800"
 								fill
+								priority={index === 0}
+								quality="75"
 								role="presentation"
 								sizes="(min-width: 1024px) 16rem, 100vw"
 								src={getAssetPath(
@@ -127,6 +129,7 @@ export const BlogList = ({ dict, posts }: BlogListProps) => {
 										alt=""
 										className="size-10 rounded-full bg-gray-50 dark:bg-gray-800"
 										height="40"
+										quality="75"
 										role="presentation"
 										src={getAssetPath(
 											`headshots/${post.meta.author.photo}.webp`,

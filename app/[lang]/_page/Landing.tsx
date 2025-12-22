@@ -87,6 +87,7 @@ const Landing = ({ dict, lang }: LandingProps) => {
 										alt=""
 										className="size-6 flex-none rounded-full"
 										height="24"
+										quality="75"
 										role="presentation"
 										src={getAssetPath("headshots/CG-borna-punda.webp")}
 										width="24"
