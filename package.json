@@ -20,6 +20,7 @@
 		"schema-dts": "^1.1.5",
 		"shiki": "^3.20.0",
 		"tailwindcss": "^4.1.18",
+		"tsx": "^4.21.0",
 		"typescript": "^5.9.3",
 		"unified": "^11.0.5",
 		"wrangler": "^4.56.0"
@@ -32,7 +33,8 @@
 		"check": "biome check --write",
 		"check:unsafe": "biome check --write --unsafe",
 		"dev": "next dev",
-		"prepare": "husky && pnpm run types",
+		"fingerprint": "tsx scripts/fingerprint.ts",
+		"prepare": "husky && pnpm run types && pnpm run fingerprint",
 		"preview": "wrangler dev",
 		"types": "json2ts -i l10n/dict.schema.json -o l10n/Dict.d.ts --format false"
 	},

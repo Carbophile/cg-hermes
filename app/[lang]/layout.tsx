@@ -15,6 +15,7 @@
  */
 
 import { getDict, type Lang, langs } from "@l10n/dict";
+import { getAssetPath } from "@lib/assets";
 import { websiteUrl } from "@lib/constants";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -44,7 +45,7 @@ export const generateMetadata = async ({
 	return {
 		description: `${dict.common.cybersecurity} ${dict.common.tagline}. ${dict.landing.mission}`,
 		icons: {
-			icon: "/assets/CG-brandmark.svg",
+			icon: getAssetPath("CG-brandmark.svg"),
 		},
 		metadataBase: new URL(websiteUrl),
 		title: {
@@ -65,7 +66,7 @@ const RootLayout = async ({ params, children }: RootLayoutProps) => {
 	const organizationJsonLd: WithContext<Organization> = {
 		"@context": "https://schema.org",
 		"@type": "Organization",
-		logo: `${websiteUrl}/assets/CG-brandmark.svg`,
+		logo: `${websiteUrl}${getAssetPath("CG-brandmark.svg")}`,
 		name: dict.common.orgName,
 		url: websiteUrl,
 	};

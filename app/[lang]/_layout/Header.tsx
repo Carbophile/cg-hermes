@@ -42,6 +42,7 @@ import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import type { Dictionary } from "@l10n/Dict";
 import type { Lang } from "@l10n/dict";
+import { getAssetPath } from "@lib/assets";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
@@ -111,9 +112,9 @@ const Header = ({ dict }: HeaderProps) => {
 						alt=""
 						className="h-12 w-auto"
 						height="1"
-						src="/assets/CG-brandmark.svg"
+						src={getAssetPath("CG-brandmark.svg")}
 						width="1"
-					/>
+					/>{" "}
 				</Link>
 				<div className="flex flex-1 justify-end">
 					<Link
@@ -152,9 +153,9 @@ const Header = ({ dict }: HeaderProps) => {
 								alt=""
 								className="h-12 w-auto"
 								height="1"
-								src="/assets/CG-brandmark.svg"
+								src={getAssetPath("CG-brandmark.svg")}
 								width="1"
-							/>
+							/>{" "}
 						</Link>
 						<div className="flex flex-1 justify-end">
 							<Link

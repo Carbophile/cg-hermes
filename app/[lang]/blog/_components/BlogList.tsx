@@ -41,6 +41,7 @@
 import type { BlogPost } from "@blog/blog";
 import type { Dictionary } from "@l10n/Dict";
 import type { Lang } from "@l10n/dict";
+import { getAssetPath } from "@lib/assets";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -89,7 +90,9 @@ export const BlogList = ({ dict, posts }: BlogListProps) => {
 								className="absolute inset-0 size-full rounded-2xl bg-gray-50 object-cover dark:bg-gray-800"
 								height="1"
 								role="presentation"
-								src={`/assets/blog-thumbnails/${post.meta.thumbnail}.webp`}
+								src={getAssetPath(
+									`blog-thumbnails/${post.meta.thumbnail}.webp`,
+								)}
 								width="1"
 							/>
 							<div className="absolute inset-0 inset-ring inset-ring-gray-900/10 rounded-2xl dark:inset-ring-white/10" />
@@ -125,7 +128,9 @@ export const BlogList = ({ dict, posts }: BlogListProps) => {
 										className="size-10 rounded-full bg-gray-50 dark:bg-gray-800"
 										height="1"
 										role="presentation"
-										src={`/assets/headshots/${post.meta.author.photo}.webp`}
+										src={getAssetPath(
+											`headshots/${post.meta.author.photo}.webp`,
+										)}
 										width="1"
 									/>
 									<div className="text-sm/6">

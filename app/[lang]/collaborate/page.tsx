@@ -37,6 +37,7 @@
  */
 
 import { getDict, type Lang } from "@l10n/dict";
+import { getAssetPath } from "@lib/assets";
 import { websiteUrl } from "@lib/constants";
 import { createMetadata } from "@lib/seo";
 import type { Metadata } from "next";
@@ -95,7 +96,7 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 					className="absolute inset-0 -z-10 size-full object-cover opacity-10"
 					height="9"
 					role="presentation"
-					src="/assets/PIX-classroom-stock.webp"
+					src={getAssetPath("PIX-classroom-stock.webp")}
 					width="16"
 				/>
 				<div
@@ -142,7 +143,7 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 									className="h-80 w-full object-cover object-left"
 									height="9"
 									role="presentation"
-									src="/assets/PIX-paperwork-stock.webp"
+									src={getAssetPath("PIX-paperwork-stock.webp")}
 									width="16"
 								/>
 								<div className="p-10">
@@ -165,7 +166,7 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 									className="h-80 w-full object-cover"
 									height="9"
 									role="presentation"
-									src="/assets/PIX-children-stock.webp"
+									src={getAssetPath("PIX-children-stock.webp")}
 									width="16"
 								/>
 								<div className="p-10">
@@ -188,7 +189,7 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 									className="h-80 w-full object-cover"
 									height="9"
 									role="presentation"
-									src="/assets/PIX-workshop-stock.webp"
+									src={getAssetPath("PIX-workshop-stock.webp")}
 									width="16"
 								/>
 								<div className="p-10">
@@ -211,7 +212,7 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 									className="h-80 w-full object-cover object-left"
 									height="9"
 									role="presentation"
-									src="/assets/PIX-conference-stock.webp"
+									src={getAssetPath("PIX-conference-stock.webp")}
 									width="16"
 								/>
 								<div className="p-10">

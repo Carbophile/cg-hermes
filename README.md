@@ -59,7 +59,7 @@ The `HEAD` of the `main` branch is automatically deployed.
   `/hr/`)
 - **`l10n/`:** Handles localization logic and houses the dictionaries
 - **`blog/` & `projects/`**: Contain the data access layers and MDX content for blog posts and project showcases
-- **`public/assets/`**: Static assets such as images and videos
+- **`assets/`**: Source for static assets such as images and videos (fingerprinted at build time)
 
 ### Internationalization (i18n)
 
@@ -87,7 +87,7 @@ Blog posts and project entries are stored as MDX files. File names should be in 
 1. Navigate to `blog/content/[language]/`.
 2. Create a new `.mdx` file.
 3. Populate the file with the frontmatter and the blog content itself.
-4. If needed, add the author's headshot to `public/assets/headshots/`
+4. If needed, add the author's headshot to `assets/headshots/`
 5. Create variations for all other languages with the same file name.
 
 #### Adding a New Project:

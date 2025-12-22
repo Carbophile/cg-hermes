@@ -16,6 +16,7 @@
 
 import { getAllPosts, getPostBySlug } from "@blog/blog";
 import { getDict, type Lang, langs } from "@l10n/dict";
+import { getAssetPath } from "@lib/assets";
 import { websiteUrl } from "@lib/constants";
 import { createMetadata } from "@lib/seo";
 import type { Metadata } from "next";
@@ -56,7 +57,7 @@ export const generateMetadata = async ({
 	return createMetadata({
 		authors: [post.meta.author.name],
 		description: post.meta.description,
-		image: `/assets/blog-thumbnails/${post.meta.thumbnail}.webp`,
+		image: getAssetPath(`blog-thumbnails/${post.meta.thumbnail}.webp`),
 		lang,
 		path: `blog/${slug}`,
 		siteName: dict.common.orgName,
@@ -96,13 +97,13 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 		"@type": "BlogPosting",
 		author: {
 			"@type": "Person",
-			image: `${websiteUrl}/assets/headshots/${post.meta.author.photo}.webp`,
+			image: `${websiteUrl}${getAssetPath(`headshots/${post.meta.author.photo}.webp`)}`,
 			name: post.meta.author.name,
 		},
 		datePublished: new Date(post.meta.date).toISOString(),
 		description: post.meta.description,
 		headline: post.meta.title,
-		image: `${websiteUrl}/assets/blog-thumbnails/${post.meta.thumbnail}.webp`,
+		image: `${websiteUrl}${getAssetPath(`blog-thumbnails/${post.meta.thumbnail}.webp`)}`,
 		url: `${websiteUrl}/${lang}/blog/${slug}`,
 	};
 
@@ -152,7 +153,7 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 						className="h-12 w-12 rounded-full"
 						height="1"
 						role="presentation"
-						src={`/assets/headshots/${post.meta.author.photo}.webp`}
+						src={getAssetPath(`headshots/${post.meta.author.photo}.webp`)}
 						width="1"
 					/>
 					<div>
