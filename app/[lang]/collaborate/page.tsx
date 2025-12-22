@@ -95,6 +95,7 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 					alt=""
 					className="absolute inset-0 -z-10 size-full object-cover opacity-10"
 					fill
+					priority
 					role="presentation"
 					sizes="100vw"
 					src={getAssetPath("PIX-classroom-stock.webp")}
