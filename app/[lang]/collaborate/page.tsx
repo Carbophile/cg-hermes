@@ -96,6 +96,7 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 					className="absolute inset-0 -z-10 size-full object-cover opacity-10"
 					fill
 					priority
+					quality="75"
 					role="presentation"
 					sizes="100vw"
 					src={getAssetPath("PIX-classroom-stock.webp")}
@@ -144,6 +145,7 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 										alt=""
 										className="object-cover object-left"
 										fill
+										quality="75"
 										role="presentation"
 										sizes="(min-width: 1024px) 66vw, 100vw"
 										src={getAssetPath("PIX-paperwork-stock.webp")}
@@ -169,6 +171,7 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 										alt=""
 										className="object-cover"
 										fill
+										quality="75"
 										role="presentation"
 										sizes="(min-width: 1024px) 33vw, 100vw"
 										src={getAssetPath("PIX-children-stock.webp")}
@@ -194,6 +197,7 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 										alt=""
 										className="object-cover"
 										fill
+										quality="75"
 										role="presentation"
 										sizes="(min-width: 1024px) 33vw, 100vw"
 										src={getAssetPath("PIX-workshop-stock.webp")}
@@ -219,6 +223,7 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 										alt=""
 										className="object-cover object-left"
 										fill
+										quality="75"
 										role="presentation"
 										sizes="(min-width: 1024px) 66vw, 100vw"
 										src={getAssetPath("PIX-conference-stock.webp")}

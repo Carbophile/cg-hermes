@@ -162,6 +162,7 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 						alt=""
 						className="h-12 w-12 rounded-full"
 						height="48"
+						quality="75"
 						role="presentation"
 						src={getAssetPath(`headshots/${post.meta.author.photo}.webp`)}
 						width="48"
