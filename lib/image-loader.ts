@@ -19,7 +19,7 @@ export function getCloudflareImage(
 	{ width, quality }: { width?: number; quality?: number } = {},
 ) {
 	if (src.endsWith(".svg")) {
-		return `${src}${width ? `?w=${width}` : ""}`;
+		return src;
 	}
 	const params = ["format=auto"];
 	if (width) params.push(`width=${width}`);
