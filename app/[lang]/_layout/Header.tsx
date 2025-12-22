@@ -113,6 +113,7 @@ const Header = ({ dict }: HeaderProps) => {
 						className="h-12 w-auto"
 						height="1"
 						src={getAssetPath("CG-brandmark.svg")}
+						unoptimized
 						width="1"
 					/>{" "}
 				</Link>
@@ -154,6 +155,7 @@ const Header = ({ dict }: HeaderProps) => {
 								className="h-12 w-auto"
 								height="1"
 								src={getAssetPath("CG-brandmark.svg")}
+								unoptimized
 								width="1"
 							/>{" "}
 						</Link>

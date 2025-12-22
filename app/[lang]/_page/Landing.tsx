@@ -39,6 +39,7 @@
 import type { Dictionary } from "@l10n/Dict";
 import type { Lang } from "@l10n/dict";
 import { getAssetPath } from "@lib/assets";
+import { getCloudflareImage } from "@lib/image-loader";
 import Image from "next/image";
 import Link from "next/link";
 import { preload } from "react-dom";
@@ -49,7 +50,9 @@ interface LandingProps {
 }
 
 const Landing = ({ dict, lang }: LandingProps) => {
-	const posterSrc = getAssetPath("PIX-server-stock.webp");
+	const posterSrc = getCloudflareImage(getAssetPath("PIX-server-stock.webp"), {
+		width: 1280,
+	});
 	preload(posterSrc, { as: "image" });
 
 	return (

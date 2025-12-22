@@ -18,6 +18,7 @@ import { getAllPosts, getPostBySlug } from "@blog/blog";
 import { getDict, type Lang, langs } from "@l10n/dict";
 import { getAssetPath } from "@lib/assets";
 import { websiteUrl } from "@lib/constants";
+import { getCloudflareImage } from "@lib/image-loader";
 import { createMetadata } from "@lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -57,7 +58,10 @@ export const generateMetadata = async ({
 	return createMetadata({
 		authors: [post.meta.author.name],
 		description: post.meta.description,
-		image: getAssetPath(`blog-thumbnails/${post.meta.thumbnail}.webp`),
+		image: getCloudflareImage(
+			getAssetPath(`blog-thumbnails/${post.meta.thumbnail}.webp`),
+			{ width: 1200 },
+		),
 		lang,
 		path: `blog/${slug}`,
 		siteName: dict.common.orgName,
@@ -97,13 +101,19 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 		"@type": "BlogPosting",
 		author: {
 			"@type": "Person",
-			image: `${websiteUrl}${getAssetPath(`headshots/${post.meta.author.photo}.webp`)}`,
+			image: `${websiteUrl}${getCloudflareImage(
+				getAssetPath(`headshots/${post.meta.author.photo}.webp`),
+				{ width: 400 },
+			)}`,
 			name: post.meta.author.name,
 		},
 		datePublished: new Date(post.meta.date).toISOString(),
 		description: post.meta.description,
 		headline: post.meta.title,
-		image: `${websiteUrl}${getAssetPath(`blog-thumbnails/${post.meta.thumbnail}.webp`)}`,
+		image: `${websiteUrl}${getCloudflareImage(
+			getAssetPath(`blog-thumbnails/${post.meta.thumbnail}.webp`),
+			{ width: 1200 },
+		)}`,
 		url: `${websiteUrl}/${lang}/blog/${slug}`,
 	};
 
