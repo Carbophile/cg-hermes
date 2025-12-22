@@ -18,6 +18,10 @@ export function getCloudflareImage(
 	src: string,
 	{ width, quality }: { width?: number; quality?: number } = {},
 ) {
+	// biome-ignore lint/complexity/useLiteralKeys: <Conflicts with TypeScript>
+	if (process.env["HERMES_PRODUCTION"] !== "true") {
+		return src;
+	}
 	if (src.endsWith(".svg")) {
 		return src;
 	}
