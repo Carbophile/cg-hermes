@@ -27,7 +27,7 @@ import Header from "./_layout/Header";
 
 import "@/global.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ display: "swap", subsets: ["latin"] });
 
 export const generateStaticParams = () => langs.map((lang) => ({ lang }));
 
