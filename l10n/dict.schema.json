@@ -258,6 +258,10 @@
 					"description": "The prose of the contact section.",
 					"type": "string"
 				},
+				"reddit": {
+					"description": "The word \"Reddit\".",
+					"type": "string"
+				},
 				"twitter": {
 					"description": "The word \"Twitter\".",
 					"type": "string"
@@ -270,6 +274,7 @@
 				"linkedin",
 				"phone",
 				"prose",
+				"reddit",
 				"twitter"
 			],
 			"type": "object"
