@@ -94,6 +94,7 @@ const CollaboratePage = async ({ params }: CollaboratePageProps) => {
 				<Image
 					alt=""
 					className="absolute inset-0 -z-10 size-full object-cover opacity-10"
+					fetchPriority="high"
 					fill
 					priority
 					quality="75"

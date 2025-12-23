@@ -112,6 +112,7 @@ const Header = ({ dict }: HeaderProps) => {
 						alt=""
 						className="h-12 w-auto"
 						height="48"
+						priority
 						quality="75"
 						src={getAssetPath("CG-brandmark.svg")}
 						unoptimized
