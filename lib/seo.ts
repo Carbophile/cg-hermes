@@ -28,7 +28,7 @@ interface MetadataProps {
 	siteName: string;
 }
 
-export function createMetadata({
+export const createMetadata = ({
 	lang,
 	title,
 	description,
@@ -37,7 +37,7 @@ export function createMetadata({
 	authors,
 	path,
 	siteName,
-}: MetadataProps): Metadata {
+}: MetadataProps): Metadata => {
 	const alternateLocale = lang === "en" ? "hr" : "en";
 	const url = [websiteUrl, lang, path].filter(Boolean).join("/");
 
@@ -64,4 +64,4 @@ export function createMetadata({
 		},
 		title: path === "" ? { absolute: title } : title,
 	};
-}
+};

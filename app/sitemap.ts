@@ -29,11 +29,11 @@ interface ContentItem {
 	};
 }
 
-async function generateContentEntries<T extends ContentItem>(
+const generateContentEntries = async <T extends ContentItem>(
 	contentType: string,
 	fetchItems: (lang: string) => Promise<T[]>,
 	priority: number,
-): Promise<MetadataRoute.Sitemap> {
+): Promise<MetadataRoute.Sitemap> => {
 	const sitemapEntries: MetadataRoute.Sitemap = [];
 	const allItemsBySlug = new Map<string, { [lang: string]: T }>();
 
@@ -71,9 +71,9 @@ async function generateContentEntries<T extends ContentItem>(
 	}
 
 	return sitemapEntries;
-}
+};
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
 	const sitemapEntries: MetadataRoute.Sitemap = [];
 
 	// 1. Static pages
@@ -115,4 +115,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	);
 
 	return sitemapEntries;
-}
+};
+
+export default sitemap;
