@@ -1,0 +1,105 @@
+---
+# THIRD-PARTY ASSET NOTICE
+#
+# This file contains assets owned by Carbophile Group.
+#
+# Copyright 2025 Carbophile Group. Some rights reserved.
+#
+# NOTICE: The license grant for this project DOES NOT apply to
+# the Carbophile Group assets contained within this file.
+#
+# These assets are licensed under the Creative Commons
+# Attribution-NonCommercial 4.0 International License:
+#
+#	https://creativecommons.org/licenses/by-nc/4.0/
+#
+# RESTRICTIONS:
+# You must provide appropriate credit and may NOT use
+# these assets for commercial purposes.
+
+author:
+    name: "Borna Punda"
+    photo: "CG-borna-punda"
+    title: "Suosnivač"
+date: "2025-12-23"
+description: "Zašto je Ventoyev workaround za secure boot trajna sigurnosna rupa."
+thumbnail: "PIX-thumbdrive-stock"
+title: "Ventoy-ev secure boot \"backdoor\""
+---
+
+U svijetu sistem administracije i _home labbinga_, [**Ventoy**](https://www.ventoy.net/) je apsolutni spas. To je
+praktički jedini način da imate 20 različitih ISO-a na istom USB sticku. Međutim, često se zanemaruje značajan
+sigurnosni kompromis (_trade-off_) tijekom procesa instalacije: konkretno, trenutak kada vas alat traži da upišete
+Ventoyeve ključeve u MOK (Machine Owner Key) bazu vašeg sustava.
+
+Iako se to možda čini kao jednokratna prepreka da bi stvar proradila, naše nedavno istraživanje u Carbophile Grupi
+otkriva neugodnu stvarnost: upisivanje ovih ključeva efektivno i tiho gasi secure boot, a taj propust preživljava
+brisanje OS-a, zamjenu diskova, potpunu reinstalaciju sustava, pa čak i resetiranje BIOS-a.
+
+## Što je uopće secure boot?
+
+Secure boot je sigurnosni sustav ugrađen u svako moderno računalo koji provjerava integritet operativnog sustava prije
+nego se on pokrene. Osigurava da je OS digitalno potpisan od strane pouzdanog entiteta i da nije modificiran (npr. za
+krađu vaših podataka). To je ključna obrana protiv tzv. [_evil
+maid_ napada](https://en.wikipedia.org/wiki/Evil_maid_attack).
+
+## Kako ga Ventoy zaobilazi
+
+Da bi funkcionirao uz uključen secure boot, Ventoy koristi _shim bootloader_. Budući da službeni Microsoftovi ključevi
+ne prepoznaju Ventoy binarne datoteke, od korisnika se traži da ručno upiše specifični Ventoy certifikat (
+`ENROLL_THIS_KEY_IN_MOKMANAGER.cer`) u UEFI okruženje.
+
+_Shim bootloader_ je bio Microsoftov odgovor na kritike da secure boot ne surađuje dobro s Linuxom. To je
+Microsoft-potpisani bootloader koji prolazi secure boot provjeru, a zatim osigurava sigurnost provjerom UEFI varijabli
+za "MOK-ove", uspostavljajući lanac povjerenja (_chain of trust_). To je, zapravo, "workaround" sam po sebi.
+
+Ventoyev MOK je poseban jer lomi taj lanac povjerenja dopuštajući izvršavanje bilo koje binarne datoteke bez dodatne
+validacije (to je namjerno i ključno za način na koji Ventoy uopće radi).
+
+### Problem: NVRAM vs. Disk
+
+Problem nastaje u lokaciji gdje se MOK sprema. Nije na disku kao vaš OS, već u NVRAM-u koji se fizički nalazi na vašoj
+matičnoj ploči. Tradicionalna zaštita (poput antivirusa ili firewalla) živi u operativnom sustavu. Ako formatirate disk,
+ode i zaštita (ali i prijetnje). Kod MOK-ova to nije slučaj.
+
+Budući da su ovi ključevi spremljeni na _firmware_ razini, potpuno su neovisni o OS-u. Možete formatirati svoj NVMe disk
+i instalirati svježu, _hardened_ verziju Windowsa 11 ili Enterprise Linuxa, a Ventoyev ključ ostaje. Dodatno, s obzirom
+na to da je ovo "workaround" izgrađen na drugom "workaroundu", hrpa _firmwarea_ niti ne zna da taj ključ postoji. Zato,
+čak i ako resetirate secure boot ili vratite _firmware_ na tvorničke postavke, ova ranjivost često ostaje prisutna.
+
+## Što to znači za vas?
+
+Ova ranjivost znači da secure boot efektivno ne postoji, čak i ako ste Ventoy koristili samo jednom prije godinu dana i
+u međuvremenu promijenili disk. To, u prijevodu, znači da napadač može _bootati_ bilo što na vašem računalu bez obzira
+na integritet koda, a vi nećete imati pojma o tome.
+
+## Kako provjeriti jeste li pogođeni?
+
+Budući da ovi ključevi žive u NVRAM-u hardvera, nećete ih naći u "Add/Remove Programs" ili Windows postavkama. Morate
+direktno upitati UEFI _firmware_.
+
+Nažalost, Windows nema jednostavan izbornik za pregled ovih specifičnih ključeva (ipak je to _hacks on top of hacks_
+situacija), pa ćete morati posegnuti za Linuxom.
+
+Otvorite terminal i upišite:
+
+```shell
+mokutil --list-enrolled
+```
+
+**Što tražiti:** Skrolajte kroz ispis. Ako vidite unos gdje piše `Issuer: CN=Ventoy` ili certifikat koji referencira
+Ventoy, vaš sustav je trenutno "širom otvoren".
+
+## Kako ovo popraviti (Remedijacija)
+
+Ventoy srećom nudi [jednostavan alat za ovo](https://www.ventoy.net/en/doc_delete_key.html); međutim, ako ste (s
+razlogom) skeptični prema njima nakon ovoga, možete koristiti i Linux shell:
+
+```shell
+mokutil --reset
+```
+
+## Tko je kriv?
+
+Nitko nije izravno kriv. Ovo je namjerna odluka u dizajnu; nije zlonamjerno niti je riječ o ranjivosti u tradicionalnom
+smislu ("bug"). Ipak, smatramo da su trebali puno jasnije komunicirati u što se točno upuštate instalacijom tog ključa.

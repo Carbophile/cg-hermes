@@ -1,0 +1,104 @@
+---
+# THIRD-PARTY ASSET NOTICE
+#
+# This file contains assets owned by Carbophile Group.
+#
+# Copyright 2025 Carbophile Group. Some rights reserved.
+#
+# NOTICE: The license grant for this project DOES NOT apply to
+# the Carbophile Group assets contained within this file.
+#
+# These assets are licensed under the Creative Commons
+# Attribution-NonCommercial 4.0 International License:
+#
+#	https://creativecommons.org/licenses/by-nc/4.0/
+#
+# RESTRICTIONS:
+# You must provide appropriate credit and may NOT use
+# these assets for commercial purposes.
+
+author:
+    name: "Borna Punda"
+    photo: "CG-borna-punda"
+    title: "Co-Founder"
+date: "2025-12-23"
+description: "Why Ventoy's secure boot workaround is a permanent security gap."
+thumbnail: "PIX-thumbdrive-stock"
+title: "The Ventoy secure boot \"backdoor\""
+---
+
+In the world of system administration and home labbing, [**Ventoy**](https://www.ventoy.net/) is a godsend. It's
+practically the only way to have 20 different ISOs on the same thumb drive. However, a significant security trade-off
+during the setup process is often overlooked: specifically when users are prompted to enroll Ventoy's keys into their
+system's MOK (Machine Owner Key) database.
+
+While it may feel like a one-time hurdle to get the tool working, our recent research at Carbophile Group exposes a
+concerning reality: enrolling these keys effectively and silently disables secure boot, surviving OS wipes, drive swaps,
+total system reinstalls, and even BIOS resets.
+
+## What even is secure boot?
+
+Secure boot is a safety system built into every modern computer, which checks the integrity of your operating system
+before starting. It ensures that it was signed by a trusted entity and not tampered with to, for example, steal your
+credentials. It's a core defense against the [evil maid attack](https://en.wikipedia.org/wiki/Evil_maid_attack).
+
+## How Ventoy bypasses it
+
+To function with secure boot enabled, Ventoy utilizes a shim bootloader. Since the official Microsoft-signed keys won't
+recognize Ventoy's binaries, the user is asked to manually enroll Ventoy's specific certificate (
+`ENROLL_THIS_KEY_IN_MOKMANAGER.cer`) into the UEFI environment.
+
+The shim bootloader was Microsoft's solution to the criticism that secure boot doesn't play nice with Linux. It's a
+Microsoft-signed bootloader that passes secure boot and then ensures security by checking the UEFI variables for "MOKs,"
+establishing a chain of trust. It's a workaround in and of itself.
+
+Ventoy's MOK is special because it breaks the chain of trust by executing any binary without additional validation (this
+is intentional and core to how Ventoy works to begin with).
+
+### The Problem: NVRAM vs. The Disk
+
+The problem arises with where the MOK is stored. It's not on the disk like your OS, but in the NVRAM, which lives
+physically on your motherboard. Traditional security (like antivirus or firewalls) lives in the operating system. If you
+wipe the drive, the security (and the threats) is gone. This isn't the case for MOKs.
+
+Because these keys are stored at the firmware level, they are completely agnostic of the OS. You can format your NVMe
+drive and install a fresh, hardened version of Windows 11 or Enterprise Linux, and Ventoy’s key remains. Additionally,
+since this is a workaround built on top of another workaround, a lot of firmwares don't even know it exists, which is
+why when you go to reset secure boot or restore the firmware to default settings, this vulnerability remains regardless.
+
+## What does this mean?
+
+This vulnerability means that secure boot is effectively non-existent even if you used Ventoy with secure boot only once
+a year ago and even if you swapped your disk. This, by extension, means an attacker can make your computer boot anything
+regardless of integrity, and you would be none the wiser.
+
+## How to check if you are affected?
+
+Because these keys live in your hardware's NVRAM, you won't find them in your "Add/Remove Programs" or Windows Settings.
+You have to query the UEFI firmware directly.
+
+Unfortunately, Windows doesn't provide a "click-to-see" menu for these specific keys (they are a workaround built on top
+of another workaround after all), so you will have to resort to Linux.
+
+Open your terminal and run:
+
+```shell
+mokutil --list-enrolled
+```
+
+**What to look for:** Scroll through the output. If you see an entry with Issuer: CN=Ventoy or a certificate that
+references Ventoy, your system is currently "wide open."
+
+## How to remediate
+
+Ventoy thankfully provides an [easy utility for this](https://www.ventoy.net/en/doc_delete_key.html); however, if you
+are (understandably) skeptical of them after this, you can also run the following command on a Linux shell:
+
+```shell
+mokutil --reset
+```
+
+## Who is to blame?
+
+Nobody is to blame for this. This is an intentional design choice; it is not malicious or a vulnerability in the
+traditional sense. However, we do believe they should have made it plenty more clear what you are getting into.
