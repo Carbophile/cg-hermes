@@ -46,7 +46,7 @@ import { getAssetPath } from "@lib/assets";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type HeaderDict = Pick<Dictionary, "common">;
 
@@ -60,6 +60,11 @@ const Header = ({ dict }: HeaderProps) => {
 	const pathName = usePathname();
 
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <Needs to run on navigation>
+	useEffect(() => {
+		setMobileMenuOpen(false);
+	}, [pathName]);
 
 	const navigation = useMemo(
 		() => [
@@ -150,7 +155,15 @@ const Header = ({ dict }: HeaderProps) => {
 								<XMarkIcon aria-hidden="true" className="size-6" />
 							</button>
 						</div>
-						<Link className="-m-1.5 p-1.5" href={`/${lang}`}>
+						<Link
+							className="-m-1.5 p-1.5"
+							href={`/${lang}`}
+							onClick={() => {
+								if (pathName === `/${lang}`) {
+									setMobileMenuOpen(false);
+								}
+							}}
+						>
 							<span className="sr-only">{dict.common.orgName}</span>
 							<Image
 								alt=""
@@ -182,7 +195,11 @@ const Header = ({ dict }: HeaderProps) => {
 								className="-mx-3 block rounded-lg px-3 py-2 font-semibold text-base/7 text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-white/5"
 								href={item.href}
 								key={item.name}
-								onClick={() => setMobileMenuOpen(false)}
+								onClick={() => {
+									if (pathName === item.href) {
+										setMobileMenuOpen(false);
+									}
+								}}
 							>
 								{item.name}
 							</Link>
