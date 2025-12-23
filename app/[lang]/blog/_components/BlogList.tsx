@@ -88,6 +88,7 @@ export const BlogList = ({ dict, posts }: BlogListProps) => {
 							<Image
 								alt=""
 								className="absolute inset-0 size-full rounded-2xl bg-gray-50 object-cover dark:bg-gray-800"
+								fetchPriority={index === 0 ? "high" : "auto"}
 								fill
 								priority={index === 0}
 								quality="75"
