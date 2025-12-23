@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-export function getCloudflareImage(
+export const getCloudflareImage = (
 	src: string,
 	{ width, quality }: { width?: number; quality?: number } = {},
-) {
+) => {
 	// biome-ignore lint/complexity/useLiteralKeys: <Conflicts with TypeScript>
 	if (process.env["NEXT_PUBLIC_HERMES_PRODUCTION"] !== "true") {
 		return width ? `${src}?w=${width}` : src;
@@ -29,9 +29,9 @@ export function getCloudflareImage(
 	if (width) params.push(`width=${width}`);
 	if (quality) params.push(`quality=${quality}`);
 	return `/cdn-cgi/image/${params.join(",")}${src}`;
-}
+};
 
-export default function cloudflareLoader({
+const cloudflareLoader = ({
 	src,
 	width,
 	quality,
@@ -39,6 +39,8 @@ export default function cloudflareLoader({
 	src: string;
 	width: number;
 	quality?: number;
-}) {
+}) => {
 	return getCloudflareImage(src, { width, ...(quality ? { quality } : {}) });
-}
+};
+
+export default cloudflareLoader;

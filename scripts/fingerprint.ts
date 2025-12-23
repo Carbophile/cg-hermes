@@ -22,17 +22,17 @@ const SOURCE_DIR = path.join(process.cwd(), "assets");
 const TARGET_DIR = path.join(process.cwd(), "public", "assets");
 const MANIFEST_PATH = path.join(process.cwd(), "lib", "assets-manifest.json");
 
-function cleanDirectory(dir: string) {
+const cleanDirectory = (dir: string) => {
 	if (fs.existsSync(dir)) {
 		fs.rmSync(dir, { force: true, recursive: true });
 	}
-}
+};
 
-function ensureDirectoryExistence(filePath: string) {
+const ensureDirectoryExistence = (filePath: string) => {
 	fs.mkdirSync(path.dirname(filePath), { recursive: true });
-}
+};
 
-function getFiles(dir: string): string[] {
+const getFiles = (dir: string): string[] => {
 	let files: string[] = [];
 	if (!fs.existsSync(dir)) return files;
 
@@ -46,9 +46,9 @@ function getFiles(dir: string): string[] {
 		}
 	}
 	return files;
-}
+};
 
-function fingerprint() {
+const fingerprint = () => {
 	console.log("Fingerprinting assets...");
 
 	cleanDirectory(TARGET_DIR);
@@ -85,6 +85,6 @@ function fingerprint() {
 	console.log(
 		`Processed ${files.length} assets. Manifest written to ${MANIFEST_PATH}`,
 	);
-}
+};
 
 fingerprint();

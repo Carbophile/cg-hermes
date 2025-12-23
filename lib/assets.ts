@@ -17,7 +17,7 @@
 import manifest from "./assets-manifest.json";
 
 // We can infer the valid keys from the manifest itself if we want strict typing. For now, we'll accept string to be more flexible, but we could improve this later.
-export function getAssetPath(path: string): string {
+export const getAssetPath = (path: string): string => {
 	const key = path.startsWith("/") ? path.slice(1) : path;
 	const cleanKey = key.replace(/^assets\//, "");
 
@@ -31,4 +31,4 @@ export function getAssetPath(path: string): string {
 		`Asset not found in manifest: ${cleanKey}. Run "pnpm run fingerprint".`,
 	);
 	return `/assets/${cleanKey}`;
-}
+};

@@ -17,11 +17,11 @@
 import Fuse from "fuse.js";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-export function useSearchAndPagination<T>(
+export const useSearchAndPagination = <T>(
 	items: T[],
 	searchKeys: string[],
 	itemsPerPage: number,
-) {
+) => {
 	const [filteredItems, setFilteredItems] = useState<T[]>(items);
 	const [searchQuery, setSearchQuery] = useState("");
 	const [currentPage, setCurrentPage] = useState(1);
@@ -69,4 +69,4 @@ export function useSearchAndPagination<T>(
 		setSearchQuery,
 		totalPages,
 	};
-}
+};

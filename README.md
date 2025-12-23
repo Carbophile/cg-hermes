@@ -21,15 +21,15 @@ The project codename comes from [Hermes](https://en.wikipedia.org/wiki/Hermes), 
 ### Installation
 
 1. Clone the repository:
-   ```shell
-   git clone https://github.com/Carbophile/cg-hermes.git
-   cd cg-hermes
-   ```
+	 ```shell
+	 git clone https://github.com/Carbophile/cg-hermes.git
+	 cd cg-hermes
+	 ```
 
 2. Install the dependencies:
-   ```shell
-   pnpm install
-   ```
+	 ```shell
+	 pnpm install
+	 ```
 
 ### Running Locally
 
@@ -56,7 +56,7 @@ The `HEAD` of the `main` branch is automatically deployed.
 ### Project Structure
 
 - **`app/[lang]/`:** Contains the application routes. The `[lang]` dynamic segment handles localization (e.g., `/en/`
-  `/hr/`)
+	`/hr/`)
 - **`l10n/`:** Handles localization logic and houses the dictionaries
 - **`blog/` & `projects/`**: Contain the data access layers and MDX content for blog posts and project showcases
 - **`assets/`**: Source for static assets such as images and videos (fingerprinted at build time)
@@ -70,9 +70,9 @@ dictionaries. Everything must be fully localized.
 
 1. Add the new key, along with a description, to `l10n/dict.schema.json`
 2. Regenerate types:
-   ```shell
-   pnpm run types
-   ```
+	 ```shell
+	 pnpm run types
+	 ```
 3. Navigate to `l10n/dicts/`.
 4. Add the corresponding key translations to each of the dictionaries.
 
