@@ -54,3 +54,4 @@ The project follows a standard Next.js App Router structure with specific conven
 *   **Formatter:** Biome is the single source of truth for formatting and linting. Do not use Prettier or ESLint.
 *   **Style:** Functional components with TypeScript. Use arrow functions for components and utilities. Inline exports except default which is at end of file.
 *   **Assets:** Use `lib/assets.ts` and `getAssetPath` to reference static assets to ensure proper hashing.
+*   **Indentation:** Always use tabs unless explicitly unsupported (like in YAML).

@@ -18,25 +18,24 @@ Welcome to the **Carbophile Group Hermes** project. This guide outlines the deve
 
 ### Component Syntax
 *   **Arrow Functions:** We prefer arrow functions for components and utilities over the `function` keyword.
-		```tsx
-		// Good
-		const GoodComponent = () => {}
+	```tsx
+	// Good
+	const GoodComponent = () => {}
 
-		// Avoid
-		function BadComponent() {}
-		```
+	// Avoid
+	function BadComponent() {}
+	```
 *   **Export:** Use named exports or default exports as appropriate for the file type (e.g., Next.js pages require default exports). Inline regular exports, place default export at the end of the file.
 	```tsx
+	// Good
+	export const MyGoodComponent = () => {}
+	export const myUtility = () => {}
+	const MyDefaultComponent = () => {}
+	export default MyDefaultComponent
 
-		// Good
-		export const MyGoodComponent = () => {}
-		export const myUtility = () => {}
-		const MyDefaultComponent = () => {}
-		export default MyDefaultComponent
-
-		// Avoid
-		const MyBadComponent = () => {}
-		export { MyComponent }
+	// Avoid
+	const MyBadComponent = () => {}
+	export { MyBadComponent }
 	```
 
 ### Imports
