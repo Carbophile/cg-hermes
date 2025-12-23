@@ -53,7 +53,7 @@ const Landing = ({ dict, lang }: LandingProps) => {
 	const posterSrc = getCloudflareImage(getAssetPath("PIX-server-stock.webp"), {
 		width: 1280,
 	});
-	preload(posterSrc, { as: "image" });
+	preload(posterSrc, { as: "image", fetchPriority: "high" });
 
 	return (
 		<article className="overflow-hidden bg-white py-24 sm:py-32 dark:bg-gray-900">
