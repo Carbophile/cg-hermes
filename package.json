@@ -23,7 +23,7 @@
 		"tsx": "^4.21.0",
 		"typescript": "^5.9.3",
 		"unified": "^11.0.5",
-		"wrangler": "^4.56.0"
+		"wrangler": "^4.60.0"
 	},
 	"license": "Apache-2.0",
 	"name": "cg-hermes",
